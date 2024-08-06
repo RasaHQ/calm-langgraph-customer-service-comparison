@@ -1,7 +1,7 @@
 # CALM Reimplementation of LangGraph's customer service bot
 
-This is a reimplementation in CALM of langgraph's [customer support](https://langchain-ai.github.io/langgraph/tutorials/chatbots/customer-support/) example. 
-There's a [YouTube video](https://www.youtube.com/watch?v=b3XsvoFWp4c) that provides a walkthrough. 
+This is a reimplementation in of langgraph's [customer support](https://langchain-ai.github.io/langgraph/tutorials/chatbots/customer-support/) example in Rasa's [CALM](https://rasa.com/docs/rasa-pro/calm/) paradigm 
+There's a [YouTube video](https://www.youtube.com/watch?v=b3XsvoFWp4c) that provides a walkthrough of langgraph's implementation. 
 
 
 ## Skills
@@ -12,7 +12,6 @@ The bot has the following skills:
 * Booking a rental car
 * Booking a hotel
 * Booking an excursion (e.g. museum visit) on the trip
-* Answering questions about SWISS AIR's ticket policies (TODO: Not implemented yet)
 
 ## Running in a Github Codespace
 
@@ -20,11 +19,10 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 
 ### Prerequisites
 
-- You must have access to the private repository.
 - You'll need a [Rasa Pro license](https://rasa.com/docs/rasa-pro/installation/python/licensing/) and an [OpenAI API key](https://platform.openai.com/playground/chat).
 - You should be familiar with Python and Bash.
 
-### Steps to run CALM assistant
+### Steps to run the CALM assistant
 
 1. **Create a Codespace:**
 
@@ -62,7 +60,7 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 
 
 5. **Start the Action Server:**
-   - In the second terminal, `cd calm_llm` and the run:
+   - In the second terminal, `cd calm_llm` and then run:
      ```
      rasa run actions
      ```
@@ -76,13 +74,12 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 7. **Access the Inspector:**
    - When prompted to open in browser, click the link.
 
-
 8. Chat with your customer support assistant about flights, hotels, cars, and/or excursions!
 
 
 ### Notes
 
-- Keyboard bindings may not map correctly in the Codespace so you may not be able to copy and paste as you normally would!
+- Keyboard bindings may not map correctly in the Codespace, so you may not be able to copy and paste as you normally would!
 - The database creation is done separately to manage memory usage.
 
 ## Quantitative Evaluation
@@ -101,7 +98,17 @@ To do so, we construct a test set to evaluate the following capabilities:
 
 ### Run end-to-end tests
 
-Execute the following in the `calm_llm` while the action server is running:
+Ensure you have set up the environment in two active terminals by following the instructions in [this section](#steps-to-run-the-calm-assistant)
+
+Next, execute the following in the `calm_llm` directory:
+
+1. Run action server - In one of the terminals, execute the command - 
+
+```commandline
+rasa run actions
+```
+
+2. While the action server is running, in the second terminal execute:
 
 ```
 python run_eval.py
@@ -153,7 +160,7 @@ Median: 2.067293882369995
 
 ### LangGraph assistant
 
-Navigate to `langgraph_implementation` and then
+Navigate to `langgraph_implementation` folder and then set up the environment with - 
 
 ```
 # Step 1: Create a new virtual environment
@@ -166,7 +173,7 @@ source new_env/bin/activate
 pip install -r requirements.txt
 ```
 
-Step 4: Then set up the necessary keys by opening the `.env` file 
+Next, set up the necessary keys by opening the `.env` file in that folder and filling the values for requested variables 
 
 ```
 TAVILY_API_KEY - Access key for Tavily, used for making search queries
@@ -174,10 +181,10 @@ LANGCHAIN_API_KEY - Langsmith access key, for monitoring and tracing LLM calls.
 OPENAI_API_KEY - API key for OpenAI platform, for invoking the LLM.
 ```
 
-Step 5: Load the keys by running `source .env` in the terminal window.
+Load the keys by running `source .env` in the terminal window.
 
 
-Step 6: Then execute
+Then execute -
 ```
 python run_eval.py
 ```
@@ -190,25 +197,27 @@ To create the figures in our blog post
 
 1. Generate data for CALM assistant
 
-- Follow steps 2-6 above in "Steps to run CALM assistant"
-- In `calm_llm`, run `python run_tests_for_plots.py` to generate data for figures
-- `cd results` and then `python combine_data.py` to restructure data for plotting
+- Follow steps 2-5 from [Steps to run CALM assistant](#steps-to-run-the-calm-assistant) section.
+- On a separate terminal, navigate to `calm_llm` directory, run `python run_tests_for_plots.py` to generate data for figures.
+- Restructure the data for plotting with `cd results` and then `python combine_data.py`
+
 
 2. Generate data for CALM + NLU assistant
 
-- Follow steps 2-6 above in "Steps to run CALM assistant"
-- In `calm_nlu`, run `python run_tests_for_plots.py` to generate data for figures
-- `cd results` and then `python combine_data.py` to restructure data for plotting
+- Follow steps 2-5 from [Steps to run CALM assistant](#steps-to-run-the-calm-assistant) section.
+- On a separate terminal, navigate to `calm_nlu` directory, run `python run_tests_for_plots.py` to generate data for figures
+- Restructure the data for plotting with `cd results` and then `python combine_data.py`
 
 3. Generate data for LangGraph assistant
 
-- Run steps 1-5 from [LangGraph assistant](#LangGraph-assistant) above
+- Run steps 1-5 from [LangGraph assistant](#langGraph-assistant) above
 - In `langgraph_implementation` folder, run `python run_tests_for_plots.py` to generate data for figures
-- `cd results` and then `python combine_data.py` to restructure data for plotting
+- Restructure the data for plotting with `cd results` and then `python combine_data.py`
+
 
 ### Load and visualize results in a Jupyter Notebook
 
-- open `metrics.ipynb` (in root directory)
+- Open `metrics.ipynb` (in root directory)
 - In the top-right of your screen, you should see 'Select Kernel', click on it
 - Once prompted, install necessary extensions
 - Once the extensions are installed, select the `.venv` environment for running the kernel.
