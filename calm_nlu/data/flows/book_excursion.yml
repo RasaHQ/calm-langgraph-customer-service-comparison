@@ -1,0 +1,16 @@
+flows:
+  book_excursion:
+    description: search and book an excursion
+    nlu_trigger:
+      - intent:
+          name: book_excursion
+          confidence_threshold: 0.8
+    steps:
+      - collect: trip_destination
+        reset_after_flow_ends: false
+      - action: search_trip_recommendations
+      - collect: excursion_name
+        description: use the official name as stated by the assistant
+      - collect: excursion_booking_confirmation
+        ask_before_filling: True
+      - action: utter_confirm_booked_excursion

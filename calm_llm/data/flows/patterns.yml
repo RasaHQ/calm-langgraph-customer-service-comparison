@@ -1,0 +1,11 @@
+flows:
+  pattern_completed:
+    description: Completion of a user's flow
+    steps:
+      - action: action_listen
+  pattern_correction:
+    description: Handle a correction of a slot value.
+    name: pattern correction
+    steps:
+      - action: action_correct_flow_slot
+        next: "END"

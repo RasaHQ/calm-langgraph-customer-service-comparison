@@ -1,0 +1,24 @@
+version: "3.1"
+
+actions:
+  - search_trip_recommendations
+
+slots:
+  excursion_name:
+    type: text 
+  excursion_keywords:
+    type: text 
+  excursion_search_results:
+    type: any
+  excursion_search_results_readable:
+    type: text
+  excursion_booking_confirmation:
+    type: bool
+
+responses:
+  utter_ask_excursion_name:
+    - text: "Do any of these options sound good? {excursion_search_results_readable}"
+  utter_ask_excursion_booking_confirmation:
+    - text: "You've chosen {excursion_name}. Shall I book that for you?"
+  utter_confirm_booked_excursion:
+    - text: "great - that's all booked for you"

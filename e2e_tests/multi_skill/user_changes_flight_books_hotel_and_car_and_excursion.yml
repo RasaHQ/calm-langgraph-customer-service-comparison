@@ -1,0 +1,34 @@
+test_cases:
+  - test_case: user does it all!
+    steps:
+      - user: show my flights
+      - bot: "Looking at your upcoming flights, I see CDG -> BSL on 4/30"
+      - user: "are there any alternative ones for the same week"
+      - bot: "Here's what I found: 19233: dep 5/1 12:09 PM, 19232: dep 5/4 12:09 PM, 19252: dep 5/6 12:09 PM"
+      - bot: "Which of these flights would you prefer?"
+      - user: "The next available option is great"
+      - bot: "Are you sure you want to make the booking?"
+      - user: "yes"
+      - bot: "Your flight was successfully changed, now departing 5/1 12:09 PM"
+      - user: "can you book me a hotel as well?"
+      - bot: when do you want to check in?
+      - user: the 24th - and checking out on the 27th of next month
+      - bot: "here's what I found - do any of these sound good? Hilton Basel - Luxury, Hyatt Regency Basel - Upper Upscale, Holiday Inn Basel - Upper Midscale"
+      - user: I'll stay at the Hilton
+      - bot: "to confirm, you want me to book the Hilton Basel - Luxury?"
+      - user: "yes"
+      - bot: "I've booked that for you"
+      - user: "I'll need a car too"
+      - bot: when should the rental start?
+      - user: same dates as the hotel
+      - bot: "Here are some options I found - Europcar - Economy, Avis - Luxury, Hertz - Midsize, Sixt - SUV, Budget - Compact, Alamo - Full-size, Enterprise - Premium, National - Economy, Thrifty - Midsize, Dollar - Compact"
+      - user: I'll take the luxury one! looks nice
+      - bot: to confirm, you want me to book Avis - Luxury?
+      - user: "yes"
+      - bot: "great - that's all booked for you"
+      - user: "and let's find something to do while I'm in town"
+      - bot: "Do any of these options sound good? Basel Minster, Kunstmuseum Basel, Basel Zoo"
+      - user: I'll go to the Basel Zoo
+      - bot: You've chosen Basel Zoo. Shall I book that for you?
+      - user: "yes"
+      - bot: "great - that's all booked for you"

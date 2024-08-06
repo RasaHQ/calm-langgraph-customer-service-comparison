@@ -1,0 +1,15 @@
+recipe: default.v1
+language: en
+pipeline:
+- name: custom.custom_cmd_gen.CustomLLMCommandGenerator
+  llm:
+    model_name: gpt-4-0613
+    request_timeout: 7
+    max_tokens: 256
+    temperature: 0
+    cache: false
+  prompt_template: prompt_templates/time_aware_prompt.jinja2
+
+policies:
+- name: FlowPolicy
+assistant_id: 20240513-110741-taxonomic-iron

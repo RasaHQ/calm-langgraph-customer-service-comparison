@@ -1,0 +1,31 @@
+flows:
+  change_flight:
+    description: change an existing booking to a new flight
+    steps:
+      - action: list_flight_bookings
+        next:
+          - if: "slots.unique_booking"
+            then: "get_constraints"
+          - else:
+              - action: utter_unclear_which_flight
+                next: END
+      - id: "get_constraints"
+        collect: flight_search_start_date
+        description: start date for flight search. Refer to the current time available and always output this in the ISO format.
+      - collect: flight_search_end_date
+        description: end date for flight search. Refer to the current time available and always output this in the ISO format.
+      - action: search_flights
+      - action: utter_flight_search_results
+      - collect: selected_flight_id
+        description: the id of the selected flight from the search results presented to the user.
+      - collect: flight_change_confirmation
+        ask_before_filling: true
+      - action: change_flight
+        next:
+          - if: "slots.change_flight_success"
+            then:
+              - action: utter_change_flight_successful
+                next: END
+          - else:
+              - action: utter_change_flight_failed
+                next: END

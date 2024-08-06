@@ -1,0 +1,21 @@
+test_cases:
+  - test_case: car booking combined with hotel
+    steps:
+      - user: I'd like to book a car
+      - bot: in which city?
+      - user: to Basel
+      - bot: when should the rental start?
+      - user: from may 14th to the 17th
+      - bot: "Here are some options I found - Europcar - Economy, Avis - Luxury, Hertz - Midsize, Sixt - SUV, Budget - Compact, Alamo - Full-size, Enterprise - Premium, National - Economy, Thrifty - Midsize, Dollar - Compact"
+      - user: I'll take the luxury one! looks nice
+      - bot: to confirm, you want me to book Avis - Luxury?
+      - user: "yes"
+      - bot: "great - that's all booked for you"
+      - user: "I also need a hotel"
+      - bot: when do you want to check in?
+      - user: same dates as the car rental
+      - bot: "here's what I found - do any of these sound good? Hilton Basel - Luxury, Hyatt Regency Basel - Upper Upscale, Holiday Inn Basel - Upper Midscale"
+      - user: I'll stay at the Hilton
+      - bot: "to confirm, you want me to book the Hilton Basel - Luxury?"
+      - user: "yes"
+      - bot: "I've booked that for you"

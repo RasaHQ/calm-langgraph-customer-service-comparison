@@ -1,0 +1,139 @@
+version: "3.1"
+
+nlu:
+- intent: list_flights
+  examples: |
+    - show my flights
+    - what flights do I have coming up
+    - list my upcoming flights
+    - can you show my booked flights?
+    - what flights have I booked?
+    - show me my flight schedule
+    - do I have any flights soon?
+    - display my flight itinerary
+    - any flights planned for me?
+    - what are my flight details?
+    - give me my flight schedule
+    - what flights are on my calendar?
+    - check my flight bookings
+    - what flights am I taking?
+    - tell me my flight plans
+    - show my flight reservations
+    - what are my flight plans?
+    - do I have flights booked?
+    - any flights coming up for me?
+    - review my upcoming flights
+
+- intent: book_excursion
+  examples: |
+    - search and book an excursion
+    - what is there to do in town?
+    - find me an excursion to book
+    - book an activity for me
+    - what activities are available?
+    - help me find an excursion
+    - can you book an excursion for me?
+    - I want to book an excursion
+    - find and book a tour
+    - suggest an excursion to book
+    - any good excursions in town?
+    - look for excursions for me
+    - what's available for excursions?
+    - can I book an activity here?
+    - I need to find an excursion
+    - recommend an excursion to book
+    - what tours can I book?
+    - help me with booking an excursion
+    - find an activity to book
+    - book a local excursion for me
+
+- intent: search_hotel
+  examples: |
+    - help me find a hotel
+    - I need a hotel room
+    - book a hotel for me
+    - can you find a hotel?
+    - I want to book a hotel
+    - look for hotels for me
+    - search for hotels in the area
+    - find a place to stay
+    - any hotels nearby?
+    - help me book a hotel room
+    - find me accommodation
+    - I need to find a hotel
+    - locate a hotel for me
+    - what hotels are available?
+    - book accommodation for me
+    - where can I find a hotel?
+    - suggest a hotel to book
+    - search for a hotel room
+    - find hotels in this area
+    - assist me in booking a hotel
+
+- intent: search_rental_car
+  examples: |
+    - I need to book a car
+    - find me a rental car
+    - help me rent a car
+    - search for rental cars
+    - book a car for me
+    - rent a car for me
+    - find rental cars nearby
+    - I need a rental car
+    - can you book a car for me?
+    - look for rental cars
+    - assist me in renting a car
+    - find me a car to rent
+    - book a rental car for me
+    - any rental cars available?
+    - help me find a rental car
+    - search for a rental vehicle
+    - where can I rent a car?
+    - suggest rental cars for me
+    - I need to hire a car
+    - find car rentals for me
+
+- intent: change_flight
+  examples: |
+    - I want to change a flight
+    - what alternatives are available?
+    - help me change my flight
+    - I need to modify my flight
+    - change my flight booking
+    - can I alter my flight?
+    - assist me in changing my flight
+    - I need to reschedule my flight
+    - how can I change my flight?
+    - look for alternatives to my flight
+    - change my flight details
+    - find a new flight for me
+    - I need to switch my flight
+    - help me with my flight change
+    - what other flights can I take?
+    - can I reschedule my flight?
+    - alter my flight booking
+    - show me options to change my flight
+    - I need to adjust my flight
+    - what are my options to change my flight?
+
+- intent: other
+  examples: |
+    - above dates only
+    - yes
+    - no
+    - leave it
+    - same dates as above
+    - along with car rental
+    - same as hotel
+    - same as flights
+    - flight dates
+    - hotel dates
+    - week after the next one
+    - 3rd option on the list
+    - rental along with hotel!
+    - cancel
+    - next week
+    - I love to walk
+    - public transport could save me some money
+    - It's alright I don't need it!
+

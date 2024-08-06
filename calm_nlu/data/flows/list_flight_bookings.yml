@@ -1,0 +1,17 @@
+flows:
+  list_bookings:
+    description: list flight bookings - booked flights
+    nlu_trigger:
+      - intent:
+          name: list_flights
+          confidence_threshold: 0.9
+    steps:
+      - action: list_flight_bookings
+        next:
+          - if: "slots.bookings_list"
+            then:
+              - action: utter_list_flight_bookings
+                next: END
+          - else:
+              - action: utter_no_flight_bookings
+                next: END

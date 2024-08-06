@@ -1,0 +1,46 @@
+version: "3.1"
+
+actions:
+  - search_flights
+  - change_flight
+
+slots:
+  flight_search_start_date:
+    type: text
+  flight_search_end_date:
+    type: text
+    initial_value: "Any"
+  selected_flight_id:
+    type: text
+  flight_search_results:
+    type: any
+  results_readable:
+    type: text
+  change_flight_success:
+    type: bool
+  new_departure_time:
+    type: text
+  flight_change_confirmation:
+    type: bool
+
+responses:
+  utter_ask_book_flight_confirmation:
+    - text: "shall I book this flight for you?"
+  utter_ask_flight_search_start_date:
+    - text: "When would you like to fly?"
+  utter_ask_flight_search_end_date:
+    - text: "Is there a particular date by when you want to surely reach your destination?"
+  utter_ask_flight_change_constraints:
+    - text: "when would you like to fly?"
+  utter_unclear_which_flight:
+    - text: "I'm not sure which booking you want to change"
+  utter_ask_selected_flight_id:
+    - text: "Which of these flights would you prefer?"
+  utter_flight_search_results:
+    - text: "Here's what I found: {results_readable}"
+  utter_change_flight_successful:
+    - text: "Your flight was successfully changed, now departing {new_departure_time}"
+  utter_change_flight_failed:
+    - text: "Unfortunately I wasn't able to change that for you."
+  utter_ask_flight_change_confirmation:
+    - text: "Are you sure you want to make the booking?"

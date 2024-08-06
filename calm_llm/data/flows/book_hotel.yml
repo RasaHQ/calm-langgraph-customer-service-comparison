@@ -1,0 +1,30 @@
+flows:
+  search_hotel:
+    description: search for hotels
+    steps:
+      - collect: trip_destination
+        reset_after_flow_ends: false      
+      - collect: hotel_price_range
+      - id: "hotel_start_date"
+        collect: hotel_start_date
+        description: check in date for the hotel. Do not fill this slot unless user explicitly specifies it in the conversation.
+      - collect: hotel_end_date
+        description: check out date for the hotel. Do not fill this slot unless user explicitly specifies it in the conversation.
+      - noop: true
+        next:
+          - if: slots.hotel_start_date > slots.hotel_end_date
+            then:
+              - action: utter_invalid_date
+              - set_slots:
+                  - hotel_start_date: null
+                  - hotel_end_date: null
+                next: hotel_start_date
+          - else: initiate_search
+      - id: "initiate_search"
+        action: search_hotels
+      - collect: hotel_search_results_readable
+      - collect: hotel_name
+        description: Name of the hotel which the user has selected. Must be an exact element of the slot "hotel_search_results_readable". If the user wants an option that isn't listed, do not fill the slot with that value.
+      - collect: hotel_booking_confirmation
+        ask_before_filling: true
+      - action: utter_confirm_booked_hotel

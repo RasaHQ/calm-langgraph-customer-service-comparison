@@ -1,0 +1,31 @@
+flows:
+  search_rental_car:
+    description: search for rental cars
+    nlu_trigger:
+      - intent:
+          name: search_rental_car
+          confidence_threshold: 0.8
+    steps:
+      - collect: trip_destination
+        reset_after_flow_ends: false
+      - id: "car_rental_start_date"
+        collect: car_rental_start_date
+      - collect: car_rental_end_date
+      - noop: true
+        next:
+          - if: slots.car_rental_start_date > slots.car_rental_end_date
+            then:
+              - action: utter_invalid_date
+              - set_slots:
+                  - car_rental_start_date: null
+                  - car_rental_end_date: null
+                next: car_rental_start_date
+          - else: initiate_search
+      - id: "initiate_search"
+        action: search_car_rentals
+      - collect: car_rental_search_results_readable
+      - collect: car_rental_selection
+        description: Car rental option which the user has selected. Must be an exact element of the slot car_rental_search_results_readable. If the user wants an option that isn't listed, do not fill the slot with that value.
+      - collect: car_rental_booking_confirmation
+        ask_before_filling: true
+      - action: utter_confirm_booked_rental_car

@@ -1,0 +1,13 @@
+test_cases:
+  - test_case: simple car booking
+    steps:
+      - user: I'd like to book a car
+      - bot: in which city?
+      - user: to Basel
+      - bot: when should the rental start?
+      - user: from may 14th to the 17th
+      - bot: "Here are some options I found - Europcar - Economy, Avis - Luxury, Hertz - Midsize, Sixt - SUV, Budget - Compact, Alamo - Full-size, Enterprise - Premium, National - Economy, Thrifty - Midsize, Dollar - Compact"
+      - user: I'll take the luxury one! looks nice
+      - bot: to confirm, you want me to book Avis - Luxury?
+      - user: "yes"
+      - bot: "great - that's all booked for you"

@@ -1,0 +1,7 @@
+*.sqlite
+*.pyc
+.rasa
+models/
+.idea
+.ipynb_checkpoints/
+.DS_Store

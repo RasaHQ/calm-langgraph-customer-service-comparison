@@ -1,0 +1,18 @@
+version: "3.1"
+
+actions:
+  - list_flight_bookings
+
+slots:
+  bookings_list:
+    type: any
+  bookings_list_readable:
+    type: bool
+  unique_booking:
+    type: any
+
+responses:
+  utter_no_flight_bookings:
+    - text: "I had a look but unfortunately I couldn't find any upcoming bookings for you."
+  utter_list_flight_bookings:
+    - text: "Looking at your upcoming flights, I see {bookings_list_readable}"

@@ -1,0 +1,49 @@
+version: "3.1"
+
+actions:
+  - search_car_rentals
+  - validate_car_rental_start_date
+  - validate_car_rental_end_date
+
+slots:
+  car_rental_price_tier:
+    type: categorical
+    values:
+      - Economy
+      - Premium
+      - Midsize
+      - Upper Midscale
+      - Upper Upscale
+      - Luxury
+      - Any
+    initial_value: "Any"
+  car_rental_name:
+    type: text
+    initial_value: "Any"
+  car_rental_start_date:
+    type: text
+  car_rental_end_date:
+    type: text
+  car_rental_search_results:
+    type: any
+  car_rental_search_results_readable:
+    type: text
+    initial_value: "Any"
+  car_rental_selection:
+    type: text
+  car_rental_booking_confirmation:
+    type: bool
+
+responses:
+  utter_ask_car_rental_location:
+    - text: "In what city do you want to rent a car?"
+  utter_ask_car_rental_start_date:
+    - text: "when should the rental start?"
+  utter_ask_car_rental_end_date:
+    - text: "when should the rental end?"
+  utter_ask_car_rental_selection:
+    - text: "Here are some options I found - {car_rental_search_results_readable}"
+  utter_ask_car_rental_booking_confirmation:
+    - text: "to confirm, you want me to book {car_rental_selection}?"
+  utter_confirm_booked_rental_car:
+    - text: "great - that's all booked for you"

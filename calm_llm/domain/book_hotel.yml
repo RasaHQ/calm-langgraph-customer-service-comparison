@@ -1,0 +1,36 @@
+version: "3.1"
+
+actions:
+  - search_hotels
+  - validate_hotel_start_date
+  - validate_hotel_end_date
+
+slots:
+  hotel_name:
+    type: text 
+  hotel_search_results:
+    type: any
+  hotel_search_results_readable:
+    type: text
+    initial_value: "Any"
+  hotel_start_date:
+    type: text
+  hotel_end_date:
+    type: text
+  hotel_price_range:
+    type: text
+    initial_value: "Any"
+  hotel_booking_confirmation:
+    type: bool
+
+responses:
+  utter_ask_hotel_start_date:
+    - text: "when do you want to check in?"
+  utter_ask_hotel_end_date:
+    - text: "when do you want to leave?"
+  utter_ask_hotel_name:
+    - text: "here's what I found - do any of these sound good? {hotel_search_results_readable}"
+  utter_ask_hotel_booking_confirmation:
+    - text: "to confirm, you want me to book the {hotel_name}?"
+  utter_confirm_booked_hotel:
+    - text: "I've booked that for you"

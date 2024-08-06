@@ -1,0 +1,5 @@
+test_cases:
+  - test_case: user lists their flights
+    steps:
+      - user: Please show me my booked flights
+      - bot: "Looking at your upcoming flights, I see CDG -> BSL on 4/30"
