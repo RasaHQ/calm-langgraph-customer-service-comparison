@@ -2,4 +2,4 @@ test_cases:
   - test_case: user lists their flights
     steps:
       - user: Please show me my booked flights
-      - bot: "Looking at your upcoming flights, I see CDG -> BSL on 4/30"
+      - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
