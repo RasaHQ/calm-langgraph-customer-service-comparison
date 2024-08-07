@@ -204,7 +204,7 @@ To create the figures in our blog post
 
 2. Generate data for CALM + NLU assistant
 
-- Follow steps 2-5 from [Steps to run CALM assistant](#steps-to-run-the-calm-assistant) section but in Step 4, `cd calm_nlu` instead of `cd calm_llm`.
+- Follow steps 2-5 from [Steps to run CALM assistant](#steps-to-run-the-calm-assistant) section but in Steps 4 and 5, `cd calm_nlu` instead of `cd calm_llm`.
 - On a separate terminal, navigate to `calm_nlu` directory, run `python run_tests_for_plots.py` to generate data for figures
 - Restructure the data for plotting with `cd results` and then `python combine_data.py`
 
