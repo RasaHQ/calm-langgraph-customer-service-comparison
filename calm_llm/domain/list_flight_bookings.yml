@@ -13,6 +13,6 @@ slots:
 
 responses:
   utter_no_flight_bookings:
-    - text: "I had a look but unfortunately I couldn't find any upcoming bookings for you."
+    - text: I've checked your account, but it looks like you don't have any upcoming flight bookings at the moment."
   utter_list_flight_bookings:
-    - text: "Looking at your upcoming flights, I see {bookings_list_readable}"
+    - text: "I've found your upcoming flight bookings: {bookings_list_readable}. Would you like to make changes to any of these?"

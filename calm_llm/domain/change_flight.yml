@@ -28,22 +28,22 @@ slots:
 
 responses:
   utter_ask_book_flight_confirmation:
-    - text: "shall I book this flight for you?"
+    - text: "Would you like me to go ahead and book it for you?"
   utter_ask_flight_search_start_date:
-    - text: "When would you like to fly?"
+    - text: "What's your preferred departure date for this trip?"
   utter_ask_flight_search_end_date:
-    - text: "Is there a particular date by when you want to surely reach your destination?"
+    - text: "Do you have a latest date you need to arrive by?"
   utter_ask_flight_change_constraints:
-    - text: "when would you like to fly?"
+    - text: "I'd be happy to help you change your flight. What dates work best for your new travel plans?"
   utter_unclear_which_flight:
-    - text: "I'm not sure which booking you want to change"
+    - text: "I apologize, but I'm not certain which of your bookings you'd like to modify. Could you please provide more details, such as the destination or date of the flight you want to change?"
   utter_ask_selected_flight_id:
-    - text: "Which of these flights would you prefer?"
+    - text: "Do any of these options work better for your schedule?"
   utter_flight_search_results:
-    - text: "Here's what I found: {results_readable}"
+    - text: "I've found several flight options that match your criteria:\n{results_readable}"
   utter_change_flight_successful:
-    - text: "Your flight was successfully changed."
+    - text: "Perfect! I've successfully changed your booking. Your new flight departs on {new_departure_time}"
   utter_change_flight_failed:
-    - text: "Unfortunately I wasn't able to change that for you."
+    - text: "I apologize, but I encountered an issue while trying to change your flight. Would you like me to try again or explore other options for you?"
   utter_ask_flight_change_confirmation:
-    - text: "Great, so just to confirm: you'd like to book flight {new_departure_time}"
+    - text: "Great choice! You've selected the flight on {new_departure_time}. Shall I go ahead and change your booking to this flight?"
