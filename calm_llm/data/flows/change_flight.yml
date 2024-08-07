@@ -16,8 +16,8 @@ flows:
         description: end date for flight search. Refer to the current time available and always output this in the ISO format.
       - action: search_flights
       - action: utter_flight_search_results
-      - collect: selected_flight_number
-        description: the selected flight number from the search results presented to the user.
+      - collect: selected_flight_id
+        description: the selected id number from the search results presented to the user.
       - action: new_flight_details
       - collect: flight_change_confirmation
         ask_before_filling: true
