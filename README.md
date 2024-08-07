@@ -219,8 +219,13 @@ To create the figures in our blog post
 
 - Open `metrics.ipynb` (in root directory)
 - In the top-right of your screen, you should see 'Select Kernel', click on it
+![Screenshot 2024-08-07 at 11 50 29 AM](https://github.com/user-attachments/assets/1e05d418-81b0-424d-b9f8-ca62234499cd)
 - Once prompted, install necessary extensions
-- Once the extensions are installed, select the `.venv` environment for running the kernel.
+![Screenshot 2024-08-07 at 11 43 56 AM](https://github.com/user-attachments/assets/6562a48c-4275-4faa-8be1-c091c35bb529)
+- Once the extensions are installed, click "select Kernel' again and select 'Python Environments...'
+![Screenshot 2024-08-07 at 11 45 09 AM](https://github.com/user-attachments/assets/0bd26925-3a8e-45e9-8b1d-bdf1b40bf9ca)
+- select the `.venv` environment for running the kernel:
+![Screenshot 2024-08-07 at 11 45 31 AM](https://github.com/user-attachments/assets/6ce5581d-c470-40ed-9a1d-2a0dec4c4b06)
 - execute all cells!
 
 
