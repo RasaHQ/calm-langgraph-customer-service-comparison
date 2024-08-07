@@ -17,8 +17,8 @@ slots:
 
 responses:
   utter_ask_excursion_name:
-    - text: "Do any of these options sound good? {excursion_search_results_readable}"
+    - text: "{trip_destination} has some wonderful attractions! Here are a few popular options: {excursion_search_results_readable}"
   utter_ask_excursion_booking_confirmation:
     - text: "You've chosen {excursion_name}. Shall I book that for you?"
   utter_confirm_booked_excursion:
-    - text: "great - that's all booked for you"
+    - text: "Wonderful. I've booked your visit to {excursion_name}"

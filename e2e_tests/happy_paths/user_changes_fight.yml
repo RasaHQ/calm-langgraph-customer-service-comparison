@@ -7,6 +7,6 @@ test_cases:
       - utter: utter_flight_search_results 
       - bot: "Do any of these options work better for your schedule?"
       - user: "The next available option is great"
-      - bot: "Great choice! You've selected the flight on 5/1 12:09 PM. Shall I go ahead and change your booking to this flight?"
+      - bot: "Great choice! You've selected the flight on Wednesday, May 01 at 12:09 PM. Shall I go ahead and change your booking to this flight?"
       - user: "yes"
-      - bot: "Perfect! I've successfully changed your booking. Your new flight departs on 5/1 12:09 PM"
+      - bot: "Perfect! I've successfully changed your booking. Your new flight departs on Wednesday, May 01 at 12:09 PM"

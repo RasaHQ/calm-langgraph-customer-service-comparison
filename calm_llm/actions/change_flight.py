@@ -81,7 +81,7 @@ class NewFlightDetails(Action):
             return {"BSL": "Basel"}.get(atis, None)
         trip_destination = destination_from_atis(new_flight['arrival_airport'])
         return [
-            SlotSet("new_departure_time", datetime.datetime.fromisoformat(new_departure_time).strftime('%-m/%-d %-I:%M %p')),
+            SlotSet("new_departure_time", datetime.datetime.fromisoformat(new_departure_time).strftime('%A, %B %d at %-I:%M %p')),
             SlotSet("new_flight_number", new_flight["flight_no"]),
             SlotSet("trip_destination", trip_destination)
             ]

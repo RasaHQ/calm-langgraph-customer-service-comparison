@@ -20,9 +20,9 @@ class SearchHotels(Action):
         location = tracker.get_slot("trip_destination")
         results = search_hotels(location)
         def format_readable(result):
-            return f"{result['name']} - {result['price_tier']}"
+            return f"* {result['name']} - {result['price_tier']}"
         print(results)
-        results_readable = ", ".join([format_readable(r) for r in results[:3]])
+        results_readable = "\n".join([format_readable(r) for r in results[:3]])
         events = [
             SlotSet("hotel_search_results", results),
             SlotSet("hotel_search_results_readable", results_readable)

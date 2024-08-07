@@ -29,10 +29,10 @@ class SearchCarRentals(Action):
         if name is 'Any':
             name = None
         def format_readable(r):
-            return f"{r['name']} - {r['price_tier']}"
+            return f"* {r['name']} - {r['price_tier']}"
 
         results = search_car_rentals()
-        results_readable = ", ".join([format_readable(r) for r in results])
+        results_readable = "\n".join([format_readable(r) for r in results])
         print(results)
         events = [
             SlotSet("car_rental_search_results", results),
@@ -59,7 +59,10 @@ class ValidateCarRentalStartDate(Action):
             dispatcher.utter_message(response="utter_invalid_date")
             return [SlotSet(slot_name, None)]
 
-        return [SlotSet(slot_name, start_date.isoformat())]
+        return [
+            SlotSet(slot_name, start_date.isoformat()),
+            SlotSet(f"{slot_name}_readable", start_date.strftime("%A, %B %d"))
+            ]
 
     def run(
             self,
