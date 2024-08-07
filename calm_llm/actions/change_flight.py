@@ -54,8 +54,8 @@ class SearchFlights(Action):
 
             results = sorted(results, key=lambda x: datetime.datetime.fromisoformat(x['scheduled_departure']).strftime('%-m/%-d %-I:%M %p'))
 
-            return ", ".join([
-                f"{r['flight_no']}: dep {datetime.datetime.fromisoformat(r['scheduled_departure']).strftime('%-m/%-d %-I:%M %p')}"
+            return "\n".join([
+                "* " + datetime.datetime.fromisoformat(r['scheduled_departure']).strftime("%A, %B %d at %-I:%M %p") + f" ({r['flight_id']})"
                 for r in results
             ])
         
