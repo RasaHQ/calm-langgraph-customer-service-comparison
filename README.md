@@ -1,6 +1,6 @@
 # CALM Reimplementation of LangGraph's customer service bot
 
-This is a reimplementation in of langgraph's [customer support](https://langchain-ai.github.io/langgraph/tutorials/chatbots/customer-support/) example in Rasa's [CALM](https://rasa.com/docs/rasa-pro/calm/) paradigm 
+This is a reimplementation in of langgraph's [customer support](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/) example in Rasa's [CALM](https://rasa.com/docs/rasa-pro/calm/) paradigm 
 There's a [YouTube video](https://www.youtube.com/watch?v=b3XsvoFWp4c) that provides a walkthrough of langgraph's implementation. 
 
 
