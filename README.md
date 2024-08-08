@@ -24,6 +24,13 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 
 ### Steps to run the CALM assistant
 
+
+To run the CALM assistant, you can watch the video below and/or follow the instructions:
+
+https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
+
+
+
 1. **Create a Codespace:**
 
    - Navigate to the repository on GitHub.
