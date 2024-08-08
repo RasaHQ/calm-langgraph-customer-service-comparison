@@ -6,7 +6,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.events import EventType, SlotSet
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.types import DomainDict
-from actions.db import search_hotels
+from actions.db import search_hotels, get_hotel_locations_in_db
 from actions.book_rental_car import ValidateCarRentalStartDate
 
 
@@ -29,6 +29,23 @@ class SearchHotels(Action):
             ]
         return events
 
+class VerifyHotelLocationIsInDb(Action):
+    def name(self) -> str:
+        return "verify_hotel_location_is_in_db"
+
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
+    ) -> List[Dict[Text, Any]]:
+        location = tracker.get_slot("trip_destination")
+        hotel_locations_in_db = get_hotel_locations_in_db()
+        hotel_locations_in_db_readable = "\n ".join(f"* {hl}" for hl in hotel_locations_in_db)
+        is_hotel_location_in_db = location.lower() in {hl.lower() for hl in hotel_locations_in_db}
+        events = [
+            SlotSet("is_hotel_location_in_db", is_hotel_location_in_db),
+            SlotSet("hotel_locations_in_db_readable", hotel_locations_in_db_readable)
+            ]
+            
+        return events
 
 class ValidateHotelEndDate(ValidateCarRentalStartDate):
     def name(self) -> str:

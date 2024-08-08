@@ -4,7 +4,16 @@ flows:
     steps:
       - collect: trip_destination
         reset_after_flow_ends: false      
-      - collect: hotel_price_range
+      - id: "verify_hotel_location_is_in_db"
+        action: verify_hotel_location_is_in_db
+        next:
+          - if: not slots.is_hotel_location_in_db
+            then: 
+              - action: utter_hotel_location_not_in_db
+                next: END
+          - else: hotel_price_range
+      - id: "hotel_price_range"
+        collect: hotel_price_range
       - id: "hotel_start_date"
         collect: hotel_start_date
         description: check in date for the hotel. Do not fill this slot unless user explicitly specifies it in the conversation.
@@ -27,4 +36,12 @@ flows:
         description: Name of the hotel which the user has selected. Must be an exact element of the slot "hotel_search_results_readable". If the user wants an option that isn't listed, do not fill the slot with that value.
       - collect: hotel_booking_confirmation
         ask_before_filling: true
-      - action: utter_confirm_booked_hotel
+      - noop: true
+        next:
+          - if: not slots.hotel_booking_confirmation
+            then: 
+              - action: utter_will_not_book_hotel
+                next: END
+          - else: 
+            - action: utter_confirm_booked_hotel
+              next: END
