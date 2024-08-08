@@ -56,7 +56,7 @@ https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
      ```
 
 3. **Create the Database:**
-   - In one of the terminals, run the command to create the database: `python scripts/create.db`.
+   - In one of the terminals, run the command to create the database: `python scripts/create_db.py`.
 
 
 4. **Train the Model:**
