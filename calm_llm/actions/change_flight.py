@@ -54,21 +54,20 @@ class SearchFlights(Action):
 
             results = sorted(results, key=lambda x: datetime.datetime.fromisoformat(x['scheduled_departure']).strftime('%-m/%-d %-I:%M %p'))
 
-            return ", ".join([
-                f"{r['flight_id']}: dep {datetime.datetime.fromisoformat(r['scheduled_departure']).strftime('%-m/%-d %-I:%M %p')}"
+            return "\n".join([
+                "* " + datetime.datetime.fromisoformat(r['scheduled_departure']).strftime("%A, %B %d at %-I:%M %p") + f" ({r['flight_id']})"
                 for r in results
             ])
         
         results = search_flights(departure_airport, arrival_airport, after_date.isoformat(), before_date.isoformat(), limit=3)
-        print("search results: ")
-        print(results)
+
         results_readable = prettify_results(results)
         return [SlotSet("flight_search_results", results), SlotSet("results_readable", results_readable)]
 
-class ChangeFlight(Action):
+class NewFlightDetails(Action):
     def name(self) -> str:
-        return "change_flight"
-
+        return "new_flight_details"
+    
     def run(
         self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
     ) -> List[Dict[Text, Any]]:
@@ -82,7 +81,17 @@ class ChangeFlight(Action):
             return {"BSL": "Basel"}.get(atis, None)
         trip_destination = destination_from_atis(new_flight['arrival_airport'])
         return [
-            SlotSet("change_flight_success", True),
-            SlotSet("new_departure_time", datetime.datetime.fromisoformat(new_departure_time).strftime('%-m/%-d %-I:%M %p')),
+            SlotSet("new_departure_time", datetime.datetime.fromisoformat(new_departure_time).strftime('%A, %B %d at %-I:%M %p')),
+            SlotSet("new_flight_number", new_flight["flight_no"]),
             SlotSet("trip_destination", trip_destination)
             ]
+
+
+class ChangeFlight(Action):
+    def name(self) -> str:
+        return "change_flight"
+
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
+    ) -> List[Dict[Text, Any]]:
+        return [SlotSet("change_flight_success", True)]

@@ -22,7 +22,11 @@ slots:
     initial_value: "Any"
   car_rental_start_date:
     type: text
+  car_rental_start_date_readable:
+    type: text    
   car_rental_end_date:
+    type: text
+  car_rental_end_date_readable:
     type: text
   car_rental_search_results:
     type: any
@@ -38,12 +42,12 @@ responses:
   utter_ask_car_rental_location:
     - text: "In what city do you want to rent a car?"
   utter_ask_car_rental_start_date:
-    - text: "when should the rental start?"
+    - text: "When would you like to pick up the car?"
   utter_ask_car_rental_end_date:
-    - text: "when should the rental end?"
+    - text: "When would you like to drop the car off?"
   utter_ask_car_rental_selection:
-    - text: "Here are some options I found - {car_rental_search_results_readable}"
+    - text: "I've found several car rental options for you: {car_rental_search_results_readable}"
   utter_ask_car_rental_booking_confirmation:
-    - text: "to confirm, you want me to book {car_rental_selection}?"
+    - text: "Excellent choice! To confirm, you'd like me to book an {car_rental_selection} car for pickup on {car_rental_start_date_readable} and return on {car_rental_end_date_readable}, correct?"
   utter_confirm_booked_rental_car:
-    - text: "great - that's all booked for you"
+    - text: "Fantastic! I've successfully booked your car."

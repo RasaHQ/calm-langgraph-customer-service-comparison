@@ -4,10 +4,10 @@ test_cases:
       - user: I'd like to book a car
       - bot: in which city?
       - user: to Basel
-      - bot: when should the rental start?
+      - bot: When would you like to pick up the car?
       - user: from may 14th to the 17th
-      - bot: "Here are some options I found - Europcar - Economy, Avis - Luxury, Hertz - Midsize, Sixt - SUV, Budget - Compact, Alamo - Full-size, Enterprise - Premium, National - Economy, Thrifty - Midsize, Dollar - Compact"
+      - utter: utter_ask_car_rental_selection
       - user: I'll take the luxury one! looks nice
-      - bot: to confirm, you want me to book Avis - Luxury?
+      - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
       - user: "yes"
-      - bot: "great - that's all booked for you"
+      - bot: "Fantastic! I've successfully booked your car."

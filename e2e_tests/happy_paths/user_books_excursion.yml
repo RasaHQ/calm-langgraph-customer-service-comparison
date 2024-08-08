@@ -4,8 +4,8 @@ test_cases:
       - user: I'd like to book an excursion
       - bot: in which city?
       - user: in Basel
-      - bot: "Do any of these options sound good? Basel Minster, Kunstmuseum Basel, Basel Zoo"
+      - bot: "Basel has some wonderful attractions! Here are a few popular options: * Basel Minster\n* Kunstmuseum Basel\n* Basel Zoo"
       - user: I'll go to the Basel Zoo please
       - bot: You've chosen Basel Zoo. Shall I book that for you?
       - user: "yes"
-      - bot: "great - that's all booked for you"
+      - bot: "Wonderful. I've booked your visit to Basel Zoo"

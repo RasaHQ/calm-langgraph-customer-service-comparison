@@ -2,11 +2,11 @@ test_cases:
   - test_case: user changes their flight
     steps:
       - user: show my flights
-      - bot: "Looking at your upcoming flights, I see CDG -> BSL on 4/30"
+      - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
       - user: "are there any alternative ones for the same week"
-      - bot: "Here's what I found: 19233: dep 5/1 12:09 PM, 19232: dep 5/4 12:09 PM, 19252: dep 5/6 12:09 PM"
-      - bot: "Which of these flights would you prefer?"
+      - utter: utter_flight_search_results 
+      - bot: "Do any of these options work better for your schedule?"
       - user: "The next available option is great"
-      - bot: Are you sure you want to make the booking?
+      - bot: "Great choice! You've selected the flight on Wednesday, May 01 at 12:09 PM. Shall I go ahead and change your booking to this flight?"
       - user: "yes"
-      - bot: "Your flight was successfully changed, now departing 5/1 12:09 PM"
+      - bot: "Perfect! I've successfully changed your booking. Your new flight departs on Wednesday, May 01 at 12:09 PM"

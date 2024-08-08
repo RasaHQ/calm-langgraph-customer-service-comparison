@@ -4,10 +4,11 @@ test_cases:
       - user: I'd like to book a hotel
       - bot: in which city?
       - user: to Basel
-      - bot: when do you want to check in?
+      - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
       - user: from may 14th to the 17th
-      - bot: "here's what I found - do any of these sound good? Hilton Basel - Luxury, Hyatt Regency Basel - Upper Upscale, Holiday Inn Basel - Upper Midscale"
+      - utter: utter_ask_hotel_name
       - user: I'll stay at the Hilton
-      - bot: to confirm, you want me to book the Hilton Basel - Luxury?
+      - bot: "Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, 
+May 17, correct?"
       - user: "yes"
-      - bot: "I've booked that for you"
+      - bot: "Great news! I've successfully booked your stay at the Hilton Basel - Luxury"
