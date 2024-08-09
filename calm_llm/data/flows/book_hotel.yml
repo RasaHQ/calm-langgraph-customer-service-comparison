@@ -19,7 +19,6 @@ flows:
         description: check in date for the hotel. Do not fill this slot unless user explicitly specifies it in the conversation.
       - collect: hotel_end_date
         description: check out date for the hotel. Do not fill this slot unless user explicitly specifies it in the conversation.
-      - noop: true
         next:
           - if: slots.hotel_start_date > slots.hotel_end_date
             then:
@@ -36,7 +35,6 @@ flows:
         description: Name of the hotel which the user has selected. Must be an exact element of the slot "hotel_search_results_readable". If the user wants an option that isn't listed, do not fill the slot with that value.
       - collect: hotel_booking_confirmation
         ask_before_filling: true
-      - noop: true
         next:
           - if: not slots.hotel_booking_confirmation
             then: 
