@@ -1,4 +1,10 @@
 test_cases:
+  - test_case: hotel booking but location is not in db
+    steps:
+      - user: book a hotel in lisbon
+      - utter: utter_hotel_location_not_in_db
+      - user: ok, book a hotel in Basel
+      - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
   - test_case: simple hotel booking
     steps:
       - user: I'd like to book a hotel
@@ -12,3 +18,16 @@ test_cases:
 May 17, correct?"
       - user: "yes"
       - bot: "Great news! I've successfully booked your stay at the Hilton Basel - Luxury"
+  - test_case: simple hotel booking, but user doesn't want to book
+    steps:
+      - user: I'd like to book a hotel
+      - bot: in which city?
+      - user: to Basel
+      - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+      - user: from may 14th to the 17th
+      - utter: utter_ask_hotel_name
+      - user: I'll stay at the Hilton
+      - bot: "Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, 
+May 17, correct?"
+      - user: "no"
+      - bot: "Of course, then I will not make the booking. Is there something else I can do for you?"
