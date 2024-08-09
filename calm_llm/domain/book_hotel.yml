@@ -51,5 +51,5 @@ responses:
   utter_confirm_booked_hotel:
     - text: Great news! I've successfully booked your stay at the {hotel_name}
   utter_will_not_book_hotel:
-    - text: Ok, I will not book anything.
+    - text: Of course, then I will not make the booking. Is there something else I can do for you?
 
