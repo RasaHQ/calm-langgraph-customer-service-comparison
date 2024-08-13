@@ -2,10 +2,15 @@ version: "3.1"
 
 actions:
   - search_hotels
+  - verify_hotel_location_is_in_db
   - validate_hotel_start_date
   - validate_hotel_end_date
 
 slots:
+  is_hotel_location_in_db:
+    type: bool
+  hotel_locations_in_db_readable:
+    type: text
   hotel_name:
     type: text 
   hotel_search_results:
@@ -28,13 +33,23 @@ slots:
     type: bool
 
 responses:
+  utter_hotel_location_not_in_db:
+    - text: |
+        Sorry, but I've no hotel information in my database for {trip_destination}
+        Please try again with one of these locations: 
+        {hotel_locations_in_db_readable}
   utter_ask_hotel_start_date:
     - text: "Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?"
   utter_ask_hotel_end_date:
     - text: "when do you want to leave?"
   utter_ask_hotel_name:
-    - text: "I've found some great options for your stay: {hotel_search_results_readable}"
+    - text: |
+        I've found some great options for your stay: 
+        {hotel_search_results_readable}
   utter_ask_hotel_booking_confirmation:
     - text: "Excellent choice! Just to confirm, you'd like me to book the {hotel_name} for your stay from {hotel_start_date_readable} to {hotel_end_date_readable}, correct?"
   utter_confirm_booked_hotel:
     - text: Great news! I've successfully booked your stay at the {hotel_name}
+  utter_will_not_book_hotel:
+    - text: Of course, then I will not make the booking. Is there something else I can do for you?
+

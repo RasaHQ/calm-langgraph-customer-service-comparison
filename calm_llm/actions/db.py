@@ -3,7 +3,7 @@ import shutil
 import tempfile
 import sqlite3
 from datetime import date, datetime, timedelta
-from typing import Any, List, Optional, Union
+from typing import Any, List, Optional, Union, Set
 
 import pytz
 from pydantic import BaseModel
@@ -229,6 +229,24 @@ def search_hotels(
     return [
         dict(zip([column[0] for column in cursor.description], row)) for row in results
     ]
+
+def get_hotel_locations_in_db() -> Set[str]:
+    """
+    Retrieve a set of unique locations available in the hotels database.
+
+    Returns:
+        Set[str]: A set of unique hotel locations.
+    """
+    conn = sqlite3.connect(DB_FILE)
+    cursor = conn.cursor()
+
+    query = "SELECT DISTINCT location FROM hotels"
+    cursor.execute(query)
+    results = cursor.fetchall()
+
+    conn.close()
+
+    return {row[0] for row in results}
 
 def search_trip_recommendations(
     location: Optional[str] = None,
