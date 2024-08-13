@@ -118,10 +118,10 @@ rasa run actions
 2. While the action server is running, in the second terminal execute:
 
 ```
-python run_eval.py
+MAX_NUMBER_OF_PREDICTIONS=50 python run_eval.py
 ```
 
-This will print the results to your terminal. You can also pipe the results to a text file `python run_eval.py > results.txt`.
+This will print the results to your terminal. You can also pipe the results to a text file `MAX_NUMBER_OF_PREDICTIONS=50 python run_eval.py > results.txt`.
 
 Once the script finishes you will see runtime stats on input and output tokens consumed and latency incurred. These stats are grouped by the folder which contained the tests - 
 
