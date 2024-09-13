@@ -160,11 +160,11 @@ def execute_e2e_tests(path_to_test_cases: str) -> None:
 if __name__ == '__main__':
 
     test_folders = [
-            # "../e2e_tests/happy_paths",
-            # "../e2e_tests/multi_skill",
+            "../e2e_tests/happy_paths",
+            "../e2e_tests/multi_skill",
             "../e2e_tests/corrections",
-            # "../e2e_tests/context_switch",
-            # "../e2e_tests/cancellations",
+            "../e2e_tests/context_switch",
+            "../e2e_tests/cancellations",
         ]
     predicted_tests = []
     for folder in test_folders:
