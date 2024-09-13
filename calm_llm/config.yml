@@ -3,8 +3,9 @@ language: en
 pipeline:
 - name: custom.custom_cmd_gen.CustomLLMCommandGenerator
   llm:
-    provider: openai
-    model: gpt-4-0613
+    provider: self-hosted
+    model: dakshvar22/cmd_gen_travel_assistant_l3.1_8b_unsloth_params
+    api_base: "http://34.143.207.179:8000/v1"
     timeout: 7
     max_tokens: 256
     temperature: 0
