@@ -1,9 +1,11 @@
 test_cases:
   - test_case: hotel booking but location is not in db
     steps:
-      - user: book a hotel in lisbon
+      - user: book a hotel
+      - bot: in which city?
+      - user: Lisbon
       - utter: utter_hotel_location_not_in_db
-      - user: ok, book a hotel in Basel
+      - user: ok, then book one in Basel please
       - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
   - test_case: simple hotel booking
     steps:
