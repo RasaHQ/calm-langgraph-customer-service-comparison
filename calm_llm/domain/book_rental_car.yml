@@ -37,9 +37,6 @@ slots:
     type: text
   car_rental_booking_confirmation:
     type: bool
-  want_to_change_selection:
-    type: bool
-    initial_value: false
 
 responses:
   utter_ask_car_rental_location:
@@ -54,6 +51,4 @@ responses:
     - text: "Excellent choice! To confirm, you'd like me to book an {car_rental_selection} car for pickup on {car_rental_start_date_readable} and return on {car_rental_end_date_readable}, correct?"
   utter_confirm_booked_rental_car:
     - text: "Fantastic! I've successfully booked your car."
-  utter_ask_want_to_change_selection:
-    - text: "Do you want to change your selection?"
 
