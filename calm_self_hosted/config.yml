@@ -5,7 +5,7 @@ pipeline:
   llm:
     provider: self-hosted
     model: dakshvar22/cmd_gen_travel_assistant_l3.1_8b_unsloth_params
-    api_base: "http://35.240.176.160:8000/v1"
+    api_base: "http://34.87.9.72:8000/v1"
     timeout: 7
     max_tokens: 256
     temperature: 0
