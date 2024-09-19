@@ -88,6 +88,7 @@ https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
 
 - Keyboard bindings may not map correctly in the Codespace, so you may not be able to copy and paste as you normally would!
 - The database creation is done separately to manage memory usage.
+- The repository is compatible with Rasa Pro versions `>=3.10.0`.
 
 ## Quantitative Evaluation
 
