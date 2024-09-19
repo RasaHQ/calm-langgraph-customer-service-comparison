@@ -21,7 +21,9 @@ with warnings.catch_warnings():
     from rasa.core.utils import AvailableEndpoints
     from rasa.e2e_test.e2e_test_result import TestResult
     import rasa.utils.io
-    from rasa.cli.e2e_test import print_failed_case, print_e2e_help, print_test_summary, print_final_line, pad
+    from rasa.shared.utils.cli import pad
+    from rasa.e2e_test.utils.io import print_failed_case, print_e2e_help, \
+        print_test_summary, print_final_line
 
 import structlog
 import logging
@@ -179,6 +181,7 @@ def execute_e2e_tests(path_to_test_cases: str, results_dir: str) -> None:
     folder_name = os.path.basename(path_to_test_cases.rstrip('/'))
     save_distributions(statistics, os.path.join(results_dir, f'{folder_name}_distributions.json'))
     print_test_result(passed, failed, fail_fast=False)
+
 
 if __name__ == '__main__':
     test_folders = [

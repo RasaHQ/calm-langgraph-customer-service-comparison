@@ -22,8 +22,9 @@ with warnings.catch_warnings():
     from rasa.core.utils import AvailableEndpoints
     from rasa.e2e_test.e2e_test_result import TestResult
     import rasa.utils.io
-    from rasa.cli.e2e_test import print_failed_case, print_e2e_help, \
-        print_test_summary, print_final_line, pad
+    from rasa.shared.utils.cli import pad
+    from rasa.e2e_test.utils.io import print_failed_case, print_e2e_help, \
+        print_test_summary, print_final_line
 
 import structlog
 import logging

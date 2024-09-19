@@ -3,11 +3,13 @@ language: en
 pipeline:
 - name: custom.custom_cmd_gen.CustomLLMCommandGenerator
   llm:
-    model_name: gpt-4-0613
-    request_timeout: 7
+    provider: openai
+    model: gpt-4-0613
+    timeout: 7
     max_tokens: 256
     temperature: 0
-    cache: false
+    cache:
+      no-cache: true
   prompt_template: prompt_templates/time_aware_prompt.jinja2
 
 policies:
