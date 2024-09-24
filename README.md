@@ -19,7 +19,7 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 
 ### Prerequisites
 
-- You'll need a [Rasa Pro license](https://rasa.com/docs/rasa-pro/installation/python/licensing/) and an [OpenAI API key](https://platform.openai.com/playground/chat).
+- You'll need a [Rasa Pro license](https://rasa.com/docs/rasa-pro/installation/python/licensing/) and an [OpenAI API key](https://platform.openai.com/api-keys).
 - You should be familiar with Python and Bash.
 
 ### Steps to run the CALM assistant
