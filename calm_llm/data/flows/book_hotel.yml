@@ -16,9 +16,9 @@ flows:
         collect: hotel_price_range
       - id: "hotel_start_date"
         collect: hotel_start_date
-        description: check in date for the hotel. Do not fill this slot unless user explicitly specifies it in the conversation.
+        description: check in date for the hotel. These are very important! ALWAYS double check the value before filling it in. Do not fill this slot unless user explicitly specifies it in the conversation.
       - collect: hotel_end_date
-        description: check out date for the hotel. Do not fill this slot unless user explicitly specifies it in the conversation.
+        description: check out date for the hotel. These are very important! ALWAYS double check the value before filling it in. DO NOT misinterpret the date at any cost. Only fill in what the user says. Do not fill this slot unless user explicitly specifies it in the conversation.
         next:
           - if: slots.hotel_start_date > slots.hotel_end_date
             then:
