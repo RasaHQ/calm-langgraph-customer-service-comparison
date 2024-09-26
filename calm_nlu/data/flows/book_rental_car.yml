@@ -24,8 +24,22 @@ flows:
       - id: "initiate_search"
         action: search_car_rentals
       - collect: car_rental_search_results_readable
-      - collect: car_rental_selection
-        description: Car rental option which the user has selected. Must be an exact element of the slot car_rental_search_results_readable. If the user wants an option that isn't listed, do not fill the slot with that value.
-      - collect: car_rental_booking_confirmation
+      - id: "car_rental_selection"
+        collect: car_rental_selection
+        description: Car rental option which the user has selected. Must be an exact element of the 
+          slot `car_rental_search_results_readable`. If the user wants an option that isn't listed, 
+          do not fill the slot with that value. If the user implicitly mentions wanting to change 
+          the value of the slot without giving a new value, set it to `None`.
+      - id: "confirmation"
+        collect: car_rental_booking_confirmation
+        description: Final confirmation from user if they would like to book the selected option.
         ask_before_filling: true
-      - action: utter_confirm_booked_rental_car
+      - noop: true
+        next:
+         - if: slots.car_rental_booking_confirmation
+           then: "confirm_booking"
+         - else: "cancellation"
+      - id: "confirm_booking"
+        action: utter_confirm_booked_rental_car
+      - id: "cancellation"
+        action: utter_flow_cancelled_rasa

@@ -51,3 +51,4 @@ responses:
     - text: "Excellent choice! To confirm, you'd like me to book an {car_rental_selection} car for pickup on {car_rental_start_date_readable} and return on {car_rental_end_date_readable}, correct?"
   utter_confirm_booked_rental_car:
     - text: "Fantastic! I've successfully booked your car."
+
