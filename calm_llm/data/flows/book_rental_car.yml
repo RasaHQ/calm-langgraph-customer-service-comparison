@@ -37,6 +37,6 @@ flows:
          - else: "cancellation"
       - id: "confirm_booking"
         action: utter_confirm_booked_rental_car
+        next: END
       - id: "cancellation"
         action: utter_flow_cancelled_rasa
-
