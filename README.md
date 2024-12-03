@@ -1,7 +1,14 @@
-# CALM Reimplementation of LangGraph's customer service bot
+# CALM Reimplementation of LangGraph's customer service bot without OpenAI models
 
-This is a reimplementation of langgraph's [customer support](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/) example in Rasa's [CALM](https://rasa.com/docs/rasa-pro/calm/) paradigm 
-There's a [YouTube video](https://www.youtube.com/watch?v=b3XsvoFWp4c) that provides a walkthrough of langgraph's implementation. 
+This branch includes instructions for running [CALM Reimplementation of LangGraph's customer service bot](https://github.com/RasaHQ/calm-langgraph-customer-service-comparison) without utilizing OpenAI models.
+
+## Why consider using custom LLM models?
+
+- **Cost-effectiveness**
+By default, CALM uses OpenAI models for powering LLM-based components like the Command Generator and Contextual Response Rephraser. While powerful OpenAI models provide great performance results, they can be quite costly when running assistants in production. The modular nature of CALM enables developers to use smaller, more cost-effective models that can be fine-tuned for specific tasks. Often, these models provide great performance results while keeping the cost low.
+  
+- **Customization and availability**
+By using custom, open-source LLMs, developers can avoid vendor lock-in and rate limits imposed by third-party LLM providers.
 
 
 ## Skills
@@ -19,26 +26,19 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 
 ### Prerequisites
 
-- You'll need a [Rasa Pro license](https://rasa.com/docs/rasa-pro/installation/python/licensing/) and an [OpenAI API key](https://platform.openai.com/api-keys).
+- You'll need a [Rasa Pro license](https://rasa.com/docs/rasa-pro/installation/python/licensing/).
 - You should be familiar with Python and Bash.
 
 ### Steps to run the CALM assistant
-
-
-To run the CALM assistant, you can watch the video below and/or follow the instructions:
-
-https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
-
-
 
 1. **Create a Codespace:**
 
    - Navigate to the repository on GitHub.
    - Click on the green "Code" button, then scroll down to "Codespaces".
-   - Click on "Create codespace on main branch".
+   - Click on "Create codespace on no-openai-config branch".
    - This should take under two minutes to load.
 
-  ![Screenshot 2024-08-05 at 11 01 26 AM](https://github.com/user-attachments/assets/0795f628-afb5-4d26-980a-807a2805169b)
+  
 
 
 2. **Set Up Environment:**
@@ -48,7 +48,6 @@ https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
    - Open `/calm_llm/.env` file and add the required keys to that file.
      ```
      export RASA_PRO_LICENSE='your_rasa_pro_license_key_here'
-     export OPENAI_API_KEY='your_openai_api_key_here'
      ```
    - In both terminals, set your environment variables by running:
      ```
