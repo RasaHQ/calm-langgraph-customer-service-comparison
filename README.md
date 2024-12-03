@@ -31,6 +31,8 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 
 ### Steps to run the CALM assistant
 
+This guide will show how you can run the CALM assistant that is configured to use Rasa's fine-tuned [CodeLlama 13B](https://huggingface.co/rasa/cmd_gen_codellama_13b_calm_demo) model instead of the OpenAI models. If you'd like to see an example of the same implementation using OpenAI models, switch to the `main` branch.
+
 1. **Create a Codespace:**
 
    - Navigate to the repository on GitHub.
@@ -87,8 +89,8 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 
 - Keyboard bindings may not map correctly in the Codespace, so you may not be able to copy and paste as you normally would!
 - The database creation is done separately to manage memory usage.
-- The repository is compatible with Rasa Pro versions `>=3.10.0`.
-- You'll also notice that there are several subdirectories: `calm_llm` is the CALM implementation, `calm_nlu` combines CALM with intent based NLU, `langgraph_implementation` is the implementation inspired from [langgraph's tutorial](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/), `calm_self_hosted` is the CALM implementation but a fine-tuned model such as Llama 3.1 8B working as the command generator, and `calm_nlu_self_hosted` is CALM working with intent based NLU and a fine-tuned model as the command generator.
+- The repository is compatible with Rasa Pro versions `>=3.11.0rc1`.
+- You'll also notice that there are several subdirectories: `calm_llm` is the CALM implementation with fine-tuned model, `calm_nlu` combines CALM with intent based NLU, `langgraph_implementation` is the implementation inspired from [langgraph's tutorial](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/), `calm_self_hosted` is the CALM implementation but a fine-tuned model such as Llama 3.1 8B working as the command generator, and `calm_nlu_self_hosted` is CALM working with intent based NLU and a fine-tuned model as the command generator.
 
 ## Quantitative Evaluation
 
