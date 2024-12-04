@@ -47,4 +47,5 @@ nlg:
     provider: rasa
     model: rasa/cmd_gen_codellama_13b_calm_demo
     api_base: "https://tutorial-llm.rasa.ai"
+    temperature: 0.1
   prompt: prompt_templates/rephrase_prompt.jinja2
