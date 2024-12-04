@@ -33,6 +33,8 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 
 This guide will show how you can run the CALM assistant that is configured to use Rasa's fine-tuned [CodeLlama 13B](https://huggingface.co/rasa/cmd_gen_codellama_13b_calm_demo) model instead of the OpenAI models. If you'd like to see an example of the same implementation using OpenAI models, switch to the `main` branch.
 
+*Disclaimer: Since CodeLlama 13B is a much smaller than OpenAI models, you might noticed some performance differences. However, the performance of the models can be improved through fine-tuning.*
+
 1. **Create a Codespace:**
 
    - Navigate to the repository on GitHub.
@@ -80,7 +82,7 @@ This guide will show how you can run the CALM assistant that is configured to us
      ```
 
 7. **Access the Inspector:**
-   - When prompted to open in browser, click the link.
+   - When prompted to open in browser, click the link. If the browser returns `404`, edit the suffix of the link to `webhooks/socketio/inspect.html`.
 
 8. Chat with your customer support assistant about flights, hotels, cars, and/or excursions!
 
