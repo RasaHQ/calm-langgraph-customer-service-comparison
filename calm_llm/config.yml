@@ -6,6 +6,7 @@ pipeline:
     provider: rasa
     model: rasa/cmd_gen_codellama_13b_calm_demo
     api_base: "https://tutorial-llm.rasa.ai"
+    temperature: 0
   flow_retrieval:
     active: false
   prompt_template: prompt_templates/time_aware_prompt.jinja2
