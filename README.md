@@ -82,7 +82,7 @@ This guide will show how you can run the CALM assistant that is configured to us
      ```
 
 7. **Access the Inspector:**
-   - When prompted to open in browser, click the link. If the browser returns `404`, edit the suffix of the link to `webhooks/socketio/inspect.html`.
+   - When prompted to open in browser, click the link. 
 
 8. Chat with your customer support assistant about flights, hotels, cars, and/or excursions!
 
