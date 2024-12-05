@@ -1,15 +1,14 @@
 recipe: default.v1
 language: en
 pipeline:
-- name: custom.custom_cmd_gen.CustomLLMCommandGenerator
+- name: SingleStepLLMCommandGenerator
   llm:
-    provider: openai
-    model: gpt-4-0613
-    timeout: 7
-    max_tokens: 256
+    provider: rasa
+    model: rasa/cmd_gen_codellama_13b_calm_demo
+    api_base: "https://tutorial-llm.rasa.ai"
     temperature: 0
-    cache:
-      no-cache: true
+  flow_retrieval:
+    active: false
   prompt_template: prompt_templates/time_aware_prompt.jinja2
 
 policies:

@@ -42,5 +42,10 @@ action_endpoint:
 #  queue: queue
 #
 nlg:
- type: custom.quick_rephraser.QuickResponseRephraser
- prompt: prompt_templates/rephrase_prompt.jinja2
+  type: rephrase
+  llm:
+    provider: rasa
+    model: rasa/cmd_gen_codellama_13b_calm_demo
+    api_base: "https://tutorial-llm.rasa.ai"
+    temperature: 0.1
+  prompt: prompt_templates/rephrase_prompt.jinja2

@@ -28,8 +28,16 @@ responses:
       metadata:
         rephrase: True
         rephrase_prompt: |
-          The following is a conversation with
-          an AI assistant. The assistant is helpful, creative, clever, and very friendly.
+          The following is a conversation with an AI assistant.
+          The assistant has these skills:
+            Showing the user's booked flights
+            Changing flight bookings
+            Booking a rental car
+            Booking a hotel
+            Booking an excursion (e.g. museum visit) on the trip
+
+          The assistant is helpful and friendly.
+          The assistant does not offer to help with anything other than the defined skills.
           The user is making some chitchat, some come up with an appropriate response.
           Be unimpeachably professional.
           Do not say anything that you wouldn't want printed in a newspaper.
@@ -39,3 +47,4 @@ responses:
           {{history}}
           {{current_input}}
           your suggested AI Response:
+

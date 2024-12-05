@@ -1,7 +1,14 @@
-# CALM Reimplementation of LangGraph's customer service bot
+# CALM Reimplementation of LangGraph's customer service bot without OpenAI models
 
-This is a reimplementation of langgraph's [customer support](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/) example in Rasa's [CALM](https://rasa.com/docs/rasa-pro/calm/) paradigm 
-There's a [YouTube video](https://www.youtube.com/watch?v=b3XsvoFWp4c) that provides a walkthrough of langgraph's implementation. 
+This branch includes instructions for running [CALM Reimplementation of LangGraph's customer service bot](https://github.com/RasaHQ/calm-langgraph-customer-service-comparison) without utilizing OpenAI models.
+
+## Why consider using custom LLM models?
+
+- **Cost-effectiveness**
+By default, CALM uses OpenAI models for powering LLM-based components like the Command Generator and Contextual Response Rephraser. While powerful OpenAI models provide great performance results, they can be quite costly when running assistants in production. The modular nature of CALM enables developers to use smaller, more cost-effective models that can be fine-tuned for specific tasks. Often, these models provide great performance results while keeping the cost low.
+  
+- **Customization and availability**
+By using custom, open-source LLMs, developers can avoid vendor lock-in and rate limits imposed by third-party LLM providers.
 
 
 ## Skills
@@ -19,26 +26,23 @@ Follow these steps to set up and run the Rasa assistant in a GitHub Codespace.
 
 ### Prerequisites
 
-- You'll need a [Rasa Pro license](https://rasa.com/docs/rasa-pro/installation/python/licensing/) and an [OpenAI API key](https://platform.openai.com/api-keys).
+- You'll need a [Rasa Pro license](https://rasa.com/docs/rasa-pro/installation/python/licensing/).
 - You should be familiar with Python and Bash.
 
 ### Steps to run the CALM assistant
 
+This guide will show how you can run the CALM assistant that is configured to use Rasa's fine-tuned [CodeLlama 13B](https://huggingface.co/rasa/cmd_gen_codellama_13b_calm_demo) model instead of the OpenAI models. If you'd like to see an example of the same implementation using OpenAI models, switch to the `main` branch.
 
-To run the CALM assistant, you can watch the video below and/or follow the instructions:
-
-https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
-
-
+*Disclaimer: Since CodeLlama 13B is a much smaller than OpenAI models, you might noticed some performance differences. However, the performance of the models can be improved through fine-tuning.*
 
 1. **Create a Codespace:**
 
    - Navigate to the repository on GitHub.
    - Click on the green "Code" button, then scroll down to "Codespaces".
-   - Click on "Create codespace on main branch".
+   - Click on "Create codespace on no-openai-config branch".
    - This should take under two minutes to load.
 
-  ![Screenshot 2024-08-05 at 11 01 26 AM](https://github.com/user-attachments/assets/0795f628-afb5-4d26-980a-807a2805169b)
+  
 
 
 2. **Set Up Environment:**
@@ -48,7 +52,6 @@ https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
    - Open `/calm_llm/.env` file and add the required keys to that file.
      ```
      export RASA_PRO_LICENSE='your_rasa_pro_license_key_here'
-     export OPENAI_API_KEY='your_openai_api_key_here'
      ```
    - In both terminals, set your environment variables by running:
      ```
@@ -79,7 +82,7 @@ https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
      ```
 
 7. **Access the Inspector:**
-   - When prompted to open in browser, click the link.
+   - When prompted to open in browser, click the link. If the browser returns `404`, edit the suffix of the link to `webhooks/socketio/inspect.html`.
 
 8. Chat with your customer support assistant about flights, hotels, cars, and/or excursions!
 
@@ -88,8 +91,8 @@ https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
 
 - Keyboard bindings may not map correctly in the Codespace, so you may not be able to copy and paste as you normally would!
 - The database creation is done separately to manage memory usage.
-- The repository is compatible with Rasa Pro versions `>=3.10.0`.
-- You'll also notice that there are several subdirectories: `calm_llm` is the CALM implementation, `calm_nlu` combines CALM with intent based NLU, `langgraph_implementation` is the implementation inspired from [langgraph's tutorial](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/), `calm_self_hosted` is the CALM implementation but a fine-tuned model such as Llama 3.1 8B working as the command generator, and `calm_nlu_self_hosted` is CALM working with intent based NLU and a fine-tuned model as the command generator.
+- The repository is compatible with Rasa Pro versions `>=3.11.0rc1`.
+- You'll also notice that there are several subdirectories: `calm_llm` is the CALM implementation with fine-tuned model, `calm_nlu` combines CALM with intent based NLU, `langgraph_implementation` is the implementation inspired from [langgraph's tutorial](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/), `calm_self_hosted` is the CALM implementation but a fine-tuned model such as Llama 3.1 8B working as the command generator, and `calm_nlu_self_hosted` is CALM working with intent based NLU and a fine-tuned model as the command generator.
 
 ## Quantitative Evaluation
 
