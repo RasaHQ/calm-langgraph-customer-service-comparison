@@ -2,6 +2,8 @@
 
 This branch includes instructions for running [CALM Reimplementation of LangGraph's customer service bot](https://github.com/RasaHQ/calm-langgraph-customer-service-comparison) without utilizing OpenAI models.
 
+*Disclaimer: this implementation uses smaller models that have restrictions on the input token size. You might experience different behaviour from your assistant compared to bigger, e.g. OpenAI, models. If you'd like to run this setup in production, it is recommended to fine-tune and deploy the model in your own dedicated instance.*
+
 ## Why consider using custom LLM models?
 
 - **Cost-effectiveness**
