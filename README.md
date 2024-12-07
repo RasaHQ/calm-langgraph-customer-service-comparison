@@ -43,45 +43,37 @@ https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
 
 2. **Set Up Environment:**
    - Once the Codespace loads, it will look like VSCode but in your browser!
-   - First, open two terminal windows.
-   - In both terminals, run `source .venv/bin/activate`
+   - Open a terminal and run `source .venv/bin/activate` to activate the development environment.
    - Open `/calm_llm/.env` file and add the required keys to that file.
      ```
      export RASA_PRO_LICENSE='your_rasa_pro_license_key_here'
      export OPENAI_API_KEY='your_openai_api_key_here'
      ```
-   - In both terminals, set your environment variables by running:
+   - Set the environment variables by running:
      ```
      source calm_llm/.env
      ```
 
 3. **Create the Database:**
-   - In one of the terminals, run the command to create the database: `python scripts/create_db.py`.
+   - Run the command to create the database: `python scripts/create_db.py`.
 
 
 4. **Train the Model:**
-   - In the first terminal, `cd calm_llm` and then run:
+   - Enter the project directory, `cd calm_llm`, and then run:
      ```
      rasa train
      ```
 
-
-5. **Start the Action Server:**
-   - In the second terminal, `cd calm_llm` and then run:
-     ```
-     rasa run actions
-     ```
-
-6. **Launch the Rasa Inspector:**
-   - In the first terminal, run:
+5. **Launch the Rasa Inspector:**
+   - Once the model is trained, run:
      ```
      rasa inspect --debug
      ```
 
-7. **Access the Inspector:**
+6. **Access the Inspector:**
    - When prompted to open in browser, click the link.
 
-8. Chat with your customer support assistant about flights, hotels, cars, and/or excursions!
+7. Chat with your customer support assistant about flights, hotels, cars, and/or excursions!
 
 
 ### Notes
@@ -109,15 +101,7 @@ To do so, we construct a test set to evaluate the following capabilities:
 
 Ensure you have set up the environment in two active terminals by following the instructions in [this section](#steps-to-run-the-calm-assistant)
 
-Next, execute the following in the `calm_llm` directory:
-
-1. Run action server - In one of the terminals, execute the command - 
-
-```commandline
-rasa run actions
-```
-
-2. While the action server is running, in the second terminal execute:
+Execute the following in the `calm_llm` directory:
 
 ```
 MAX_NUMBER_OF_PREDICTIONS=50 python run_eval.py
