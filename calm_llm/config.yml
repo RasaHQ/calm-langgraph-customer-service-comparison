@@ -3,8 +3,10 @@ language: en
 pipeline:
 - name: custom.custom_cmd_gen.CustomLLMCommandGenerator
   llm:
-    provider: openai
-    model: gpt-4-0613
+    provider: bedrock
+    # model: anthropic.claude-3-5-sonnet-20240620-v1:0
+    model: anthropic.claude-3-5-haiku-20241022-v1:0
+    aws_region_name: us-west-2
     timeout: 7
     max_tokens: 256
     temperature: 0
