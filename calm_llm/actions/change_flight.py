@@ -19,7 +19,7 @@ def parse_datetime(text: str):
     try:
         time = datetime.datetime.strptime(text, "%Y-%m-%d %H:%M:%S.%f %z")
     except ValueError:
-        time = parse(text, tzinfos=TZOFFSETS)
+        time = parse(text, tzinfos=TZOFFSETS, default=datetime.datetime(2024, 1, 1))
         if not time.tzinfo:
             timezone = pytz.timezone('America/New_York')
             time = timezone.localize(time)
