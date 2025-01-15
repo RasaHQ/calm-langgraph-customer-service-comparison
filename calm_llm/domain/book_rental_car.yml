@@ -37,6 +37,8 @@ slots:
     type: text
   car_rental_booking_confirmation:
     type: bool
+  email_address:
+    type: text
 
 responses:
   utter_ask_car_rental_location:
@@ -51,4 +53,7 @@ responses:
     - text: "Excellent choice! To confirm, you'd like me to book an {car_rental_selection} car for pickup on {car_rental_start_date_readable} and return on {car_rental_end_date_readable}, correct?"
   utter_confirm_booked_rental_car:
     - text: "Fantastic! I've successfully booked your car."
-
+  utter_email_sent:
+    - text: "Awesome! I've sent the booking confirmation to {email_address}"
+  utter_ask_email_address:
+    - text: Sure, please enter your email address.

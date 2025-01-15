@@ -1,0 +1,35 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_excursion_booking_excursion_booking__family_vacation_planner
+  steps:
+  - user: I'm planning a vacation for my family with kids and elderly members. Any
+      family-friendly excursions?
+  - commands:
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  - user: Orlando. What do you suggest?
+  - commands:
+    - set_slot:
+      - trip_destination: Orlando
+  - utter: utter_ask_excursion_name
+  - user: Can you provide options that are accessible for the elderly too?
+  - commands:
+    - knowledge
+  - utter: utter_skills
+  - utter: utter_ask_excursion_name
+  status: failed
+  rating: 2.0
+  rating_reasoning: 'Conversation summary: The user is looking for family-friendly
+    excursions in Orlando that are also suitable for elderly family members. While
+    the bot initially provides options, it fails to adapt its suggestions in response
+    to the user''s request for elderly-accessible options, resulting in the user becoming
+    uncooperative.'
+transcript:
+- user: I'm planning a vacation for my family with kids and elderly members. Any family-friendly
+    excursions?
+- bot: in which city?
+- user: Orlando. What do you suggest?
+- bot: 'Orlando has some wonderful attractions! Here are a few popular options: '
+- user: Can you provide options that are accessible for the elderly too?
+- bot: I can list your flight bookings or change them. I can also book rental cars,
+    hotels, and excursions! If you need something else, please email us help@example.com.
+- bot: 'Orlando has some wonderful attractions! Here are a few popular options: '

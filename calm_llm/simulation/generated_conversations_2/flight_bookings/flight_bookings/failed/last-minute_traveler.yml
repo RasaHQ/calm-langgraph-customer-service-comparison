@@ -1,0 +1,98 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_flight_bookings_flight_bookings__last-minute_traveler
+  steps:
+  - user: I need to reschedule my flight urgently. Can you help?
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: As soon as possible! I need to get there quickly.
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-04-27'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: I need to reschedule my flight urgently! Can you help me?
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_selected_flight_id
+  - user: Yes, the earliest one, please. Can you confirm it quickly?
+  - commands:
+    - set_slot:
+      - selected_flight_id: '19250'
+  - utter: utter_ask_flight_change_confirmation
+  - user: Yes, please confirm it now! Also, can you help with hotel bookings near
+      the destination?
+  - commands:
+    - start_flow: search_hotel
+    - set_slot:
+      - flight_change_confirmation: 'True'
+  - utter: utter_ask_hotel_start_date
+  - user: Same day as the flight, April 30. Need something close to the airport.
+  - commands:
+    - set_slot:
+      - hotel_start_date: April 30
+      - hotel_end_date: May 1
+  - utter: utter_ask_hotel_name
+  - user: I need to reschedule my flight right away. It's an emergency. Can you help?
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_hotel_name
+  - user: I need to reschedule my flight ASAP due to an emergency. Can you help?
+  - commands:
+    - start_flow: change_flight
+    - set_slot:
+      - flight_search_start_date: '2024-04-27T18:13:47.329404+00:00'
+  - utter: utter_ask_hotel_name
+  - user: Wait, I need my flight changed first. Can you check the next available flight
+      to my destination?
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_hotel_name
+  - user: I need to reschedule my flight urgently due to an emergency. Can you help
+      me with that?
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_hotel_name
+  status: failed
+  rating: 0.0
+  rating_reasoning: 'Conversation summary: The bot failed to address the user''s urgent
+    request to reschedule a flight due to an emergency. Instead, it provided hotel
+    options, which was irrelevant to the user''s immediate needs.'
+transcript:
+- user: I need to reschedule my flight urgently. Can you help?
+- bot: What's your preferred departure date for this trip?
+- user: As soon as possible! I need to get there quickly.
+- bot: 'I''ve found several flight options that match your criteria:
+
+    * Tuesday, April 30 at 12:09 PM (19250)
+
+    * Wednesday, May 01 at 12:09 PM (19233)
+
+    * Friday, May 03 at 12:09 PM (19265)'
+- bot: Do any of these options work better for your schedule?
+- user: I need to reschedule my flight urgently! Can you help me?
+- bot: Do any of these options work better for your schedule?
+- user: Yes, the earliest one, please. Can you confirm it quickly?
+- bot: Great choice! You've selected the flight on Tuesday, April 30 at 12:09 PM.
+    Shall I go ahead and change your booking to this flight?
+- user: Yes, please confirm it now! Also, can you help with hotel bookings near the
+    destination?
+- bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in
+    date?
+- user: Same day as the flight, April 30. Need something close to the airport.
+- bot: "I've found some great options for your stay: \n* Hilton Basel - Luxury\n*\
+    \ Hyatt Regency Basel - Upper Upscale\n* Holiday Inn Basel - Upper Midscale\n"
+- user: I need to reschedule my flight right away. It's an emergency. Can you help?
+- bot: "I've found some great options for your stay: \n* Hilton Basel - Luxury\n*\
+    \ Hyatt Regency Basel - Upper Upscale\n* Holiday Inn Basel - Upper Midscale\n"
+- user: I need to reschedule my flight ASAP due to an emergency. Can you help?
+- bot: "I've found some great options for your stay: \n* Hilton Basel - Luxury\n*\
+    \ Hyatt Regency Basel - Upper Upscale\n* Holiday Inn Basel - Upper Midscale\n"
+- user: Wait, I need my flight changed first. Can you check the next available flight
+    to my destination?
+- bot: "I've found some great options for your stay: \n* Hilton Basel - Luxury\n*\
+    \ Hyatt Regency Basel - Upper Upscale\n* Holiday Inn Basel - Upper Midscale\n"
+- user: I need to reschedule my flight urgently due to an emergency. Can you help
+    me with that?
+- bot: "I've found some great options for your stay: \n* Hilton Basel - Luxury\n*\
+    \ Hyatt Regency Basel - Upper Upscale\n* Holiday Inn Basel - Upper Midscale\n"

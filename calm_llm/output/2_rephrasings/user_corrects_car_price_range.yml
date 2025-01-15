@@ -1,0 +1,110 @@
+conversations:
+- original_test_case: ../e2e_tests/corrections/user_corrects_car_price_range.yml::user changes mind about price range
+  steps:
+  - user: I'd like to book a car
+    llm_commands:
+    - StartFlow(search_rental_car)
+    passing_rephrasings:
+    - I need to reserve a car.
+    - Could I arrange for a car rental?
+    - I'm interested in hiring a car.
+    - I want to book a vehicle.
+    - Can I get a car rental?
+    - I would like to rent a car.
+    - Please help me book a car.
+    - I’m looking to book a car.
+    - I need to book a rental car.
+    - Can you assist me in booking a car?
+  - bot: in which city?
+  - user: Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - In Basel.
+    - The city is Basel.
+    - I need it in Basel.
+    - Basel, please.
+    - The location is Basel.
+    - I want to book in Basel.
+    - Basel is the city.
+    - I’m looking for a car in Basel.
+    - The city I need is Basel.
+    - It’s Basel.
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(car_rental_start_date, may 14th)
+    - SetSlot(car_rental_end_date, may 17th)
+    passing_rephrasings:
+    - From May 14 to May 17.
+    - May 14th through May 17th.
+    - Between May 14 and May 17.
+    - Starting May 14 and ending May 17.
+    - May 14th to May 17th.
+    - From the 14th to the 17th of May.
+    - May 14-17.
+    - For the dates May 14 to May 17.
+    - From May 14th until May 17th.
+    - May 14th to 17th.
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+    llm_commands:
+    - SetSlot(car_rental_selection, Avis - Luxury)
+    passing_rephrasings:
+    - I’ll go with the luxury option! It looks great.
+    - I choose the luxury car! It seems nice.
+    - I’ll pick the luxury one! It looks appealing.
+    - I want the luxury car! It looks good.
+    - I’ll opt for the luxury one! It looks nice.
+    - I’ll take the luxury car! It looks fantastic.
+    - I’ll select the luxury one! It looks nice.
+    - I’ll have the luxury one! It looks nice.
+    - I’ll take the luxury vehicle! It looks nice.
+    - I’ll choose the luxury one! It looks nice.
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: you know what I should save some money
+    llm_commands:
+    - SetSlot(car_rental_selection, None)
+    - SetSlot(car_rental_booking_confirmation, False)
+    passing_rephrasings:
+    - Actually, I should save some money.
+    - On second thought, I should save some money.
+    - You know, I should probably save some money.
+    - I think I should save some money.
+    - I’ve changed my mind; I should save some money.
+    - I should save some money, come to think of it.
+    - I should reconsider and save some money.
+    - I need to save some money, actually.
+    - I should be more economical.
+    - I should opt for a cheaper option.
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the economy one
+    llm_commands:
+    - SetSlot(car_rental_selection, Europcar - Economy)
+    passing_rephrasings:
+    - I’ll go with the economy one.
+    - I’ll choose the economy car.
+    - I’ll pick the economy option.
+    - I’ll take the economy vehicle.
+    - I’ll opt for the economy one.
+    - I’ll select the economy car.
+    - I’ll have the economy one.
+    - I’ll take the budget-friendly one.
+    - I’ll go for the economy car.
+    - I’ll take the cheaper one.
+  - bot: Excellent choice! To confirm, you'd like me to book an Europcar - Economy car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(car_rental_booking_confirmation, True)
+    passing_rephrasings:
+    - Yes, please.
+    - That’s correct.
+    - Absolutely.
+    - Yes, that’s right.
+    - Indeed.
+    - Yes, I do.
+    - Correct.
+    - Yes, I would.
+    - Yes, I confirm.
+    - Yes, exactly.
+  - bot: Fantastic! I've successfully booked your car.

@@ -1,0 +1,106 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_list_skills__vacation_planner
+  steps:
+  - user: Hi, I'm planning a family vacation and I need to book a hotel room. Can
+      you help?
+  - commands:
+    - start_flow: search_hotel
+  - utter: utter_ask_trip_destination
+  - user: We're planning to visit Miami.
+  - commands:
+    - set_slot:
+      - trip_destination: Miami
+  - utter: utter_hotel_location_not_in_db
+  - user: Alright, let's change our plans and go to Zurich. Can you check for available
+      hotels there?
+  - commands:
+    - start_flow: search_hotel
+    - set_slot:
+      - trip_destination: Zurich
+  - utter: utter_ask_hotel_start_date
+  - user: We would like to check-in on July 15 and check-out on July 20.
+  - commands:
+    - set_slot:
+      - hotel_start_date: July 15
+      - hotel_end_date: July 20
+  - utter: utter_ask_hotel_name
+  - user: We would like to stay at Marriott Zurich. Can you book it for us?
+  - commands:
+    - set_slot:
+      - hotel_name: Marriott Zurich - Upscale
+  - utter: utter_ask_hotel_booking_confirmation
+  - user: Yes, that's correct.
+  - commands:
+    - set_slot:
+      - hotel_booking_confirmation: 'True'
+  - utter: utter_confirm_booked_hotel
+  - user: That's excellent. Now, I also need to book a rental car. Can you assist
+      with that too?
+  - commands:
+    - start_flow: search_rental_car
+  - utter: utter_ask_car_rental_start_date
+  - user: We would like to pick it up on July 15 and return it on July 20.
+  - commands:
+    - set_slot:
+      - car_rental_start_date: July 15
+      - car_rental_end_date: July 20
+  - utter: utter_ask_car_rental_selection
+  - user: We would prefer to rent from Hertz. Can you book a midsize car for us?
+  - commands:
+    - set_slot:
+      - car_rental_selection: Hertz - Midsize
+  - utter: utter_ask_car_rental_booking_confirmation
+  status: passed
+  rating: 5.0
+  rating_reasoning: 'Conversation summary: The user initially wanted to book a hotel
+    room for a family vacation in Miami, but the bot did not have any information
+    about hotels in Miami. The user then decided to change the location to Zurich.
+    The bot successfully helped the user book a room at Marriott Zurich. The user
+    also asked the bot to book a rental car from Hertz, which the bot successfully
+    assisted with. Therefore, all of the user''s objectives were met.'
+transcript:
+- user: Hi, I'm planning a family vacation and I need to book a hotel room. Can you
+    help?
+- bot: in which city?
+- user: We're planning to visit Miami.
+- bot: "Sorry, but I've no hotel information in my database for Miami\nPlease try\
+    \ again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n * Geneva\n\
+    \ * Zurich\n"
+- user: Alright, let's change our plans and go to Zurich. Can you check for available
+    hotels there?
+- bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in
+    date?
+- user: We would like to check-in on July 15 and check-out on July 20.
+- bot: "I've found some great options for your stay: \n* Marriott Zurich - Upscale\n\
+    * Sheraton Zurich - Upper Upscale\n* Courtyard Zurich - Upscale\n"
+- user: We would like to stay at Marriott Zurich. Can you book it for us?
+- bot: Excellent choice! Just to confirm, you'd like me to book the Marriott Zurich
+    - Upscale for your stay from Monday, July 15 to Saturday, July 20, correct?
+- user: Yes, that's correct.
+- bot: Great news! I've successfully booked your stay at the Marriott Zurich - Upscale
+- user: That's excellent. Now, I also need to book a rental car. Can you assist with
+    that too?
+- bot: When would you like to pick up the car?
+- user: We would like to pick it up on July 15 and return it on July 20.
+- bot: 'I''ve found several car rental options for you: * Europcar - Economy
+
+    * Avis - Luxury
+
+    * Hertz - Midsize
+
+    * Sixt - SUV
+
+    * Budget - Compact
+
+    * Alamo - Full-size
+
+    * Enterprise - Premium
+
+    * National - Economy
+
+    * Thrifty - Midsize
+
+    * Dollar - Compact'
+- user: We would prefer to rent from Hertz. Can you book a midsize car for us?
+- bot: Excellent choice! To confirm, you'd like me to book an Hertz - Midsize car
+    for pickup on Monday, July 15 and return on Saturday, July 20, correct?

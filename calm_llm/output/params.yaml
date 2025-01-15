@@ -1,0 +1,14 @@
+parameters:
+  num_rephrases: 10
+  rephrase_config:
+    prompt_template: null
+    llm:
+      api_type: openai
+      model: gpt-4o
+      timeout: 20
+  model: models
+  endpoints: endpoints.yml
+  remote-storage: null
+  train_frac: 0.8
+  output_format: conversational
+  out: output

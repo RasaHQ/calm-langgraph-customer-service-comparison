@@ -1,0 +1,19 @@
+flows:
+  welcome:
+    description: greet the user and ask how you can help
+    steps:
+      - action: utter_welcome
+
+  goodbye:
+    description: say goodbye to user
+    steps:
+      - action: utter_farewell
+  list_skills:
+    description: tell the user what i can do
+    steps:
+      - action: utter_skills
+
+  out_of_scope:
+    description: trigger this if the user asks for something we don't have a flow for or an existing command does not apply for it. Conversation repair flow for off-topic interactions that won't disrupt the main conversation. should not respond to greetings or anything else for which there is a flow defined or an existing command is apt for it.
+    steps:
+      - action: utter_out_of_scope

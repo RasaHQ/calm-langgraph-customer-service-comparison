@@ -1,0 +1,8 @@
+flows:
+  email_confirmation:
+    description: sends email confirmation of booking on user's request
+    steps:
+      - collect: email_address
+        description: email address of the user
+        reset_after_flow_ends: false
+      - action: utter_email_sent

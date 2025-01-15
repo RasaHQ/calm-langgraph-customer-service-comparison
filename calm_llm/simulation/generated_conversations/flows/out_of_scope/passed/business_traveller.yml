@@ -1,0 +1,50 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_out_of_scope__business_traveller
+  steps:
+  - user: Hi, I need to reschedule my flight due to a change in my meeting schedule.
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: I'd like to depart on the 5th of next month.
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-05-05'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: The flight on Wednesday, May 8th seems to fit. Can you also help me book
+      a car rental at my new destination?
+  - commands:
+    - start_flow: search_rental_car
+    - set_slot:
+      - selected_flight_id: '19238'
+  - utter: utter_ask_car_rental_start_date
+  - user: I'd like to pick up the car on the 8th of May, right after my flight lands.
+  - commands:
+    - set_slot:
+      - car_rental_start_date: '2024-05-08'
+  - utter: utter_ask_car_rental_end_date
+  status: passed
+  rating: 4.0
+  rating_reasoning: 'Conversation summary: The bot successfully assisted the user
+    in rescheduling their flight and also managed to help with booking a car rental
+    at the user''s new destination. However, the user also asked for help in making
+    a dinner reservation, which is outside the bot''s capabilities, leading to an
+    out-of-scope response. The bot''s response to this out-of-scope request wasn''t
+    recorded.'
+transcript:
+- user: Hi, I need to reschedule my flight due to a change in my meeting schedule.
+- bot: What's your preferred departure date for this trip?
+- user: I'd like to depart on the 5th of next month.
+- bot: 'I''ve found several flight options that match your criteria:
+
+    * Saturday, May 11 at 12:09 PM (19243)
+
+    * Wednesday, May 08 at 12:09 PM (19238)
+
+    * Thursday, May 09 at 12:09 PM (19242)'
+- bot: Do any of these options work better for your schedule?
+- user: The flight on Wednesday, May 8th seems to fit. Can you also help me book a
+    car rental at my new destination?
+- bot: When would you like to pick up the car?
+- user: I'd like to pick up the car on the 8th of May, right after my flight lands.
+- bot: When would you like to drop the car off?

@@ -1,0 +1,30 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_pattern_cannot_handle__corporate_traveller
+  steps:
+  - user: I need to change my flight schedule.
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: My new meeting is on the 15th, so I'd like to leave on the 14th.
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-05-14'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user wanted to reschedule their business
+    flight. The bot found several flight options but none of them matched the user''s
+    new departure date. The user''s objectives were not met.'
+transcript:
+- user: I need to change my flight schedule.
+- bot: What's your preferred departure date for this trip?
+- user: My new meeting is on the 15th, so I'd like to leave on the 14th.
+- bot: 'I''ve found several flight options that match your criteria:
+
+    * Thursday, May 16 at 12:09 PM (19244)
+
+    * Saturday, May 18 at 12:09 PM (19246)
+
+    * Monday, May 20 at 12:09 PM (19229)'
+- bot: Do any of these options work better for your schedule?

@@ -1,0 +1,63 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_books_excursion.yml::simple excursion booking
+  steps:
+  - user: I'd like to book an excursion
+    llm_commands:
+    - StartFlow(book_excursion)
+    passing_rephrasings:
+    - I want to arrange an excursion.
+    - Can I book a tour?
+    - I am interested in booking an excursion.
+    - Could you help me book an excursion?
+    - I would like to schedule an excursion.
+    - I need to book an excursion.
+    - Please assist me in booking an excursion.
+    - I’m looking to book an excursion.
+    - I’d like to set up an excursion.
+    - Can you book an excursion for me?
+  - bot: in which city?
+  - user: in Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - In the city of Basel.
+    - I want to book it in Basel.
+    - The excursion should be in Basel.
+    - In Basel, please.
+    - I’m interested in an excursion in Basel.
+    - Could you book it in Basel?
+    - I’d like the excursion to be in Basel.
+    - Basel is the city I’m interested in.
+    - I want the excursion to take place in Basel.
+    - Please book the excursion in Basel.
+  - bot: "Basel has some wonderful attractions! Here are a few popular options: * Basel Minster\n* Kunstmuseum Basel\n* Basel Zoo"
+  - user: I'll go to the Basel Zoo please
+    llm_commands:
+    - SetSlot(excursion_name, Basel Zoo)
+    passing_rephrasings:
+    - I’d like to visit the Basel Zoo, please.
+    - I choose the Basel Zoo.
+    - Basel Zoo sounds great, please book that.
+    - I’ll opt for the Basel Zoo, thanks.
+    - Please book me for the Basel Zoo.
+    - I’ll go with the Basel Zoo.
+    - Basel Zoo it is, please.
+    - I’d like to go to the Basel Zoo.
+    - Let’s go with the Basel Zoo, please.
+    - I’ll take the Basel Zoo, thank you.
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: yes
+    llm_commands:
+    - SetSlot(excursion_booking_confirmation, True)
+    passing_rephrasings:
+    - Yes, please.
+    - Absolutely.
+    - Sure.
+    - Definitely.
+    - Of course.
+    - Yes, that’s right.
+    - Indeed.
+    - Affirmative.
+    - Yes, go ahead.
+    - Yes, please do.
+  - bot: Wonderful. I've booked your visit to Basel Zoo

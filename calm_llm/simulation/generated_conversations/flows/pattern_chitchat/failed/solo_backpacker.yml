@@ -1,0 +1,105 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_pattern_chitchat__solo_backpacker
+  steps:
+  - user: I want to rent a car for a road trip. Can you help me with that?
+  - commands:
+    - start_flow: search_rental_car
+  - utter: utter_ask_trip_destination
+  - user: Los Angeles.
+  - commands:
+    - set_slot:
+      - trip_destination: Los Angeles
+  - utter: utter_ask_car_rental_start_date
+  - user: Next Monday.
+  - commands:
+    - set_slot:
+      - car_rental_start_date: '2024-05-06'
+  - utter: utter_ask_car_rental_end_date
+  - user: The following Monday.
+  - commands:
+    - set_slot:
+      - car_rental_end_date: '2024-05-13T00:00:00-04:00'
+  - utter: utter_ask_car_rental_selection
+  - user: What are their prices?
+  - commands:
+    - set_slot:
+      - car_rental_selection: null
+  - utter: utter_ask_car_rental_selection
+  - user: Can you give me the prices for these options?
+  - commands:
+    - set_slot:
+      - car_rental_selection: null
+  - utter: utter_ask_car_rental_selection
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user tried to get information on car
+    rental options and their prices for a road trip. However, the bot failed to provide
+    the requested information, instead repeating the same list of options without
+    prices. The user''s objective was not met.'
+transcript:
+- user: I want to rent a car for a road trip. Can you help me with that?
+- bot: in which city?
+- user: Los Angeles.
+- bot: When would you like to pick up the car?
+- user: Next Monday.
+- bot: When would you like to drop the car off?
+- user: The following Monday.
+- bot: 'I''ve found several car rental options for you: * Europcar - Economy
+
+    * Avis - Luxury
+
+    * Hertz - Midsize
+
+    * Sixt - SUV
+
+    * Budget - Compact
+
+    * Alamo - Full-size
+
+    * Enterprise - Premium
+
+    * National - Economy
+
+    * Thrifty - Midsize
+
+    * Dollar - Compact'
+- user: What are their prices?
+- bot: 'I''ve found several car rental options for you: * Europcar - Economy
+
+    * Avis - Luxury
+
+    * Hertz - Midsize
+
+    * Sixt - SUV
+
+    * Budget - Compact
+
+    * Alamo - Full-size
+
+    * Enterprise - Premium
+
+    * National - Economy
+
+    * Thrifty - Midsize
+
+    * Dollar - Compact'
+- user: Can you give me the prices for these options?
+- bot: 'I''ve found several car rental options for you: * Europcar - Economy
+
+    * Avis - Luxury
+
+    * Hertz - Midsize
+
+    * Sixt - SUV
+
+    * Budget - Compact
+
+    * Alamo - Full-size
+
+    * Enterprise - Premium
+
+    * National - Economy
+
+    * Thrifty - Midsize
+
+    * Dollar - Compact'

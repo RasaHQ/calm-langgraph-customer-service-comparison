@@ -1,5 +1,0 @@
-flows:
-  welcome:
-    description: greet the user and ask how you can help
-    steps:
-      - action: utter_welcome

@@ -1,0 +1,24 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_books_a_car.yml::simple car booking
+  steps:
+  - user: I'd like to book a car
+    llm_commands:
+    - StartFlow(search_rental_car)
+  - bot: in which city?
+  - user: to Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(car_rental_start_date, may 14th)
+    - SetSlot(car_rental_end_date, may 17th)
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+    llm_commands:
+    - SetSlot(car_rental_selection, Avis - Luxury)
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(car_rental_booking_confirmation, True)
+  - bot: Fantastic! I've successfully booked your car.

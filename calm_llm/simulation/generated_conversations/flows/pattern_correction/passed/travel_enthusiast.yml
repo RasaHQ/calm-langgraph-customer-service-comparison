@@ -1,0 +1,92 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_pattern_correction__travel_enthusiast
+  steps:
+  - user: Hi! I'd like to book a rental car for a week and a day trip to a popular
+      tourist spot, please.
+  - commands:
+    - start_flow: search_rental_car
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  - user: San Francisco, California.
+  - commands:
+    - start_flow: book_excursion
+    - set_slot:
+      - trip_destination: San Francisco, California
+  - utter: utter_ask_car_rental_start_date
+  - user: I need the car from the 10th till the 17th of next month.
+  - commands:
+    - start_flow: book_excursion
+    - set_slot:
+      - car_rental_start_date: '2024-05-10'
+      - car_rental_end_date: '2024-05-17'
+  - utter: utter_ask_car_rental_selection
+  - user: I'll go with the SUV from Sixt.
+  - commands:
+    - start_flow: book_excursion
+    - set_slot:
+      - car_rental_selection: Sixt - SUV
+  - utter: utter_ask_car_rental_booking_confirmation
+  - user: Yes, that's correct.
+  - commands:
+    - start_flow: book_excursion
+    - set_slot:
+      - car_rental_booking_confirmation: 'True'
+      - trip_destination: San Francisco, California
+  - utter: utter_confirm_booked_rental_car
+  - utter: utter_ask_excursion_name
+  - user: Great. Now, for the day trip, I'm interested in visiting the Golden Gate
+      Bridge.
+  - commands:
+    - set_slot:
+      - excursion_name: Golden Gate Bridge
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: Actually, I've changed my mind. Can we book for Alcatraz Island instead?
+  - commands:
+    - set_slot:
+      - excursion_name: Alcatraz Island
+      - excursion_booking_confirmation: 'True'
+  - utter: utter_ask_excursion_booking_confirmation
+  status: passed
+  rating: 5.0
+  rating_reasoning: 'Conversation summary: The user successfully booked a rental car
+    for their specified period and initially wanted to visit the Golden Gate Bridge.
+    However, they later changed their mind and opted for a day trip to Alcatraz Island.
+    The bot was able to accommodate this change and successfully booked the day trip
+    to Alcatraz Island, as the user requested.'
+transcript:
+- user: Hi! I'd like to book a rental car for a week and a day trip to a popular tourist
+    spot, please.
+- bot: in which city?
+- user: San Francisco, California.
+- bot: When would you like to pick up the car?
+- user: I need the car from the 10th till the 17th of next month.
+- bot: 'I''ve found several car rental options for you: * Europcar - Economy
+
+    * Avis - Luxury
+
+    * Hertz - Midsize
+
+    * Sixt - SUV
+
+    * Budget - Compact
+
+    * Alamo - Full-size
+
+    * Enterprise - Premium
+
+    * National - Economy
+
+    * Thrifty - Midsize
+
+    * Dollar - Compact'
+- user: I'll go with the SUV from Sixt.
+- bot: Excellent choice! To confirm, you'd like me to book an Sixt - SUV car for pickup
+    on Friday, May 10 and return on Friday, May 17, correct?
+- user: Yes, that's correct.
+- bot: Fantastic! I've successfully booked your car.
+- bot: 'San Francisco, California has some wonderful attractions! Here are a few popular
+    options: '
+- user: Great. Now, for the day trip, I'm interested in visiting the Golden Gate Bridge.
+- bot: You've chosen Golden Gate Bridge. Shall I book that for you?
+- user: Actually, I've changed my mind. Can we book for Alcatraz Island instead?
+- bot: You've chosen Alcatraz Island. Shall I book that for you?

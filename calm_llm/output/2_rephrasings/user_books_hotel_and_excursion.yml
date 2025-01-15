@@ -1,0 +1,125 @@
+conversations:
+- original_test_case: ../e2e_tests/multi_skill/user_books_hotel_and_excursion.yml::hotel booking combined with excursion
+  steps:
+  - user: I'd like to book a hotel
+    llm_commands:
+    - StartFlow(search_hotel)
+    passing_rephrasings:
+    - I want to reserve a hotel room.
+    - Can you help me book a hotel?
+    - I'm looking to book a hotel.
+    - I'd like to arrange a hotel stay.
+    - Could you assist me in booking a hotel?
+    - I need to book a hotel.
+    - I want to make a hotel reservation.
+    - Can I book a hotel through you?
+    - I need help booking a hotel.
+    - I would like to secure a hotel room.
+  - bot: in which city?
+  - user: to Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - in Basel.
+    - for Basel.
+    - in the city of Basel.
+    - heading to Basel.
+    - for a trip to Basel.
+    - in Basel, Switzerland.
+    - to stay in Basel.
+    - for my visit to Basel.
+    - in the Basel area.
+    - for a stay in Basel.
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(hotel_start_date, 2024-05-14)
+    - SetSlot(hotel_end_date, 2024-05-17)
+    passing_rephrasings:
+    - between May 14th and May 17th.
+    - for the dates May 14th to May 17th.
+    - from the 14th to the 17th of May.
+    - starting May 14th and ending May 17th.
+    - for the period of May 14th to May 17th.
+    - from May 14th through May 17th.
+    - for a stay from May 14th to May 17th.
+    - between the 14th and 17th of May.
+    - from May 14th until May 17th.
+    - for the dates spanning May 14th to May 17th.
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+    llm_commands:
+    - SetSlot(hotel_name, Hilton Basel - Luxury)
+    passing_rephrasings:
+    - I choose the Hilton.
+    - I'll book the Hilton.
+    - The Hilton works for me.
+    - I'll go with the Hilton.
+    - I'll take the Hilton.
+    - I'll opt for the Hilton.
+    - I'll reserve a room at the Hilton.
+    - The Hilton is my choice.
+    - I'll stay at the Hilton, please.
+    - I'll select the Hilton.
+  - bot: Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(hotel_booking_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - That's correct.
+    - Yes, please.
+    - Indeed.
+    - Sure.
+    - Affirmative.
+    - Yes, that's right.
+    - Correct.
+    - Definitely.
+    - Yes, indeed.
+  - bot: Great news! I've successfully booked your stay at the Hilton Basel - Luxury
+  - user: I'd also like to book something to do or see while I'm there
+    llm_commands:
+    - StartFlow(book_excursion)
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - I'd like to arrange an activity or tour while I'm in Basel.
+    - Can you help me book an excursion or attraction in Basel?
+    - I want to book something to do or see during my stay.
+    - I'd like to plan an activity or sightseeing while I'm there.
+    - Can you assist me in booking an excursion or activity in Basel?
+    - I want to schedule something to do or see while I'm in Basel.
+    - I'd like to arrange a tour or visit to an attraction while I'm there.
+    - Can you help me find something to do or see in Basel?
+    - I want to book an activity or sightseeing tour while I'm in Basel.
+    - I'd like to plan something to do or see during my visit.
+  - utter: utter_ask_excursion_name
+  - user: I'll go to Basel Zoo please
+    llm_commands:
+    - SetSlot(excursion_name, Basel Zoo)
+    passing_rephrasings:
+    - I'd like to visit Basel Zoo.
+    - I'll choose Basel Zoo.
+    - Basel Zoo sounds great.
+    - I'll opt for Basel Zoo.
+    - I'll go with Basel Zoo.
+    - Basel Zoo, please.
+    - I'll take the Basel Zoo option.
+    - Basel Zoo is my choice.
+    - I'll book a visit to Basel Zoo.
+    - I'll go to Basel Zoo, thanks.
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: yes
+    llm_commands:
+    - SetSlot(excursion_booking_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - That's correct.
+    - Yes, please.
+    - Indeed.
+    - Sure.
+    - Affirmative.
+    - Yes, that's right.
+    - Correct.
+    - Definitely.
+    - Yes, indeed.
+  - bot: Wonderful. I've booked your visit to Basel Zoo

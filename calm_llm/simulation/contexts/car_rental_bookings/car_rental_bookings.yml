@@ -1,0 +1,27 @@
+- user_profile: Busy Business Traveler
+  user_data: Needs a rental car for a business trip to New York City tomorrow.
+  conversation_development: The user might be in a hurry and request a quick booking.
+    However, they may initially provide the wrong city or date, requiring the bot
+    to confirm details. The user could also change the rental type from a sedan to
+    an SUV after initial search results, demonstrating a shift in preferences.
+- user_profile: Eco-conscious Tourist
+  user_data: Looking for an eco-friendly car rental for a week-long vacation in San
+    Francisco.
+  conversation_development: The user may request specific features like hybrid or
+    electric cars. They might misunderstand the bot's availability data due to regional
+    differences in rental car availability, leading to a discussion on alternative
+    options or locations where eco-friendly vehicles are available.
+- user_profile: First-time Traveler
+  user_data: Planning a trip to Miami and is unsure about the car rental process.
+  conversation_development: The user may require guidance on how rental services work,
+    including insurance and fuel policies. There might be a need to clarify terms,
+    and the user could be hesitant to finalize without assurance from the bot, possibly
+    leading to questions about cancellation policies or additional costs.
+- user_profile: Budget-Conscious College Student
+  user_data: Wants to rent a car for a road trip but has a tight budget and specific
+    price constraints.
+  conversation_development: The user could start by asking for the cheapest options,
+    leading to a search for discounts or deals. They might inquire about the possibility
+    of splitting payments or using student discounts, and could become non-cooperative
+    if the options exceed their budget, leading to a potential shift in intent towards
+    public transportation alternatives.

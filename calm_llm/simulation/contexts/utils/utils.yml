@@ -1,0 +1,27 @@
+- user_profile: Busy Business Traveler
+  user_data: Needs to reschedule a flight from New York to San Francisco due to a
+    sudden change in meeting time.
+  conversation_development: The user may initially provide an incorrect flight number,
+    leading to a correction flow. The bot assists in finding the correct flight details,
+    reschedules the flight, and confirms the new timing. The user may then ask about
+    hotel booking options near the new meeting location.
+- user_profile: Family Vacation Planner
+  user_data: Looking to book a rental car for a family of four in Orlando for their
+    upcoming theme park vacation.
+  conversation_development: The user, unfamiliar with the rental car process, asks
+    multiple FAQs about insurance and vehicle options. The bot addresses these queries,
+    books the car, and suggests adding a day excursion to the itinerary. The user
+    might shift the conversation to inquire about child-friendly activities.
+- user_profile: Solo Backpacker
+  user_data: Interested in booking a hostel room and a day excursion in Barcelona.
+  conversation_development: The user might start with a casual greeting or off-topic
+    question about local cuisine. The bot redirects to focus on booking tasks, successfully
+    books the hostel, but faces a misunderstanding with the excursion date, leading
+    to a correction flow. The user might later ask for recommendations on local festivals.
+- user_profile: Senior Citizen Traveler
+  user_data: Wants to book a hotel room with accessible facilities in Paris.
+  conversation_development: The user might have trouble with technology, resulting
+    in the bot needing to clarify and confirm details multiple times. The bot helps
+    navigate through accessible room options and completes the booking. The user might
+    then inquire about nearby medical facilities, prompting the bot to provide relevant
+    information.

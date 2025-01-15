@@ -1,0 +1,39 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_flight_bookings_flight_bookings__family_vacation_planner
+  steps:
+  - user: Hi! I need to check flight listings for my family's trip. Can you help me
+      view our bookings under one reference number?
+  - commands:
+    - start_flow: list_bookings
+  - utter: utter_list_flight_bookings
+  - user: Can you show me all the family bookings under that reference number? I'm
+      not quite sure how to view them all together.
+  - commands:
+    - start_flow: list_bookings
+  - utter: utter_list_flight_bookings
+  - user: Hi! I need to check our family flight bookings. How do I view them under
+      one reference number?
+  - commands:
+    - start_flow: list_bookings
+  - utter: utter_list_flight_bookings
+  status: passed
+  rating: 3.0
+  rating_reasoning: 'Conversation summary: The user, a family vacation planner, approached
+    the bot with the intention to change flights for an entire family due to a change
+    in holiday plans. The bot was able to identify the family''s group booking and
+    provide the information to the user. However, the conversation ended before the
+    bot could offer rescheduling options for the flights. Thus, the user''s objective
+    was only partially met.'
+transcript:
+- user: Hi! I need to check flight listings for my family's trip. Can you help me
+    view our bookings under one reference number?
+- bot: 'I''ve found your upcoming flight bookings: a flight from Paris (CDG) to Basel
+    (BSL) on April 30'
+- user: Can you show me all the family bookings under that reference number? I'm not
+    quite sure how to view them all together.
+- bot: 'I''ve found your upcoming flight bookings: a flight from Paris (CDG) to Basel
+    (BSL) on April 30'
+- user: Hi! I need to check our family flight bookings. How do I view them under one
+    reference number?
+- bot: 'I''ve found your upcoming flight bookings: a flight from Paris (CDG) to Basel
+    (BSL) on April 30'

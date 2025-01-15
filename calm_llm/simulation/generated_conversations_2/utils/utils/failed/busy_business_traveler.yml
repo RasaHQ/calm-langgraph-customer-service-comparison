@@ -1,0 +1,58 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_utils_utils__busy_business_traveler
+  steps:
+  - user: I need to reschedule my flight from New York to San Francisco.
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: Tomorrow, please.
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-04-28'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: I think I have the wrong flight number. My current flight was supposed to
+      be Thursday at 12:09 PM. Can you help find that one and reschedule it?
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-05-02'
+      - flight_search_end_date: '2024-05-02'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: I meant Thursday, not Saturday. Can you check for flights on Thursday, May
+      02, please?
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-05-02'
+      - flight_search_end_date: '2024-05-02'
+  - utter: utter_ask_selected_flight_id
+  status: failed
+  rating: 2.0
+  rating_reasoning: 'Conversation summary: The user, a business traveler, wanted to
+    reschedule their flight from New York to San Francisco. The bot provided multiple
+    flight options for the user''s preferred departure date. The user initially gave
+    an incorrect flight number, but the bot was able to find the correct flights and
+    offered the user several options to reschedule the flight. However, the bot repeated
+    the same line when the user requested for a different date which makes it unclear
+    whether the user''s objectives were met.'
+transcript:
+- user: I need to reschedule my flight from New York to San Francisco.
+- bot: What's your preferred departure date for this trip?
+- user: Tomorrow, please.
+- bot: 'I''ve found several flight options that match your criteria:
+
+    * Tuesday, April 30 at 12:09 PM (19250)
+
+    * Wednesday, May 01 at 12:09 PM (19233)
+
+    * Saturday, May 04 at 12:09 PM (19232)'
+- bot: Do any of these options work better for your schedule?
+- user: I think I have the wrong flight number. My current flight was supposed to
+    be Thursday at 12:09 PM. Can you help find that one and reschedule it?
+- bot: 'I''ve found several flight options that match your criteria:
+
+    '
+- bot: Do any of these options work better for your schedule?
+- user: I meant Thursday, not Saturday. Can you check for flights on Thursday, May
+    02, please?
+- bot: Do any of these options work better for your schedule?

@@ -1,0 +1,89 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_pattern_chitchat__family_vacation_planner
+  steps:
+  - user: I want to book a hotel room for my family's upcoming vacation.
+  - commands:
+    - start_flow: search_hotel
+  - utter: utter_ask_trip_destination
+  - user: In Miami.
+  - commands:
+    - set_slot:
+      - trip_destination: Miami
+  - utter: utter_hotel_location_not_in_db
+  - user: Okay, let's go with Zurich then.
+  - commands:
+    - start_flow: search_hotel
+    - set_slot:
+      - trip_destination: Zurich
+  - utter: utter_ask_hotel_start_date
+  - user: We'll check-in on the 15th of August.
+  - commands:
+    - set_slot:
+      - hotel_start_date: 15th of August
+  - utter: utter_ask_hotel_end_date
+  - user: On the 20th of August.
+  - commands:
+    - set_slot:
+      - hotel_end_date: '2024-08-20T00:00:00-04:00'
+  - utter: utter_ask_hotel_name
+  - user: Let's go with the Sheraton Zurich.
+  - commands:
+    - set_slot:
+      - hotel_name: Sheraton Zurich
+  - utter: utter_ask_hotel_booking_confirmation
+  - user: Yes, that's correct. And I'm also interested in booking a day excursion.
+  - commands:
+    - start_flow: book_excursion
+    - set_slot:
+      - hotel_booking_confirmation: 'True'
+  - utter: utter_ask_excursion_name
+  - user: I'd like to visit the Swiss National Museum.
+  - commands:
+    - set_slot:
+      - excursion_name: Swiss National Museum
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: Actually, I changed my mind. Can you help me book a rental car instead?
+  - commands:
+    - start_flow: search_rental_car
+    - set_slot:
+      - trip_destination: Zurich
+    - cancel_flow
+  - utter: utter_flow_cancelled_rasa
+  - utter: utter_ask_car_rental_start_date
+  status: passed
+  rating: 3.0
+  rating_reasoning: 'Conversation summary: The user''s objective was to book a hotel
+    room and a day excursion for her family''s upcoming vacation. The user successfully
+    booked a hotel room in Zurich after initially wanting to book in Miami. The bot,
+    however, provided no hotel information for Miami. When the user wanted to book
+    a day excursion, they changed their mind midway to booking a rental car instead.
+    The bot responded according to the change, and thus, the user was partially successful
+    in fulfilling her objective.'
+transcript:
+- user: I want to book a hotel room for my family's upcoming vacation.
+- bot: in which city?
+- user: In Miami.
+- bot: "Sorry, but I've no hotel information in my database for Miami\nPlease try\
+    \ again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n * Geneva\n\
+    \ * Zurich\n"
+- user: Okay, let's go with Zurich then.
+- bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in
+    date?
+- user: We'll check-in on the 15th of August.
+- bot: when do you want to leave?
+- user: On the 20th of August.
+- bot: "I've found some great options for your stay: \n* Marriott Zurich - Upscale\n\
+    * Sheraton Zurich - Upper Upscale\n* Courtyard Zurich - Upscale\n"
+- user: Let's go with the Sheraton Zurich.
+- bot: Excellent choice! Just to confirm, you'd like me to book the Sheraton Zurich
+    for your stay from Thursday, August 15 to Tuesday, August 20, correct?
+- user: Yes, that's correct. And I'm also interested in booking a day excursion.
+- bot: 'Zurich has some wonderful attractions! Here are a few popular options: * Zurich
+    Old Town
+
+    * Swiss National Museum'
+- user: I'd like to visit the Swiss National Museum.
+- bot: You've chosen Swiss National Museum. Shall I book that for you?
+- user: Actually, I changed my mind. Can you help me book a rental car instead?
+- bot: Okay, stopping book excursion.
+- bot: When would you like to pick up the car?

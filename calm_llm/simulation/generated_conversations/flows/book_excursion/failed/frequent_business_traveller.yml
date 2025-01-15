@@ -1,0 +1,23 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_book_excursion__frequent_business_traveller
+  steps:
+  - user: I need to book a hotel room in Seattle for next week.
+  - commands:
+    - start_flow: search_hotel
+    - set_slot:
+      - trip_destination: Seattle
+  - utter: utter_hotel_location_not_in_db
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user initially wanted to book a hotel
+    room in Seattle which the bot was unable to assist with due to lack of Seattle
+    hotel information in its database. The user then changed the request to booking
+    an excursion in Seattle, but the bot didn''t respond to that. As such, none of
+    the user''s objectives were met.
+
+    '
+transcript:
+- user: I need to book a hotel room in Seattle for next week.
+- bot: "Sorry, but I've no hotel information in my database for Seattle\nPlease try\
+    \ again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n * Geneva\n\
+    \ * Zurich\n"

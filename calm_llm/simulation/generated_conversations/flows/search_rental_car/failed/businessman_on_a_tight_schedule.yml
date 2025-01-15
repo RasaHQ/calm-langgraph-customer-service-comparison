@@ -1,0 +1,78 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_search_rental_car__businessman_on_a_tight_schedule
+  steps:
+  - user: I need to reschedule my flight from New York to San Francisco.
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: Change it to 15th of this month.
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-04-15'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: The first one works for me. Can you book that?
+  - commands:
+    - set_slot:
+      - selected_flight_id: '19235'
+  - utter: utter_ask_flight_change_confirmation
+  - user: Yes, please proceed with that.
+  - commands:
+    - set_slot:
+      - flight_change_confirmation: 'True'
+  - utter: utter_change_flight_successful
+  - user: Now I would like to book a rental car for my stay in San Francisco.
+  - commands:
+    - start_flow: search_rental_car
+    - set_slot:
+      - trip_destination: San Francisco
+  - utter: utter_ask_car_rental_start_date
+  - user: I need the car from 16th to 19th of this month.
+  - commands:
+    - set_slot:
+      - car_rental_start_date: '2024-04-16'
+      - car_rental_end_date: '2024-04-19'
+  - utter: utter_invalid_date
+  - utter: utter_ask_car_rental_start_date
+  - user: My apologies for the confusion. I will need the car from 17th to 20th of
+      this month.
+  - commands:
+    - set_slot:
+      - car_rental_start_date: '2024-04-17'
+      - car_rental_end_date: '2024-04-20'
+  - utter: utter_invalid_date
+  - utter: utter_ask_car_rental_start_date
+  status: failed
+  rating: 2.0
+  rating_reasoning: 'Conversation summary: The user was able to successfully reschedule
+    his flight from New York to San Francisco based on his preferred date. However,
+    the bot failed to assist the user in booking a rental car for his stay in San
+    Francisco, despite the user providing the correct dates after an initial mistake.
+    The bot did not act according to the workflow, causing a failure in the conversation.'
+transcript:
+- user: I need to reschedule my flight from New York to San Francisco.
+- bot: What's your preferred departure date for this trip?
+- user: Change it to 15th of this month.
+- bot: 'I''ve found several flight options that match your criteria:
+
+    * Wednesday, April 17 at 12:09 PM (19235)
+
+    * Friday, April 19 at 12:09 PM (19236)
+
+    * Saturday, April 20 at 12:09 PM (19227)'
+- bot: Do any of these options work better for your schedule?
+- user: The first one works for me. Can you book that?
+- bot: Great choice! You've selected the flight on Wednesday, April 17 at 12:09 PM.
+    Shall I go ahead and change your booking to this flight?
+- user: Yes, please proceed with that.
+- bot: Perfect! I've successfully changed your booking. Your new flight departs on
+    Wednesday, April 17 at 12:09 PM
+- user: Now I would like to book a rental car for my stay in San Francisco.
+- bot: When would you like to pick up the car?
+- user: I need the car from 16th to 19th of this month.
+- bot: Sorry, the date that you provided isn't valid!
+- bot: When would you like to pick up the car?
+- user: My apologies for the confusion. I will need the car from 17th to 20th of this
+    month.
+- bot: Sorry, the date that you provided isn't valid!
+- bot: When would you like to pick up the car?

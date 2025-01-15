@@ -1,0 +1,11 @@
+Flow Name,Coverage,Num Steps,Missing Steps,Line Numbers
+data/flows/book_excursion.yml::book excursion,100.0,5,0,[]
+data/flows/book_hotel.yml::search hotel,76.92307692307693,13,3,"[15-16, 25-25, 33-33]"
+data/flows/book_rental_car.yml::search rental car,80.0,10,2,"[22-22, 14-14]"
+data/flows/change_flight.yml::change flight,66.66666666666666,12,4,"[15-16, 12-14, 10-11, 31-32]"
+data/flows/list_flight_bookings.yml::list bookings,66.66666666666666,3,1,[12-13]
+data/flows/utils.yml::goodbye,0.0,1,1,[5-5]
+data/flows/utils.yml::list skills,0.0,1,1,[9-9]
+data/flows/utils.yml::out of scope,0.0,1,1,[35-35]
+data/flows/welcome.yml::welcome,0.0,1,1,[5-5]
+Total,70.21%,47,14,

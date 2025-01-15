@@ -1,0 +1,35 @@
+- user_profile: Business Traveler
+  user_data: The user is on a tight schedule with limited time for leisure activities.
+    They have a few hours free during a layover in a city they are unfamiliar with.
+  conversation_development: The user might start by asking for recommendations for
+    quick excursions. The bot suggests several options, but the user is indecisive
+    and keeps changing preferences. Eventually, the user decides on a city tour but
+    needs quick confirmation to fit within their layover time. The conversation could
+    end with the user successfully booking the tour or expressing frustration due
+    to time constraints.
+- user_profile: Family Vacation Planner
+  user_data: The user is planning a vacation for a family with children and elderly
+    members, requiring activities suitable for all ages.
+  conversation_development: The user requests a list of family-friendly excursions.
+    The bot provides several options, but the user expresses concern over accessibility
+    for elderly members. The bot then refines its suggestions, but the user becomes
+    non-cooperative, questioning the accuracy and relevance of the options. The conversation
+    may conclude with the user asking for a human agent or deciding to postpone booking.
+- user_profile: Budget Traveler
+  user_data: The user is a student traveling on a tight budget, looking for affordable
+    excursions.
+  conversation_development: The user is focused on price and starts by asking for
+    the cheapest excursion options. The bot provides budget-friendly choices, but
+    the user misunderstands the pricing, thinking it includes hidden fees. A discussion
+    ensues about the payment and potential discounts for students. The user might
+    shift intent, asking for alternative free activities, or eventually book the most
+    affordable option.
+- user_profile: Spontaneous Tourist
+  user_data: The user has no fixed itinerary and is open to exploring spontaneous
+    adventure excursions.
+  conversation_development: The user asks for unique and adventurous experiences.
+    The bot suggests several high-adrenaline activities, but the user is unsure and
+    keeps asking for more details and comparisons. Midway, the user shifts intent,
+    considering less adventurous options due to a sudden change in mood. The bot adapts
+    and offers more relaxed excursions, and the conversation might end with the user
+    booking a scenic boat tour or deciding to explore on their own.

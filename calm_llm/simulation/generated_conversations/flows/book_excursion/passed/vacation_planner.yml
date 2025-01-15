@@ -1,0 +1,36 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_book_excursion__vacation_planner
+  steps:
+  - user: I'm planning a holiday to Rome. Can you suggest some excursion options?
+  - commands:
+    - start_flow: book_excursion
+    - set_slot:
+      - trip_destination: Rome
+  - utter: utter_ask_excursion_name
+  - user: Which one includes the Colosseum?
+  - commands:
+    - knowledge
+  - utter: utter_skills
+  - utter: utter_ask_excursion_name
+  - user: I want to book the Colosseum excursion.
+  - commands:
+    - set_slot:
+      - excursion_name: Colosseum excursion
+  - utter: utter_ask_excursion_booking_confirmation
+  status: passed
+  rating: 4.0
+  rating_reasoning: 'Conversation summary: The user requested excursion options in
+    Rome, specifically the Colosseum. The bot provided options and upon user''s decision,
+    it got confirmation to book the Colosseum excursion. There was a small moment
+    of confusion from the bot not recognizing the excursion name but this was quickly
+    rectified by the user''s repeated request. Overall, the user''s objective was
+    met successfully.'
+transcript:
+- user: I'm planning a holiday to Rome. Can you suggest some excursion options?
+- bot: 'Rome has some wonderful attractions! Here are a few popular options: '
+- user: Which one includes the Colosseum?
+- bot: I can list your flight bookings or change them. I can also book rental cars,
+    hotels, and excursions! If you need something else, please email us help@example.com.
+- bot: 'Rome has some wonderful attractions! Here are a few popular options: '
+- user: I want to book the Colosseum excursion.
+- bot: You've chosen Colosseum excursion. Shall I book that for you?

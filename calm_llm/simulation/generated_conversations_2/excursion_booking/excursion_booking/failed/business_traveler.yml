@@ -1,0 +1,45 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_excursion_booking_excursion_booking__business_traveler
+  steps:
+  - user: Hi! I have a layover with a few free hours. Any quick city excursion recommendations?
+  - commands:
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  - user: Paris.
+  - commands:
+    - set_slot:
+      - trip_destination: Paris
+  - utter: utter_ask_excursion_name
+  - user: Great! Can you suggest something that's quick and doesn't require a lot
+      of travel?
+  - commands:
+    - set_slot:
+      - excursion_name: quick city tour
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: Can you tell me how long the tour is and its start time? I need to ensure
+      it fits within my layover.
+  - commands:
+    - knowledge
+  - utter: utter_skills
+  - utter: utter_ask_excursion_booking_confirmation
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user, a business traveler with a layover
+    in Paris, asked the bot for city excursion recommendations. While the bot did
+    suggest some options, it circumvented the user''s specific question about the
+    duration and start time of the quick city tour, repeating a pre-programmed response
+    instead. The user''s objective of confirming if the tour fits within their layover
+    time was not met.'
+transcript:
+- user: Hi! I have a layover with a few free hours. Any quick city excursion recommendations?
+- bot: in which city?
+- user: Paris.
+- bot: 'Paris has some wonderful attractions! Here are a few popular options: '
+- user: Great! Can you suggest something that's quick and doesn't require a lot of
+    travel?
+- bot: You've chosen quick city tour. Shall I book that for you?
+- user: Can you tell me how long the tour is and its start time? I need to ensure
+    it fits within my layover.
+- bot: I can list your flight bookings or change them. I can also book rental cars,
+    hotels, and excursions! If you need something else, please email us help@example.com.
+- bot: You've chosen quick city tour. Shall I book that for you?

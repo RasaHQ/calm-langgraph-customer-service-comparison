@@ -1,0 +1,68 @@
+conversations:
+- original_test_case: ../e2e_tests/multi_skill/user_changes_flight_books_hotel_and_car_and_excursion.yml::user does it all!
+  steps:
+  - user: show my flights
+    llm_commands:
+    - StartFlow(list_bookings)
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
+  - user: are there any alternative ones for the same week
+    llm_commands:
+    - StartFlow(change_flight)
+    - SetSlot(flight_search_start_date, 2024-04-30)
+    - SetSlot(flight_search_end_date, 2024-05-06)
+  - utter: utter_flight_search_results
+  - bot: Do any of these options work better for your schedule?
+  - user: The next available option is great
+    llm_commands:
+    - SetSlot(selected_flight_id, 19233)
+  - bot: Great choice! You've selected the flight on Wednesday, May 01 at 12:09 PM. Shall I go ahead and change your booking to this flight?
+  - user: yes
+    llm_commands:
+    - SetSlot(flight_change_confirmation, True)
+  - bot: Perfect! I've successfully changed your booking. Your new flight departs on Wednesday, May 01 at 12:09 PM
+  - user: can you book me a hotel as well?
+    llm_commands:
+    - StartFlow(search_hotel)
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: the 24th - and checking out on the 27th of next month
+    llm_commands:
+    - SetSlot(hotel_start_date, 2024-05-24)
+    - SetSlot(hotel_end_date, 2024-05-27)
+  - utter: "utter_ask_hotel_name"
+  - user: I'll stay at the Hilton
+    llm_commands:
+    - SetSlot(hotel_name, Hilton Basel - Luxury)
+  - bot: Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Friday, May 24 to Monday, May 27, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(hotel_booking_confirmation, True)
+  - bot: Great news! I've successfully booked your stay at the Hilton Basel - Luxury
+  - user: I'll need a car too
+    llm_commands:
+    - StartFlow(search_rental_car)
+  - bot: When would you like to pick up the car?
+  - user: same dates as the hotel
+    llm_commands:
+    - SetSlot(car_rental_start_date, 2024-05-24)
+    - SetSlot(car_rental_end_date, 2024-05-27)
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+    llm_commands:
+    - SetSlot(car_rental_selection, Avis - Luxury)
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Friday, May 24 and return on Monday, May 27, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(car_rental_booking_confirmation, True)
+  - bot: Fantastic! I've successfully booked your car.
+  - user: and let's find something to do while I'm in town
+    llm_commands:
+    - StartFlow(book_excursion)
+  - utter: utter_ask_excursion_name
+  - user: I'll go to the Basel Zoo
+    llm_commands:
+    - SetSlot(excursion_name, Basel Zoo)
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: yes
+    llm_commands:
+    - SetSlot(excursion_booking_confirmation, True)
+  - bot: Wonderful. I've booked your visit to Basel Zoo

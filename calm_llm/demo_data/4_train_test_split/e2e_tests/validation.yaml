@@ -1,0 +1,34 @@
+fixtures: []
+metadata: []
+stub_custom_actions: {}
+test_cases:
+- test_case: simple car booking
+  steps:
+  - user: I'd like to book a car
+  - bot: in which city?
+  - user: to Basel
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: "yes"
+  - bot: "Fantastic! I've successfully booked your car."
+- test_case: simple excursion booking
+  steps:
+  - user: I'd like to book an excursion
+  - bot: in which city?
+  - user: in Basel
+  - bot: "Basel has some wonderful attractions! Here are a few popular options: * Basel Minster\n* Kunstmuseum Basel\n* Basel Zoo"
+  - user: I'll go to the Basel Zoo please
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: "yes"
+  - bot: "Wonderful. I've booked your visit to Basel Zoo"
+- test_case: hotel booking but location is not in db
+  steps:
+  - user: book a hotel
+  - bot: in which city?
+  - user: Lisbon
+  - utter: utter_hotel_location_not_in_db
+  - user: ok, then book one in Basel please
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?

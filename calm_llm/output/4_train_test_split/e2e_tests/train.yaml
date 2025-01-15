@@ -1,0 +1,159 @@
+fixtures: []
+metadata: []
+stub_custom_actions: {}
+test_cases:
+- test_case: user changes mind and cancels rental request
+  steps:
+  - user: I'd like to book a car
+  - bot: in which city?
+  - user: to Basel
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: "no actually I'll just walk and take public transport"
+  - utter: utter_flow_cancelled_rasa
+- test_case: user changes mind and cancels rental request
+  steps:
+  - user: I'd like to book a car
+  - bot: in which city?
+  - user: to Basel
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: you know what I should save some money
+  - utter: utter_ask_car_rental_selection
+  - user: "no actually I'll just walk and take public transport"
+  - utter: utter_flow_cancelled_rasa
+- test_case: user changes mind and cancels rental request, switches to hotel booking
+  steps:
+  - user: I'd like to book a car
+  - bot: in which city?
+  - user: to Basel
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: "no forget the car just book me a hotel for the same dates"
+  - utter: utter_flow_cancelled_rasa
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+  - bot: "Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?"
+  - user: "yes"
+  - bot: "Great news! I've successfully booked your stay at the Hilton Basel - Luxury"
+- test_case: user changes mind about price range
+  steps:
+  - user: I'd like to book a car
+  - bot: in which city?
+  - user: Basel
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: you know what I should save some money
+  - utter: utter_ask_car_rental_selection
+  - user: "I'll take the economy one"
+  - bot: Excellent choice! To confirm, you'd like me to book an Europcar - Economy car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: "yes"
+  - bot: "Fantastic! I've successfully booked your car."
+- test_case: hotel booking but location is not in db
+  steps:
+  - user: book a hotel in lisbon
+  - utter: utter_hotel_location_not_in_db
+  - user: ok, book a hotel in Basel
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+- test_case: simple hotel booking
+  steps:
+  - user: I'd like to book a hotel
+  - bot: in which city?
+  - user: to Basel
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: from may 14th to the 17th
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+  - bot: "Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?"
+  - user: "yes"
+  - bot: "Great news! I've successfully booked your stay at the Hilton Basel - Luxury"
+- test_case: simple hotel booking, but user doesn't want to book
+  steps:
+  - user: I'd like to book a hotel
+  - bot: in which city?
+  - user: to Basel
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: from may 14th to the 17th
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+  - bot: "Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?"
+  - user: "no"
+  - bot: "Of course, then I will not make the booking. Is there something else I can do for you?"
+- test_case: user changes their flight
+  steps:
+  - user: show my flights
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
+  - user: "are there any alternative ones for the same week"
+  - utter: utter_flight_search_results
+  - bot: "Do any of these options work better for your schedule?"
+  - user: "The next available option is great"
+  - bot: "Great choice! You've selected the flight on Wednesday, May 01 at 12:09 PM. Shall I go ahead and change your booking to this flight?"
+  - user: "yes"
+  - bot: "Perfect! I've successfully changed your booking. Your new flight departs on Wednesday, May 01 at 12:09 PM"
+- test_case: user lists their flights
+  steps:
+  - user: Please show me my booked flights
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
+- test_case: hotel booking combined with excursion
+  steps:
+  - user: I'd like to book a hotel
+  - bot: in which city?
+  - user: to Basel
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: from may 14th to the 17th
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+  - bot: "Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?"
+  - user: "yes"
+  - bot: "Great news! I've successfully booked your stay at the Hilton Basel - Luxury"
+  - user: "I'd also like to book something to do or see while I'm there"
+  - utter: utter_ask_excursion_name
+  - user: I'll go to Basel Zoo please
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: "yes"
+  - bot: "Wonderful. I've booked your visit to Basel Zoo"
+- test_case: user does it all!
+  steps:
+  - user: show my flights
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
+  - user: "are there any alternative ones for the same week"
+  - utter: utter_flight_search_results
+  - bot: "Do any of these options work better for your schedule?"
+  - user: "The next available option is great"
+  - bot: "Great choice! You've selected the flight on Wednesday, May 01 at 12:09 PM. Shall I go ahead and change your booking to this flight?"
+  - user: "yes"
+  - bot: "Perfect! I've successfully changed your booking. Your new flight departs on Wednesday, May 01 at 12:09 PM"
+  - user: "can you book me a hotel as well?"
+  - bot: "Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?"
+  - user: the 24th - and checking out on the 27th of next month
+  - utter: "utter_ask_hotel_name"
+  - user: I'll stay at the Hilton
+  - bot: "Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Friday, May 24 to Monday, May 27, correct?"
+  - user: "yes"
+  - bot: Great news! I've successfully booked your stay at the Hilton Basel - Luxury
+  - user: "I'll need a car too"
+  - bot: "When would you like to pick up the car?"
+  - user: same dates as the hotel
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+  - bot: "Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Friday, May 24 and return on Monday, May 27, correct?"
+  - user: "yes"
+  - bot: "Fantastic! I've successfully booked your car."
+  - user: "and let's find something to do while I'm in town"
+  - utter: utter_ask_excursion_name
+  - user: I'll go to the Basel Zoo
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: "yes"
+  - bot: "Wonderful. I've booked your visit to Basel Zoo"

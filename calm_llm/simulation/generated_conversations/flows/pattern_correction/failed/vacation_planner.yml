@@ -1,0 +1,49 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_pattern_correction__vacation_planner
+  steps:
+  - user: Hi, I want to book a family suite in a beachfront hotel for our vacation.
+  - commands:
+    - start_flow: search_hotel
+  - utter: utter_ask_trip_destination
+  - user: We're planning to go to Miami.
+  - commands:
+    - set_slot:
+      - trip_destination: Miami
+  - utter: utter_hotel_location_not_in_db
+  - user: Okay, we'll go with Lucerne then.
+  - commands:
+    - start_flow: search_hotel
+    - set_slot:
+      - trip_destination: Lucerne
+  - utter: utter_ask_hotel_start_date
+  - user: We're planning to check-in on May 20th.
+  - commands:
+    - set_slot:
+      - hotel_start_date: May 20th
+  - utter: utter_ask_hotel_end_date
+  - user: We planned to check-out on May 25th.
+  - commands:
+    - set_slot:
+      - hotel_end_date: '2024-05-25T00:00:00-04:00'
+  - utter: utter_ask_hotel_name
+  status: failed
+  rating: 3.0
+  rating_reasoning: 'Conversation summary: The user was looking to book a family suite
+    in a beachfront hotel for a vacation. They initially desired to visit Miami, but
+    the bot didn''t have any hotel information for that location. The user then agreed
+    to go to Lucerne, and the bot suggested the Radisson Blu Lucerne, to which the
+    user agreed. However, the bot did not complete the booking process.'
+transcript:
+- user: Hi, I want to book a family suite in a beachfront hotel for our vacation.
+- bot: in which city?
+- user: We're planning to go to Miami.
+- bot: "Sorry, but I've no hotel information in my database for Miami\nPlease try\
+    \ again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n * Geneva\n\
+    \ * Zurich\n"
+- user: Okay, we'll go with Lucerne then.
+- bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in
+    date?
+- user: We're planning to check-in on May 20th.
+- bot: when do you want to leave?
+- user: We planned to check-out on May 25th.
+- bot: "I've found some great options for your stay: \n* Radisson Blu Lucerne - Midscale\n"

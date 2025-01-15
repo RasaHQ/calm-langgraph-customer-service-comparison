@@ -1,0 +1,9 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_search_hotel__budget_backpacker
+  steps: []
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user, a budget backpacker, asked for
+    a budget-friendly hotel in Spitsbergen, Norway. The bot ended the conversation
+    without providing any information.'
+transcript: []

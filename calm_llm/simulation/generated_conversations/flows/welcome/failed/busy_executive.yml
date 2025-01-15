@@ -1,0 +1,43 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_welcome__busy_executive
+  steps:
+  - user: I need to reschedule my existing flight. Can you help with that?
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: My preferred departure date is coming Monday. Can you accommodate that?
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-04-29'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: None of these work for me. Can you search for flights on Monday?
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-04-29'
+      - flight_search_end_date: '2024-04-29'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  status: failed
+  rating: 2.0
+  rating_reasoning: 'Conversation summary: The user aimed to reschedule a flight.
+    The bot offered several alternatives, but none of them met the user''s requirement
+    of a Monday flight. The conversation ended without a resolution, and the user''s
+    objective was not met.'
+transcript:
+- user: I need to reschedule my existing flight. Can you help with that?
+- bot: What's your preferred departure date for this trip?
+- user: My preferred departure date is coming Monday. Can you accommodate that?
+- bot: 'I''ve found several flight options that match your criteria:
+
+    * Tuesday, April 30 at 12:09 PM (19250)
+
+    * Wednesday, May 01 at 12:09 PM (19233)
+
+    * Saturday, May 04 at 12:09 PM (19232)'
+- bot: Do any of these options work better for your schedule?
+- user: None of these work for me. Can you search for flights on Monday?
+- bot: 'I''ve found several flight options that match your criteria:
+
+    '
+- bot: Do any of these options work better for your schedule?

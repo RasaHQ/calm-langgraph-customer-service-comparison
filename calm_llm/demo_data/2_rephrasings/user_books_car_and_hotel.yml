@@ -1,0 +1,133 @@
+conversations:
+- original_test_case: ../e2e_tests/multi_skill/user_books_car_and_hotel.yml::car booking combined with hotel
+  steps:
+  - user: I'd like to book a car
+    llm_commands:
+    - StartFlow(search_rental_car)
+  - bot: in which city?
+  - user: to Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - Heading to Basel.
+    - The destination is Basel.
+    - I'm going to Basel.
+    - My trip is to Basel.
+    - I'll be traveling to Basel.
+    - The city is Basel.
+    - I'm planning to go to Basel.
+    - Basel is where I'm headed.
+    - I need the car in Basel.
+    - The car is for Basel.
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(car_rental_start_date, may 14th)
+    - SetSlot(car_rental_end_date, may 17th)
+    passing_rephrasings:
+    - Between May 14 and May 17.
+    - From the 14th to the 17th of May.
+    - Starting May 14th and ending May 17th.
+    - May 14 through May 17.
+    - The dates are May 14 to May 17.
+    - From May 14th until May 17th.
+    - May 14th to 17th.
+    - Between the 14th and 17th of May.
+    - From May 14th to May 17th.
+    - May 14th through the 17th.
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+    llm_commands:
+    - SetSlot(car_rental_selection, Avis - Luxury)
+    passing_rephrasings:
+    - I'll go with the luxury option; it seems nice.
+    - The luxury car looks appealing; I'll choose that.
+    - I prefer the luxury one; it looks great.
+    - I'll opt for the luxury car; it appears nice.
+    - The luxury vehicle looks good; I'll take it.
+    - I'll select the luxury one; it looks attractive.
+    - The luxury option seems nice; I'll take it.
+    - I'll choose the luxury car; it looks nice.
+    - The luxury one looks nice; I'll take it.
+    - I'll pick the luxury one; it looks appealing.
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(car_rental_booking_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - Indeed.
+    - That's correct.
+    - Certainly.
+    - Yes, that's right.
+    - Affirmative.
+    - Sure.
+    - Exactly.
+    - Yep.
+    - Correct.
+    failing_rephrasings:
+    - '```'
+  - bot: Fantastic! I've successfully booked your car.
+  - user: I also need a hotel
+    llm_commands:
+    - StartFlow(search_hotel)
+    passing_rephrasings:
+    - I need to book a hotel as well.
+    - I also require a hotel.
+    - I need a hotel booking too.
+    - I also want to book a hotel.
+    - I need a hotel as well.
+    - I also need to arrange a hotel.
+    - I require a hotel booking as well.
+    - I need to secure a hotel too.
+    failing_rephrasings:
+    - I require a hotel too.
+    - I need a hotel in addition.
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: same dates as the car rental
+    llm_commands:
+    - SetSlot(hotel_start_date, 2024-05-14)
+    - SetSlot(hotel_end_date, 2024-05-17)
+    passing_rephrasings:
+    - The hotel should be for the same dates as the car.
+    - I need the hotel for the same period as the car rental.
+    - The dates for the hotel are the same as the car rental.
+    - Book the hotel for the same dates as the car.
+    - The hotel should match the car rental dates.
+    - I want the hotel for the same dates as the car.
+    - The hotel dates are the same as the car rental.
+    - Please book the hotel for the same dates as the car.
+    - The hotel should be for the same time as the car rental.
+    - I need the hotel for the same dates as the car rental.
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+    llm_commands:
+    - SetSlot(hotel_name, Hilton Basel - Luxury)
+    passing_rephrasings:
+    - I'll choose the Hilton for my stay.
+    - I want to stay at the Hilton.
+    - I'll be staying at the Hilton.
+    - The Hilton is my choice for accommodation.
+    - I'll opt for the Hilton.
+    - I'll book my stay at the Hilton.
+    - I'm selecting the Hilton for my stay.
+    - I'll go with the Hilton for my accommodation.
+    - I'll take a room at the Hilton.
+    - The Hilton is where I'll stay.
+  - bot: Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(hotel_booking_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - Indeed.
+    - That's correct.
+    - Certainly.
+    - Yes, that's right.
+    - Affirmative.
+    - Sure.
+    - Exactly.
+    - Yep.
+    - Correct.
+    - '```'
+  - bot: Great news! I've successfully booked your stay at the Hilton Basel - Luxury

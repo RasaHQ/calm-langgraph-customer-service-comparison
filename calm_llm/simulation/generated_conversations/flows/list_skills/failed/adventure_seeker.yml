@@ -1,0 +1,54 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_list_skills__adventure_seeker
+  steps:
+  - user: Hi, I'm interested in a day excursion. What options do you have?
+  - commands:
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  - user: New York.
+  - commands:
+    - set_slot:
+      - trip_destination: New York
+  - utter: utter_ask_excursion_name
+  - user: Tell me more about the Statue of Liberty tour.
+  - commands:
+    - set_slot:
+      - excursion_name: Statue of Liberty tour
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: Yes, book it.
+  - commands:
+    - set_slot:
+      - excursion_booking_confirmation: 'True'
+  - utter: utter_confirm_booked_excursion
+  - user: Great, what date is it and how many people are going?
+  - commands:
+    - set_slot:
+      - excursion_booking_confirmation: 'True'
+  - user: I'm not sure yet.
+  - commands:
+    - start_flow: book_excursion
+    - set_slot:
+      - excursion_name: Statue of Liberty tour
+      - excursion_booking_confirmation: 'True'
+  - utter: utter_ask_excursion_booking_confirmation
+  status: failed
+  rating: 2.0
+  rating_reasoning: 'Conversation summary: The user requested information about day
+    excursions in New York and decided to book the Statue of Liberty tour. However,
+    the bot failed to ask for necessary details like the date of the excursion and
+    the number of people going, leading to confusion and repetition in the conversation.
+    The bot seems to have prematurely booked the tour without confirming these details.
+    The user''s objective was not completely met due to the bot''s failure to gather
+    necessary information for the booking.'
+transcript:
+- user: Hi, I'm interested in a day excursion. What options do you have?
+- bot: in which city?
+- user: New York.
+- bot: 'New York has some wonderful attractions! Here are a few popular options: '
+- user: Tell me more about the Statue of Liberty tour.
+- bot: You've chosen Statue of Liberty tour. Shall I book that for you?
+- user: Yes, book it.
+- bot: Wonderful. I've booked your visit to Statue of Liberty tour
+- user: Great, what date is it and how many people are going?
+- user: I'm not sure yet.
+- bot: You've chosen Statue of Liberty tour. Shall I book that for you?

@@ -1,0 +1,46 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_excursion_booking_excursion_booking__spontaneous_tourist
+  steps:
+  - user: I'm looking for unique and adventurous experiences. What do you suggest?
+  - commands:
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  - user: I'm in Barcelona. What do you have?
+  - commands:
+    - set_slot:
+      - trip_destination: Barcelona
+  - utter: utter_ask_excursion_name
+  - user: Tell me about the high-adrenaline options first.
+  - commands:
+    - knowledge
+  - utter: utter_skills
+  - utter: utter_ask_excursion_name
+  - user: I was asking for high-adrenaline options. Can you give me some specific
+      adventurous activities in Barcelona?
+  - commands:
+    - knowledge
+  - utter: utter_skills
+  - utter: utter_ask_excursion_name
+  status: failed
+  rating: 0.0
+  rating_reasoning: 'Conversation summary: The user, defined as a ''Spontaneous Tourist'',
+    wanted unique and adventurous experiences in Barcelona. However, the bot failed
+    to provide any specific options and instead kept repeating the same message about
+    flight bookings, rentals, hotels, and excursions. The user''s objective was not
+    met.
+
+    '
+transcript:
+- user: I'm looking for unique and adventurous experiences. What do you suggest?
+- bot: in which city?
+- user: I'm in Barcelona. What do you have?
+- bot: 'Barcelona has some wonderful attractions! Here are a few popular options: '
+- user: Tell me about the high-adrenaline options first.
+- bot: I can list your flight bookings or change them. I can also book rental cars,
+    hotels, and excursions! If you need something else, please email us help@example.com.
+- bot: 'Barcelona has some wonderful attractions! Here are a few popular options: '
+- user: I was asking for high-adrenaline options. Can you give me some specific adventurous
+    activities in Barcelona?
+- bot: I can list your flight bookings or change them. I can also book rental cars,
+    hotels, and excursions! If you need something else, please email us help@example.com.
+- bot: 'Barcelona has some wonderful attractions! Here are a few popular options: '

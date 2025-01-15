@@ -1,0 +1,27 @@
+- user_profile: Budget Traveler
+  user_data: Looking for affordable accommodations in Paris for a 3-day trip next
+    month.
+  conversation_development: The user may initially express a preference for hostels,
+    but become frustrated with lack of availability. The bot may suggest alternative
+    options like budget hotels or Airbnb, and the user might shift focus to nearby
+    locations instead.
+- user_profile: Business Executive
+  user_data: Requires a last-minute hotel booking in New York for an important meeting
+    tomorrow.
+  conversation_development: The user might be non-cooperative, refusing to provide
+    specific preferences initially. The bot would need to navigate this by suggesting
+    high-end options based on business travel history. The user could misunderstand
+    the pricing, leading to clarifications about corporate discounts.
+- user_profile: Family Vacationer
+  user_data: Planning a family trip to Orlando with specific interest in hotels with
+    kid-friendly amenities.
+  conversation_development: The conversation may start smoothly but take a turn when
+    the user requests hotels that are fully booked. The bot could suggest alternative
+    hotels with similar amenities or propose rescheduling the trip. This might lead
+    to a discussion on nearby attractions and potential package deals.
+- user_profile: Solo Adventurer
+  user_data: Searching for unique boutique hotels in Tokyo for an extended stay.
+  conversation_development: The user is initially focused on aesthetic appeal, but
+    shifts intent to prioritize proximity to local cultural sites. The bot could suggest
+    themed hotels and provide insights into nearby attractions, which might lead the
+    user to inquire about additional services like guided tours or local cuisine experiences.

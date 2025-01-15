@@ -1,0 +1,7 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_lists_flights.yml::user lists their flights
+  steps:
+  - user: Please show me my booked flights
+    llm_commands:
+    - StartFlow(list_bookings)
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"

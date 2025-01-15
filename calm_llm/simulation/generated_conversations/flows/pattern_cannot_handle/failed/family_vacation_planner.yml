@@ -1,0 +1,51 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_pattern_cannot_handle__family_vacation_planner
+  steps:
+  - user: Hi, I want to book a family-friendly hotel and also need to rent a car for
+      sightseeing.
+  - commands:
+    - start_flow: search_hotel
+    - start_flow: search_rental_car
+  - utter: utter_ask_trip_destination
+  - user: We're planning to visit Miami.
+  - commands:
+    - start_flow: search_rental_car
+    - set_slot:
+      - trip_destination: Miami
+      - trip_destination: Miami
+  - utter: utter_hotel_location_not_in_db
+  - utter: utter_ask_car_rental_start_date
+  - user: Let's go with Geneva then. I would like to pick up the car on the 15th of
+      next month.
+  - commands:
+    - start_flow: search_hotel
+    - set_slot:
+      - trip_destination: Geneva
+      - car_rental_start_date: '2024-05-15'
+      - trip_destination: Geneva
+  - utter: utter_hotel_location_not_in_db
+  - utter: utter_flow_continue_interrupted
+  - utter: utter_ask_car_rental_start_date
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user''s objective was to book a family-friendly
+    hotel and rent a car for a family vacation, but the bot failed to assist effectively
+    and repeated the same message about unavailable hotel information in Miami despite
+    the user already choosing another suggested location (Geneva). The user''s request
+    for car rental was acknowledged but not fulfilled by the bot.'
+transcript:
+- user: Hi, I want to book a family-friendly hotel and also need to rent a car for
+    sightseeing.
+- bot: in which city?
+- user: We're planning to visit Miami.
+- bot: "Sorry, but I've no hotel information in my database for Miami\nPlease try\
+    \ again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n * Geneva\n\
+    \ * Zurich\n"
+- bot: When would you like to pick up the car?
+- user: Let's go with Geneva then. I would like to pick up the car on the 15th of
+    next month.
+- bot: "Sorry, but I've no hotel information in my database for Miami\nPlease try\
+    \ again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n * Geneva\n\
+    \ * Zurich\n"
+- bot: Let's continue with search rental car.
+- bot: When would you like to pick up the car?

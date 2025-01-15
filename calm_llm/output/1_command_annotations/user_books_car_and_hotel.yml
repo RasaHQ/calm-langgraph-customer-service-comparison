@@ -1,0 +1,42 @@
+conversations:
+- original_test_case: ../e2e_tests/multi_skill/user_books_car_and_hotel.yml::car booking combined with hotel
+  steps:
+  - user: I'd like to book a car
+    llm_commands:
+    - StartFlow(search_rental_car)
+  - bot: in which city?
+  - user: to Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(car_rental_start_date, may 14th)
+    - SetSlot(car_rental_end_date, may 17th)
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+    llm_commands:
+    - SetSlot(car_rental_selection, Avis - Luxury)
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(car_rental_booking_confirmation, True)
+  - bot: Fantastic! I've successfully booked your car.
+  - user: I also need a hotel
+    llm_commands:
+    - StartFlow(search_hotel)
+    - SetSlot(trip_destination, Basel)
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: same dates as the car rental
+    llm_commands:
+    - SetSlot(hotel_start_date, may 14th)
+    - SetSlot(hotel_end_date, may 17th)
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+    llm_commands:
+    - SetSlot(hotel_name, Hilton Basel - Luxury)
+  - bot: Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(hotel_booking_confirmation, True)
+  - bot: Great news! I've successfully booked your stay at the Hilton Basel - Luxury

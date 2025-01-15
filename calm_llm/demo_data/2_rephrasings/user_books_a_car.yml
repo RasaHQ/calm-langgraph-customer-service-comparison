@@ -1,0 +1,70 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_books_a_car.yml::simple car booking
+  steps:
+  - user: I'd like to book a car
+    llm_commands:
+    - StartFlow(search_rental_car)
+  - bot: in which city?
+  - user: to Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - Heading to Basel.
+    - My destination is Basel.
+    - I need the car in Basel.
+    - I'm traveling to Basel.
+    - The car should be for Basel.
+    - I'll be going to Basel.
+    - I want to drive to Basel.
+    - The destination is Basel.
+    - I plan to go to Basel.
+    - I need the car for Basel.
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(car_rental_start_date, may 14th)
+    - SetSlot(car_rental_end_date, may 17th)
+    passing_rephrasings:
+    - From May 14 to May 17.
+    - Starting May 14 and ending on the 17th.
+    - Between May 14th and 17th.
+    - From the 14th to the 17th of May.
+    - May 14 through May 17.
+    - From May 14th until the 17th.
+    - May 14 to 17.
+    - From the 14th to the 17th of May.
+    - Between the 14th and 17th of May.
+    - From May 14th to May 17th.
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+    llm_commands:
+    - SetSlot(car_rental_selection, Avis - Luxury)
+    passing_rephrasings:
+    - I'll go with the luxury option; it seems nice.
+    - The luxury car looks great; I'll choose that one.
+    - I prefer the luxury car; it appears nice.
+    - I'll opt for the luxury vehicle; it looks appealing.
+    - The luxury one is nice; I'll take it.
+    - I'll select the luxury car; it looks good.
+    - The luxury option looks nice; I'll take it.
+    - I'll choose the luxury car; it seems nice.
+    - The luxury vehicle looks nice; I'll go with that.
+    - I'll pick the luxury one; it looks great.
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(car_rental_booking_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - That's correct.
+    - Indeed.
+    - Yes, please.
+    - Certainly.
+    - Affirmative.
+    - Sure.
+    - Correct.
+    - Definitely.
+    - Yep.
+    failing_rephrasings:
+    - '```'
+  - bot: Fantastic! I've successfully booked your car.

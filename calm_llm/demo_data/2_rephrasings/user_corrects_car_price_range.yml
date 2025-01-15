@@ -1,0 +1,110 @@
+conversations:
+- original_test_case: ../e2e_tests/corrections/user_corrects_car_price_range.yml::user changes mind about price range
+  steps:
+  - user: I'd like to book a car
+    llm_commands:
+    - StartFlow(search_rental_car)
+    passing_rephrasings:
+    - I need to reserve a car.
+    - Could I arrange for a car rental?
+    - I'm interested in hiring a car.
+    - I want to book a vehicle.
+    - Can you help me with a car reservation?
+    - I would like to rent a car.
+    - I'm looking to book a car.
+    - Could you assist me in booking a car?
+    - I wish to reserve a car.
+    - I want to arrange a car rental.
+  - bot: in which city?
+  - user: Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - In Basel.
+    - I'm looking at Basel.
+    - Basel, please.
+    - The location is Basel.
+    - It's Basel.
+    - In the city of Basel.
+    - Basel is the city.
+    - I'm referring to Basel.
+    - The place is Basel.
+    failing_rephrasings:
+    - The city is Basel.
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(car_rental_start_date, may 14th)
+    - SetSlot(car_rental_end_date, may 17th)
+    passing_rephrasings:
+    - Between May 14th and 17th.
+    - Starting May 14th until the 17th.
+    - From the 14th to the 17th of May.
+    - May 14th through 17th.
+    - The dates are May 14th to 17th.
+    - From May 14th to May 17th.
+    - May 14th until May 17th.
+    - Between the 14th and 17th of May.
+    - From May 14th through the 17th.
+    - May 14th to 17th.
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+    llm_commands:
+    - SetSlot(car_rental_selection, Avis - Luxury)
+    passing_rephrasings:
+    - I'll go with the luxury option; it looks great!
+    - The luxury car looks appealing; I'll choose that.
+    - I think I'll opt for the luxury one; it seems nice.
+    - I'll select the luxury car; it looks good.
+    - The luxury option looks nice; I'll take it.
+    - I'll choose the luxury one; it appears nice.
+    - I like the look of the luxury car; I'll take it.
+    - I'll pick the luxury one; it looks appealing.
+    - The luxury car seems nice; I'll go with that.
+    - I'll opt for the luxury one; it looks nice.
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: you know what I should save some money
+    llm_commands:
+    - SetSlot(car_rental_selection, None)
+    failing_rephrasings:
+    - Actually, I think I should save some money.
+    - On second thought, I should probably save some cash.
+    - You know, I should consider saving some money.
+    - I think I should save some money after all.
+    - Maybe I should focus on saving some money.
+    - I should probably save some money, come to think of it.
+    - You know, saving some money might be a good idea.
+    - I guess I should save some money instead.
+    - I should really think about saving some money.
+    - Actually, saving some money sounds wise.
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the economy one
+    llm_commands:
+    - SetSlot(car_rental_selection, Europcar - Economy)
+    passing_rephrasings:
+    - I'll go with the economy option.
+    - I'll choose the economy car.
+    - I think I'll opt for the economy one.
+    - I'll select the economy vehicle.
+    - The economy one is my choice.
+    - I'll pick the economy car.
+    - I prefer the economy option.
+    - I'll take the economy vehicle.
+    - The economy car is what I'll take.
+    - I'll opt for the economy one.
+  - bot: Excellent choice! To confirm, you'd like me to book an Europcar - Economy car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(car_rental_booking_confirmation, True)
+    passing_rephrasings:
+    - That's correct.
+    - Absolutely.
+    - Indeed.
+    - Yes, that's right.
+    - Certainly.
+    - Affirmative.
+    - Correct.
+    - Yes, indeed.
+    - Exactly.
+    - Sure.
+  - bot: Fantastic! I've successfully booked your car.

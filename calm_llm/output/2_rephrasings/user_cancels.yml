@@ -1,0 +1,81 @@
+conversations:
+- original_test_case: ../e2e_tests/cancellations/user_cancels.yml::user changes mind and cancels rental request
+  steps:
+  - user: I'd like to book a car
+    llm_commands:
+    - StartFlow(search_rental_car)
+    passing_rephrasings:
+    - I need to reserve a car.
+    - Could I arrange for a car rental?
+    - I'm interested in hiring a car.
+    - Can I book a vehicle?
+    - I want to rent a car.
+    - I'd like to arrange a car rental.
+    - I want to make a car reservation.
+    - Can you help me book a car?
+    - I need to book a rental car.
+    - I would like to hire a car.
+  - bot: in which city?
+  - user: to Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - for Basel
+    - heading to Basel
+    - traveling to Basel
+    - destination Basel
+    - going to Basel
+    - for a trip to Basel
+    - planning to go to Basel
+    - to be picked up in Basel
+    - for my journey to Basel
+    - to be used in Basel
+  - bot: When would you like to pick up the car?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(car_rental_start_date, may 14th)
+    - SetSlot(car_rental_end_date, may 17th)
+    passing_rephrasings:
+    - between May 14th and 17th
+    - starting May 14th until the 17th
+    - from the 14th to the 17th of May
+    - May 14th through May 17th
+    - for the period of May 14th to 17th
+    - from May 14th to May 17th
+    - spanning May 14th to 17th
+    - from the 14th to the 17th of this May
+    - for the dates May 14th to 17th
+    - from May 14th until May 17th
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+    llm_commands:
+    - SetSlot(car_rental_selection, Avis - Luxury)
+    passing_rephrasings:
+    - I'll go with the luxury option! It looks great.
+    - The luxury car sounds perfect! I'll take it.
+    - I choose the luxury one! It seems nice.
+    - I'll opt for the luxury car! It looks appealing.
+    - The luxury vehicle is my choice! It looks good.
+    - I'll pick the luxury one! It appears nice.
+    - I'll select the luxury car! It looks fantastic.
+    - The luxury option is what I want! It looks nice.
+    - I'll take the luxury model! It looks wonderful.
+    - The luxury one is my pick! It looks nice.
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Tuesday, May 14 and return on Friday, May 17, correct?
+  - user: no actually I'll just walk and take public transport
+    llm_commands:
+    - SetSlot(car_rental_booking_confirmation, False)
+    - CancelFlow()
+    passing_rephrasings:
+    - On second thought, I'll walk and use public transport.
+    - I've changed my mind; I'll walk and take public transit.
+    - Actually, I'll just walk and use public transportation.
+    - I've decided to walk and use public transport instead.
+    - Actually, I'll walk and use public transport.
+    - I've reconsidered; I'll walk and use public transportation.
+    - No, I'll just walk and take public transportation.
+    - I've changed my mind; I'll walk and use public transport.
+    failing_rephrasings:
+    - No, I'll just walk and rely on public transport instead.
+    - No, I'll just walk and take public transit.
+  - utter: utter_flow_cancelled_rasa

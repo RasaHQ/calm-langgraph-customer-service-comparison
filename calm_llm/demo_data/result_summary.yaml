@@ -1,0 +1,9 @@
+num_input_e2e_tests: 14
+num_annotated_conversations: 13
+num_user_messages_across_conversations: 79
+num_user_messages_to_rephrase_across_conversations: 79
+num_passing_rephrased_user_messages: 686
+num_failing_rephrased_user_messages: 33
+num_ft_data_points: 878
+num_train_data_points: 746
+num_val_data_points: 132

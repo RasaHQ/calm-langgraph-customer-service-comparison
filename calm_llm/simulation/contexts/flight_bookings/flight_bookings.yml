@@ -1,0 +1,26 @@
+- user_profile: Frequent Business Traveler
+  user_data: Needs to reschedule a flight due to a sudden meeting change.
+  conversation_development: The user might start by requesting a list of their bookings.
+    They may experience frustration if the bot initially lists only upcoming flights,
+    but not past ones, leading to a clarification request. After confirmation, the
+    bot assists in rescheduling the selected flight to a later date.
+- user_profile: Family Vacation Planner
+  user_data: Intends to change flights for an entire family due to a change in holiday
+    plans.
+  conversation_development: The user may initially inquire about flight listings,
+    only to get confused about how to view family bookings under a single reference
+    number. With persistent requests for assistance and clarification, the bot successfully
+    identifies the group booking and offers rescheduling options.
+- user_profile: Elderly Traveler
+  user_data: Wishes to change an existing flight booking to accommodate a travel companion.
+  conversation_development: The user might struggle with technology and provide incomplete
+    booking information. After multiple attempts and misunderstandings, the bot patiently
+    retrieves the correct flight details and offers alternative flight options, eventually
+    leading to a successful change.
+- user_profile: Last-Minute Traveler
+  user_data: Needs to urgently reschedule a flight due to an unexpected personal emergency.
+  conversation_development: The user might start the conversation in a rushed manner,
+    leading to potential skipped steps in authentication. The bot navigates through
+    the urgency by requesting essential information and offers the earliest available
+    flight. The user may shift their intent to inquire about additional services,
+    such as hotel bookings near the destination, after the flight is rescheduled.

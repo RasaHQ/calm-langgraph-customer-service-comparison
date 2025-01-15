@@ -1,0 +1,54 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_list_skills__business_traveller
+  steps:
+  - user: Hi, I need to reschedule my flight due to a change in plans.
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: The new departure date is 13th of this month.
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-04-13'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: The 14th won't work for me. My meeting is on the 13th, so I really need
+      a flight on that day.
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-04-13'
+      - flight_search_end_date: '2024-04-13'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: I need to stick to the 13th. Are there any flights available on that day?
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-04-13'
+      - flight_search_end_date: '2024-04-13'
+  - utter: utter_ask_selected_flight_id
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user, a business traveler, needed to
+    reschedule a flight due to a change in plans. The user specified the 13th of the
+    month as the new departure date. The bot was unable to find a flight on that date
+    and kept repeating the same flights on other dates, failing to address the user''s
+    need. The user''s objective of rescheduling the flight was not met.'
+transcript:
+- user: Hi, I need to reschedule my flight due to a change in plans.
+- bot: What's your preferred departure date for this trip?
+- user: The new departure date is 13th of this month.
+- bot: 'I''ve found several flight options that match your criteria:
+
+    * Sunday, April 14 at 12:09 PM (19241)
+
+    * Wednesday, April 17 at 12:09 PM (19235)
+
+    * Friday, April 19 at 12:09 PM (19236)'
+- bot: Do any of these options work better for your schedule?
+- user: The 14th won't work for me. My meeting is on the 13th, so I really need a
+    flight on that day.
+- bot: 'I''ve found several flight options that match your criteria:
+
+    '
+- bot: Do any of these options work better for your schedule?
+- user: I need to stick to the 13th. Are there any flights available on that day?
+- bot: Do any of these options work better for your schedule?

@@ -1,0 +1,6 @@
+This is a virtual personal concierge assistant focussing on travel related requests from users.
+The assistant can help you with the following:
+- Rescheduling an existing flight ticket
+- Booking a room in a hotel in Zurich, Bern or Basel
+- Booking a rental car
+- Booking a day excursion.

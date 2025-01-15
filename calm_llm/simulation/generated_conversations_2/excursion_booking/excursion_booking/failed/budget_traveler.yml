@@ -1,0 +1,50 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_excursion_booking_excursion_booking__budget_traveler
+  steps:
+  - user: What are the cheapest excursion options you have?
+  - commands:
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  - user: Amsterdam. What are the most budget-friendly excursions there?
+  - commands:
+    - set_slot:
+      - trip_destination: Amsterdam
+  - utter: utter_ask_excursion_name
+  - user: Could you list the ones under €20?
+  - commands:
+    - set_slot:
+      - excursion_name: under €20
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: Are there any additional fees or is €20 the final price?
+  - commands:
+    - knowledge
+  - utter: utter_skills
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: Are there any student discounts or absolutely free activities instead?
+  - commands:
+    - set_slot:
+      - excursion_name: student discounts or absolutely free activities
+      - excursion_booking_confirmation: 'False'
+  - utter: utter_ask_excursion_booking_confirmation
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user intended to find affordable excursions
+    in Amsterdam and made inquiries about the cheapest options. The bot suggested
+    options but failed to provide clarity on the user''s concern about additional
+    fees or hidden costs. The user also asked about student discounts or free activities,
+    but the bot merely repeated its script rather than providing specific information.
+    The user''s objectives were not met.'
+transcript:
+- user: What are the cheapest excursion options you have?
+- bot: in which city?
+- user: Amsterdam. What are the most budget-friendly excursions there?
+- bot: 'Amsterdam has some wonderful attractions! Here are a few popular options: '
+- user: Could you list the ones under €20?
+- bot: You've chosen under €20. Shall I book that for you?
+- user: Are there any additional fees or is €20 the final price?
+- bot: I can list your flight bookings or change them. I can also book rental cars,
+    hotels, and excursions! If you need something else, please email us help@example.com.
+- bot: You've chosen under €20. Shall I book that for you?
+- user: Are there any student discounts or absolutely free activities instead?
+- bot: You've chosen student discounts or absolutely free activities. Shall I book
+    that for you?

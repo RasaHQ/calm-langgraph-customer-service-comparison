@@ -1,0 +1,47 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_list_bookings__business_traveler
+  steps:
+  - user: Can you list all my flight bookings?
+  - commands:
+    - start_flow: list_bookings
+  - utter: utter_list_flight_bookings
+  - user: I need to reschedule the flight from Paris to Basel. Can you check the availability
+      for May 2?
+  - commands:
+    - start_flow: change_flight
+    - set_slot:
+      - flight_search_start_date: '2024-05-02'
+      - flight_search_end_date: '2024-05-02'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: None of these options work for me. Can you check the availability for May
+      3?
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-05-03'
+      - flight_search_end_date: '2024-05-03'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  status: passed
+  rating: 4.5
+  rating_reasoning: 'Conversation summary: The user, a business traveler, needed to
+    reschedule an existing flight due to changes in a business meeting schedule. They
+    asked the bot to list all their flight bookings and then requested the rescheduling
+    of a specific flight. The bot was able to provide available options for the requested
+    change, and the user managed to reschedule their flight to a more suitable time.'
+transcript:
+- user: Can you list all my flight bookings?
+- bot: 'I''ve found your upcoming flight bookings: a flight from Paris (CDG) to Basel
+    (BSL) on April 30'
+- user: I need to reschedule the flight from Paris to Basel. Can you check the availability
+    for May 2?
+- bot: 'I''ve found several flight options that match your criteria:
+
+    '
+- bot: Do any of these options work better for your schedule?
+- user: None of these options work for me. Can you check the availability for May
+    3?
+- bot: 'I''ve found several flight options that match your criteria:
+
+    '
+- bot: Do any of these options work better for your schedule?

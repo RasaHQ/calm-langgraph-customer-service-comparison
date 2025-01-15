@@ -1,0 +1,33 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_out_of_scope__family_on_vacation
+  steps:
+  - user: Hi, can you suggest some popular day excursions for a family of four?
+  - commands:
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  - user: We're in Paris.
+  - commands:
+    - set_slot:
+      - trip_destination: Paris
+  - utter: utter_ask_excursion_name
+  - user: My son is eager to visit a local amusement park, could you book us a trip
+      there?
+  - commands:
+    - set_slot:
+      - excursion_name: local amusement park
+  - utter: utter_ask_excursion_booking_confirmation
+  status: failed
+  rating: 2.0
+  rating_reasoning: 'Conversation summary: The user requested popular day excursions
+    and expressed interest in a local amusement park. The bot attempted to book the
+    amusement park trip, but did not confirm if this location was within its list
+    of options. The booking is left in an ambiguous state as the bot proceeds with
+    the booking without confirming the availability.'
+transcript:
+- user: Hi, can you suggest some popular day excursions for a family of four?
+- bot: in which city?
+- user: We're in Paris.
+- bot: 'Paris has some wonderful attractions! Here are a few popular options: '
+- user: My son is eager to visit a local amusement park, could you book us a trip
+    there?
+- bot: You've chosen local amusement park. Shall I book that for you?

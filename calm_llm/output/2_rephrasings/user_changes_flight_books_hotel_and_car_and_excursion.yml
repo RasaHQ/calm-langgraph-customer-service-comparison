@@ -1,0 +1,234 @@
+conversations:
+- original_test_case: ../e2e_tests/multi_skill/user_changes_flight_books_hotel_and_car_and_excursion.yml::user does it all!
+  steps:
+  - user: show my flights
+    llm_commands:
+    - StartFlow(list_bookings)
+    passing_rephrasings:
+    - Can you display my flight details?
+    - Please show me my upcoming flights.
+    - I'd like to see my flight schedule.
+    - Could you pull up my flight information?
+    - Show me the flights I have booked.
+    - What are my current flight bookings?
+    - Let me see my flight itinerary.
+    - Can you list my flights?
+    - I'd like to view my flight reservations.
+    - Could you provide my flight details?
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
+  - user: are there any alternative ones for the same week
+    llm_commands:
+    - StartFlow(change_flight)
+    - SetSlot(flight_search_start_date, 2024-04-30)
+    - SetSlot(flight_search_end_date, 2024-05-06)
+    passing_rephrasings:
+    - Are there other flights available that week?
+    - Can you find alternative flights for that week?
+    - Are there any other options for flights during that week?
+    - Do you have other flights for the same week?
+    - Can you check for different flights in that week?
+    - Are there any other flights available within that week?
+    - Can you look for alternative flights for that week?
+    - Are there other flight options for the same week?
+    - Can you find other flights for that week?
+    - Are there any different flights available that week?
+  - utter: utter_flight_search_results
+  - bot: Do any of these options work better for your schedule?
+  - user: The next available option is great
+    llm_commands:
+    - SetSlot(selected_flight_id, 19233)
+    passing_rephrasings:
+    - The next available flight works for me.
+    - That next option looks good.
+    - The next flight option is perfect.
+    - I like the next available flight.
+    - The next available one is fine.
+    - The next option suits me well.
+    - The next available flight is ideal.
+    - That next option is great for me.
+    - The next available choice is good.
+    - The next flight option is great.
+  - bot: Great choice! You've selected the flight on Wednesday, May 01 at 12:09 PM. Shall I go ahead and change your booking to this flight?
+  - user: yes
+    llm_commands:
+    - SetSlot(flight_change_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - Sure.
+    - Yes, please.
+    - Definitely.
+    - Of course.
+    - Indeed.
+    - Affirmative.
+    - Certainly.
+    - Yep.
+    - That's right.
+  - bot: Perfect! I've successfully changed your booking. Your new flight departs on Wednesday, May 01 at 12:09 PM
+  - user: can you book me a hotel as well?
+    llm_commands:
+    - StartFlow(search_hotel)
+    passing_rephrasings:
+    - Could you also book a hotel for me?
+    - Can you arrange a hotel booking for me?
+    - I'd like you to book a hotel for me too.
+    - Can you help me with a hotel reservation as well?
+    - Could you also arrange a hotel for me?
+    - Can you book a hotel for me too?
+    - I'd like a hotel booking as well.
+    - Can you also handle a hotel reservation for me?
+    - Could you book a hotel for me as well?
+    - Can you also take care of a hotel booking for me?
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: the 24th - and checking out on the 27th of next month
+    llm_commands:
+    - SetSlot(hotel_start_date, 2024-05-24)
+    - SetSlot(hotel_end_date, 2024-05-27)
+    passing_rephrasings:
+    - From the 24th to the 27th of next month.
+    - Check-in on the 24th and check-out on the 27th of next month.
+    - I'd like to stay from the 24th to the 27th of next month.
+    - The 24th to the 27th of next month, please.
+    - I'll need a room from the 24th to the 27th of next month.
+    - Booking from the 24th to the 27th of next month.
+    - From the 24th to the 27th next month.
+    - Check-in on the 24th and out on the 27th next month.
+    - Staying from the 24th to the 27th of next month.
+    - The 24th to the 27th next month for the hotel.
+  - utter: "utter_ask_hotel_name"
+  - user: I'll stay at the Hilton
+    llm_commands:
+    - SetSlot(hotel_name, Hilton Basel - Luxury)
+    passing_rephrasings:
+    - I'll go with the Hilton.
+    - The Hilton works for me.
+    - I'll choose the Hilton.
+    - I'll stay at the Hilton, please.
+    - The Hilton is my choice.
+    - I'll book the Hilton.
+    - I'll take the Hilton.
+    - The Hilton sounds good.
+    - I'll opt for the Hilton.
+    - I'll stay at the Hilton, thanks.
+  - bot: Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Friday, May 24 to Monday, May 27, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(hotel_booking_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - Sure.
+    - Yes, please.
+    - Definitely.
+    - Of course.
+    - Indeed.
+    - Affirmative.
+    - Certainly.
+    - Yep.
+    - That's right.
+  - bot: Great news! I've successfully booked your stay at the Hilton Basel - Luxury
+  - user: I'll need a car too
+    llm_commands:
+    - StartFlow(search_rental_car)
+    passing_rephrasings:
+    - I also need a car.
+    - Can you book a car for me as well?
+    - I'll require a car too.
+    - I need a car rental as well.
+    - I'll need a car, please.
+    - Can you arrange a car for me too?
+    - I also need to rent a car.
+    - I'll need a vehicle as well.
+    - Can you also book a car for me?
+    - I need a car too.
+  - bot: When would you like to pick up the car?
+  - user: same dates as the hotel
+    llm_commands:
+    - SetSlot(car_rental_start_date, 2024-05-24)
+    - SetSlot(car_rental_end_date, 2024-05-27)
+    passing_rephrasings:
+    - For the same dates as my hotel stay.
+    - The same dates as the hotel booking.
+    - From the 24th to the 27th, like the hotel.
+    - The same dates as my hotel reservation.
+    - For the same period as the hotel.
+    - The same dates as the hotel, please.
+    - Matching the hotel dates.
+    - The same dates as my hotel stay, please.
+    - For the same dates as the hotel booking.
+    - The same dates as the hotel reservation.
+  - utter: utter_ask_car_rental_selection
+  - user: I'll take the luxury one! looks nice
+    llm_commands:
+    - SetSlot(car_rental_selection, Avis - Luxury)
+    passing_rephrasings:
+    - I'll go with the luxury car! It looks great.
+    - The luxury one, please! It looks nice.
+    - I'll choose the luxury car! It looks good.
+    - I'll take the luxury option! It looks nice.
+    - The luxury car for me! It looks nice.
+    - I'll opt for the luxury one! It looks great.
+    - I'll pick the luxury car! It looks nice.
+    - The luxury one, please! It looks good.
+    - I'll go with the luxury option! It looks nice.
+    - I'll take the luxury car! It looks great.
+  - bot: Excellent choice! To confirm, you'd like me to book an Avis - Luxury car for pickup on Friday, May 24 and return on Monday, May 27, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(car_rental_booking_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - Sure.
+    - Yes, please.
+    - Definitely.
+    - Of course.
+    - Indeed.
+    - Affirmative.
+    - Certainly.
+    - Yep.
+    - That's right.
+  - bot: Fantastic! I've successfully booked your car.
+  - user: and let's find something to do while I'm in town
+    llm_commands:
+    - StartFlow(book_excursion)
+    passing_rephrasings:
+    - Let's look for things to do while I'm there.
+    - Let's find some activities for my visit.
+    - Let's look for some activities during my stay.
+    - Can you suggest some activities for my trip?
+    - Let's find some things to do while I'm there.
+    failing_rephrasings:
+    - Can you suggest activities for my stay?
+    - What can I do while I'm in town?
+    - Can you help me find things to do while I'm in town?
+    - What are some things to do while I'm in town?
+    - What can I do during my visit?
+  - utter: utter_ask_excursion_name
+  - user: I'll go to the Basel Zoo
+    llm_commands:
+    - SetSlot(excursion_name, Basel Zoo)
+    passing_rephrasings:
+    - I'll visit the Basel Zoo.
+    - The Basel Zoo sounds good.
+    - I'll choose the Basel Zoo.
+    - I'll go with the Basel Zoo.
+    - I'll head to the Basel Zoo.
+    - The Basel Zoo for me.
+    - I'll opt for the Basel Zoo.
+    - I'll check out the Basel Zoo.
+    - I'll pick the Basel Zoo.
+    - The Basel Zoo it is.
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: yes
+    llm_commands:
+    - SetSlot(excursion_booking_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - Sure.
+    - Yes, please.
+    - Definitely.
+    - Of course.
+    - Indeed.
+    - Affirmative.
+    - Certainly.
+    - Yep.
+    - That's right.
+  - bot: Wonderful. I've booked your visit to Basel Zoo

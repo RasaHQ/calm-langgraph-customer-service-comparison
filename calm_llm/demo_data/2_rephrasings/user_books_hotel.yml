@@ -1,0 +1,70 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_books_hotel.yml::simple hotel booking, but user doesn't want to book
+  steps:
+  - user: I'd like to book a hotel
+    llm_commands:
+    - StartFlow(search_hotel)
+  - bot: in which city?
+  - user: to Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - In Basel.
+    - The destination is Basel.
+    - I'm heading to Basel.
+    - For Basel.
+    - My destination is Basel.
+    - Going to Basel.
+    - It's Basel.
+    - Traveling to Basel.
+    - The city is Basel.
+    - Visiting Basel.
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(hotel_start_date, 2024-05-14)
+    - SetSlot(hotel_end_date, 2024-05-17)
+    passing_rephrasings:
+    - Between May 14 and May 17.
+    - Starting May 14 until May 17.
+    - From the 14th to the 17th of May.
+    - May 14 through May 17.
+    - From May 14 to May 17.
+    - May 14 to 17.
+    - From the 14th to the 17th of May.
+    - May 14th until May 17th.
+    - From May 14th through May 17th.
+    - Between the 14th and 17th of May.
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+    llm_commands:
+    - SetSlot(hotel_name, Hilton Basel - Luxury)
+    passing_rephrasings:
+    - I choose the Hilton for my stay.
+    - I'll be staying at the Hilton.
+    - My choice is the Hilton.
+    - I plan to stay at the Hilton.
+    - I will stay at the Hilton.
+    - The Hilton is my selection.
+    - I prefer the Hilton for my stay.
+    - I'll opt for the Hilton.
+    - I have decided on the Hilton.
+    - I will be at the Hilton.
+  - bot: Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?
+  - user: no
+    llm_commands:
+    - SetSlot(hotel_booking_confirmation, False)
+    passing_rephrasings:
+    - Nope.
+    - Not at all.
+    - No, thank you.
+    - That's not correct.
+    - Negative.
+    - No, I don't.
+    - '```'
+    failing_rephrasings:
+    - No, that's not right.
+    - I don't want that.
+    - Absolutely not.
+    - No, I won't.
+  - bot: Of course, then I will not make the booking. Is there something else I can do for you?

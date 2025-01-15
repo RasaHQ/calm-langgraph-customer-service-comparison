@@ -1,0 +1,30 @@
+- user_profile: Frequent Business Traveler
+  user_data: Has a flight scheduled for tomorrow but needs to reschedule due to a
+    sudden meeting.
+  conversation_development: The user might initially greet the bot and ask for a reschedule.
+    After the bot's greeting and offer to assist, the user might become frustrated
+    with the options provided due to limited availability, leading to a request for
+    premium support or a complaint about the airline's inflexibility.
+- user_profile: Adventure Enthusiast
+  user_data: Interested in booking a day excursion during an upcoming trip to New
+    Zealand.
+  conversation_development: The user greets the bot and asks for a list of available
+    excursions. After some browsing, they might ask about activities like bungee jumping,
+    which the bot doesn't have a specific flow for. The conversation could shift to
+    the bot suggesting related activities or offering to connect the user to an excursion
+    specialist.
+- user_profile: Budget Traveler
+  user_data: Looking to book a rental car for an upcoming trip but has a limited budget.
+  conversation_development: The user might start by inquiring about rental car options.
+    After receiving the bot's greeting and list of options, the user could express
+    dissatisfaction with the prices, leading to a conversation about discounts or
+    alternative transportation methods. The user might then decide to book through
+    a different platform.
+- user_profile: Leisure Traveler with Family
+  user_data: Needs to book a hotel room for a family vacation but is unsure about
+    the hotel amenities.
+  conversation_development: The user greets the bot with a question about family-friendly
+    hotel options. The bot's initial response might lead to a deeper inquiry about
+    specific amenities like a pool or kid's club, which might not have a detailed
+    flow. The user could become indecisive, leading to the bot offering suggestions
+    based on family reviews or proximity to attractions.

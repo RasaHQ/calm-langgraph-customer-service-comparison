@@ -1,0 +1,33 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_list_bookings__solo_adventurer
+  steps:
+  - user: Hi, I'm interested in booking a day excursion. Can you show me what's available
+      in my current location?
+  - commands:
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  - user: I'm in Barcelona.
+  - commands:
+    - set_slot:
+      - trip_destination: Barcelona
+  - utter: utter_ask_excursion_name
+  - user: Can you list the available day excursions?
+  - commands:
+    - knowledge
+  - utter: utter_skills
+  - utter: utter_ask_excursion_name
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user intended to book a day excursion
+    in Barcelona, but the bot failed to list the available options despite being asked
+    multiple times. The user''s objective was not met. '
+transcript:
+- user: Hi, I'm interested in booking a day excursion. Can you show me what's available
+    in my current location?
+- bot: in which city?
+- user: I'm in Barcelona.
+- bot: 'Barcelona has some wonderful attractions! Here are a few popular options: '
+- user: Can you list the available day excursions?
+- bot: I can list your flight bookings or change them. I can also book rental cars,
+    hotels, and excursions! If you need something else, please email us help@example.com.
+- bot: 'Barcelona has some wonderful attractions! Here are a few popular options: '

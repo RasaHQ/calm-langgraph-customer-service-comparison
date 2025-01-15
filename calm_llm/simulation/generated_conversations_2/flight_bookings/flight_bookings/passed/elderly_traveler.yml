@@ -1,0 +1,31 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_flight_bookings_flight_bookings__elderly_traveler
+  steps:
+  - user: I need to change my flight to add a travel buddy.
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: Hmm, let's see... I think it's supposed to be March 15th. Can you help me
+      with that?
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-03-15'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  status: passed
+  rating: 3.0
+  rating_reasoning: 'Conversation summary: The elderly user wanted to modify an existing
+    flight booking to include a travel companion. Despite some initial difficulties
+    in providing the required details, the bot patiently retrieved the correct flight
+    information and presented the user with alternative flight options. However, the
+    conversation does not confirm if the user''s objective was fully met, as it does
+    not show the user finalizing their choice.'
+transcript:
+- user: I need to change my flight to add a travel buddy.
+- bot: What's your preferred departure date for this trip?
+- user: Hmm, let's see... I think it's supposed to be March 15th. Can you help me
+    with that?
+- bot: 'I''ve found several flight options that match your criteria:
+
+    '
+- bot: Do any of these options work better for your schedule?

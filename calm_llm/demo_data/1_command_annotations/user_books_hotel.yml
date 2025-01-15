@@ -1,0 +1,24 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_books_hotel.yml::simple hotel booking, but user doesn't want to book
+  steps:
+  - user: I'd like to book a hotel
+    llm_commands:
+    - StartFlow(search_hotel)
+  - bot: in which city?
+  - user: to Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(hotel_start_date, 2024-05-14)
+    - SetSlot(hotel_end_date, 2024-05-17)
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+    llm_commands:
+    - SetSlot(hotel_name, Hilton Basel - Luxury)
+  - bot: Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?
+  - user: no
+    llm_commands:
+    - SetSlot(hotel_booking_confirmation, False)
+  - bot: Of course, then I will not make the booking. Is there something else I can do for you?

@@ -1,0 +1,67 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_changes_fight.yml::user changes their flight
+  steps:
+  - user: show my flights
+    llm_commands:
+    - StartFlow(list_bookings)
+    passing_rephrasings:
+    - Can you display my flight details?
+    - I'd like to see my upcoming flights.
+    - Could you show me my flight bookings?
+    - Please provide my flight information.
+    - What flights do I have booked?
+    - Show me the details of my flights.
+    - Can you pull up my flight schedule?
+    - I need to see my flight itinerary.
+    - Let me see my flight reservations.
+    - Could you list my flights for me?
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
+  - user: are there any alternative ones for the same week
+    llm_commands:
+    - StartFlow(change_flight)
+    - SetSlot(flight_search_start_date, 2024-04-30)
+    - SetSlot(flight_search_end_date, 2024-05-06)
+    passing_rephrasings:
+    - Do you have other flights available that week?
+    - Are there any other options for flights during that week?
+    - Can you find alternative flights for the same week?
+    - Are there different flights available in that week?
+    - Do you have any other flights for that week?
+    - Are there any other flights I can take that week?
+    - Can you show me alternative flights for the same week?
+    - Are there other flight options for that week?
+    - Are there any other flights available within the same week?
+    failing_rephrasings:
+    - Do you have any other flights scheduled for that week?
+  - utter: utter_flight_search_results
+  - bot: Do any of these options work better for your schedule?
+  - user: The next available option is great
+    llm_commands:
+    - SetSlot(selected_flight_id, 19233)
+    passing_rephrasings:
+    - The next available flight works for me.
+    - That next option looks good.
+    - The next flight option is perfect.
+    - I like the next available flight.
+    - The next available one suits me.
+    - The next option is fine.
+    - That next available flight is great.
+    - The next available choice is good.
+    - The next flight option is great for me.
+    - The next available one is perfect.
+  - bot: Great choice! You've selected the flight on Wednesday, May 01 at 12:09 PM. Shall I go ahead and change your booking to this flight?
+  - user: yes
+    llm_commands:
+    - SetSlot(flight_change_confirmation, True)
+    passing_rephrasings:
+    - Yes, please.
+    - Absolutely.
+    - Sure.
+    - Definitely.
+    - Of course.
+    - Yes, go ahead.
+    - Please do.
+    - Affirmative.
+    - Indeed.
+    - Certainly.
+  - bot: Perfect! I've successfully changed your booking. Your new flight departs on Wednesday, May 01 at 12:09 PM

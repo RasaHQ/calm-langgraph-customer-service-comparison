@@ -1,0 +1,37 @@
+conversations:
+- original_test_case: ../e2e_tests/multi_skill/user_books_hotel_and_excursion.yml::hotel booking combined with excursion
+  steps:
+  - user: I'd like to book a hotel
+    llm_commands:
+    - StartFlow(search_hotel)
+  - bot: in which city?
+  - user: to Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+  - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
+  - user: from may 14th to the 17th
+    llm_commands:
+    - SetSlot(hotel_start_date, 2024-05-14)
+    - SetSlot(hotel_end_date, 2024-05-17)
+  - utter: utter_ask_hotel_name
+  - user: I'll stay at the Hilton
+    llm_commands:
+    - SetSlot(hotel_name, Hilton Basel - Luxury)
+  - bot: Excellent choice! Just to confirm, you'd like me to book the Hilton Basel - Luxury for your stay from Tuesday, May 14 to Friday, May 17, correct?
+  - user: yes
+    llm_commands:
+    - SetSlot(hotel_booking_confirmation, True)
+  - bot: Great news! I've successfully booked your stay at the Hilton Basel - Luxury
+  - user: I'd also like to book something to do or see while I'm there
+    llm_commands:
+    - StartFlow(book_excursion)
+    - SetSlot(trip_destination, Basel)
+  - utter: utter_ask_excursion_name
+  - user: I'll go to Basel Zoo please
+    llm_commands:
+    - SetSlot(excursion_name, Basel Zoo)
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: yes
+    llm_commands:
+    - SetSlot(excursion_booking_confirmation, True)
+  - bot: Wonderful. I've booked your visit to Basel Zoo

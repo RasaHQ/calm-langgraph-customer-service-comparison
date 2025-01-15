@@ -1,0 +1,22 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_search_rental_car__family_vacation_planner
+  steps:
+  - user: Hi, I am planning a family vacation to Hawaii. Can you help me book a hotel
+      suitable for a family stay?
+  - commands:
+    - start_flow: search_hotel
+    - set_slot:
+      - trip_destination: Hawaii
+  - utter: utter_hotel_location_not_in_db
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user approached the bot with the intent
+    to book a hotel in Hawaii for a family vacation. However, the bot failed to provide
+    hotel options in Hawaii, offering instead options in Switzerland. The conversation
+    ended without the user''s objectives being met.'
+transcript:
+- user: Hi, I am planning a family vacation to Hawaii. Can you help me book a hotel
+    suitable for a family stay?
+- bot: "Sorry, but I've no hotel information in my database for Hawaii\nPlease try\
+    \ again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n * Geneva\n\
+    \ * Zurich\n"

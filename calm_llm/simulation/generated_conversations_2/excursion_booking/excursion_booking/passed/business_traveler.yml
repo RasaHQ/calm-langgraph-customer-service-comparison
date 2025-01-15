@@ -1,0 +1,92 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_excursion_booking_excursion_booking__business_traveler
+  steps:
+  - user: I'm looking for quick activities during my layover. Can you suggest something
+      fun and fast?
+  - commands:
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  - user: New York. Got a few hours to spare. What can I do?
+  - commands:
+    - set_slot:
+      - trip_destination: New York
+  - utter: utter_ask_excursion_name
+  - user: I'm torn between a quick city tour and a visit to Central Park. Which one
+      can I finish in about two hours?
+  - commands:
+    - knowledge
+  - utter: utter_skills
+  - utter: utter_ask_excursion_name
+  - user: I think a quick city tour would be best. Can you help me book one that fits
+      my schedule?
+  - commands:
+    - set_slot:
+      - excursion_name: quick city tour
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: Yes, please. I need confirmation it fits within my layover time. Can you
+      do that quickly?
+  - commands:
+    - set_slot:
+      - excursion_booking_confirmation: 'True'
+  - utter: utter_confirm_booked_excursion
+  - user: I have a few hours during a layover. Any quick excursions nearby?
+  - commands:
+    - start_flow: book_excursion
+    - set_slot:
+      - trip_destination: New York
+      - excursion_name: quick city tour
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: Sounds good, but is there anything else, maybe involving local food or landmarks?
+  - commands:
+    - start_flow: book_excursion
+    - set_slot:
+      - excursion_booking_confirmation: 'False'
+      - trip_destination: New York
+      - excursion_name: local food or landmarks tour
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: I'm still considering. Do you have info on a quick cultural experience too?
+  - commands:
+    - set_slot:
+      - excursion_name: quick cultural experience
+      - excursion_booking_confirmation: 'False'
+  - utter: utter_ask_excursion_booking_confirmation
+  - user: I'm still a bit undecided. Can I get a brief city tour that includes some
+      landmarks and maybe a local snack? Need something that fits my tight schedule.
+  - commands:
+    - set_slot:
+      - excursion_name: brief city tour with landmarks and local snack
+  - utter: utter_ask_excursion_booking_confirmation
+  status: passed
+  rating: 4.0
+  rating_reasoning: 'Conversation summary: The user, on a tight layover schedule,
+    was seeking suggestions for quick local excursions. After numerous suggestions
+    from the bot, the user decided on a brief city tour that included landmarks and
+    local food, and requested a quick booking to fit within their layover time. This
+    request was accommodated by the bot.'
+transcript:
+- user: I'm looking for quick activities during my layover. Can you suggest something
+    fun and fast?
+- bot: in which city?
+- user: New York. Got a few hours to spare. What can I do?
+- bot: 'New York has some wonderful attractions! Here are a few popular options: '
+- user: I'm torn between a quick city tour and a visit to Central Park. Which one
+    can I finish in about two hours?
+- bot: I can list your flight bookings or change them. I can also book rental cars,
+    hotels, and excursions! If you need something else, please email us help@example.com.
+- bot: 'New York has some wonderful attractions! Here are a few popular options: '
+- user: I think a quick city tour would be best. Can you help me book one that fits
+    my schedule?
+- bot: You've chosen quick city tour. Shall I book that for you?
+- user: Yes, please. I need confirmation it fits within my layover time. Can you do
+    that quickly?
+- bot: Wonderful. I've booked your visit to quick city tour
+- user: I have a few hours during a layover. Any quick excursions nearby?
+- bot: You've chosen quick city tour. Shall I book that for you?
+- user: Sounds good, but is there anything else, maybe involving local food or landmarks?
+- bot: You've chosen local food or landmarks tour. Shall I book that for you?
+- user: I'm still considering. Do you have info on a quick cultural experience too?
+- bot: You've chosen quick cultural experience. Shall I book that for you?
+- user: I'm still a bit undecided. Can I get a brief city tour that includes some
+    landmarks and maybe a local snack? Need something that fits my tight schedule.
+- bot: You've chosen brief city tour with landmarks and local snack. Shall I book
+    that for you?

@@ -1,0 +1,44 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_search_hotel__vacation_planner
+  steps:
+  - user: Hi, I'm planning a family vacation and need help with hotel reservations.
+  - commands:
+    - start_flow: search_hotel
+  - utter: utter_ask_trip_destination
+  - user: We're going to Orlando, Florida.
+  - commands:
+    - set_slot:
+      - trip_destination: Orlando, Florida
+  - utter: utter_hotel_location_not_in_db
+  - user: Ok, let's reset then. I want to find a hotel in Bern, Switzerland. My price
+      range is moderate and we'll be checking in on October 1 and checking out on
+      October 10.
+  - commands:
+    - start_flow: search_hotel
+    - set_slot:
+      - trip_destination: Bern, Switzerland
+      - hotel_price_range: moderate
+      - hotel_start_date: October 1
+      - hotel_end_date: October 10
+  - utter: utter_hotel_location_not_in_db
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user intends to book a hotel for a
+    family vacation and provides the bot with their preferences regarding the location,
+    price range, and dates. However, the bot fails to provide accurate information
+    and incorrectly states that it has no information about Bern, Switzerland even
+    though it is included in the suggested locations. This leads to confusion and
+    dissatisfaction from the user. The user''s objectives were not met. '
+transcript:
+- user: Hi, I'm planning a family vacation and need help with hotel reservations.
+- bot: in which city?
+- user: We're going to Orlando, Florida.
+- bot: "Sorry, but I've no hotel information in my database for Orlando, Florida\n\
+    Please try again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n\
+    \ * Geneva\n * Zurich\n"
+- user: Ok, let's reset then. I want to find a hotel in Bern, Switzerland. My price
+    range is moderate and we'll be checking in on October 1 and checking out on October
+    10.
+- bot: "Sorry, but I've no hotel information in my database for Bern, Switzerland\n\
+    Please try again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n\
+    \ * Geneva\n * Zurich\n"

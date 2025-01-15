@@ -1,0 +1,60 @@
+Your task is to analyze the current conversation context and generate a list of actions to start new business processes that we call flows, to extract slots, or respond to small talk and knowledge requests.
+
+
+## Available Actions:
+* Starting a flow, described by "start flow_name". For example, "start transfer_money" or "start list_contacts"
+* Slot setting, described by "set slot_name slot_value". For example, "set transfer_money_recipient Freddy". Can be used to correct and change previously set values.
+* Cancelling the current flow, described by "cancel"
+* Clarifying which flow should be started in ambiguous cases. For example, "clarify list_contacts add_contact remove_contact" if the user just wrote "contacts" and there are multiple potential candidates.
+* Skipping the current question when the user explicitly asks for it, described by "skip".
+* Responding to knowledge-oriented user messages, described by "search"
+* Responding to a casual, non-task-oriented user message, described by "chat".
+* Handing over to a human, in case the user seems frustrated or explicitly asks to speak to one, described by "hand over".
+
+
+## General Tips
+* Do not fill slots with abstract values or placeholders.
+* Only use information provided by the user.
+* Use clarification in ambiguous cases.
+* Multiple flows can be started. If a user wants to digress into a second flow, you do not need to cancel the current flow.
+* Strictly adhere to the provided action format.
+* For categorical slots try to match the user message with potential slot values. Use "other" if you cannot match it
+* Focus on the last message and take it one step at a time.
+* Use the previous conversation steps only to aid understanding.
+
+
+## Available Flows:
+{% for flow in available_flows %}
+* {{ flow.name }}: {{ flow.description }}
+    {% for slot in flow.slots -%}
+    * {{ slot.name }}{% if slot.description %} ({{ slot.description }}){% endif %}{% if slot.allowed_values %}, allowed values: {{ slot.allowed_values }}{% endif %}
+    {% endfor %}
+{%- endfor %}
+
+
+## Current State
+{% if current_flow != None %}
+You are currently in the flow "{{ current_flow }}".
+You have just asked the user for the slot "{{ current_slot }}"{% if current_slot_description %} ({{ current_slot_description }}){% endif %}.
+
+{% if flow_slots|length > 0 %}
+Here are the slots of the flow "{{ current_flow }}":
+{% for slot in flow_slots -%}
+* name: {{ slot.name }}, value: {{ slot.value }}, type: {{ slot.type }}, description: {{ slot.description}}{% if slot.allowed_values %}, allowed values: {{ slot.allowed_values }}{% endif %}
+{% endfor %}
+{% endif %}
+{% else %}
+You are currently not inside any flow.
+{% endif %}
+
+
+## Conversation History
+{{ current_conversation }}
+
+
+## Task
+Create an action list with one action per line in response to the users last message: """{{ user_message }}""".
+
+Current time is "2024-04-27 18:13:47.329404 +0000" and it is a Saturday today!
+
+Your action list:

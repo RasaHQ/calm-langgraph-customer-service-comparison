@@ -1,0 +1,54 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_books_excursion.yml::simple excursion booking
+  steps:
+  - user: I'd like to book an excursion
+    llm_commands:
+    - StartFlow(book_excursion)
+  - bot: in which city?
+  - user: in Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+    passing_rephrasings:
+    - In the city of Basel.
+    - I'm interested in one in Basel.
+    - The excursion should be in Basel.
+    - I'd like it to be in Basel.
+    - In Basel, please.
+    - Could it be in Basel?
+    - I'm looking for something in Basel.
+    - The location is Basel.
+    - I want it to be in Basel.
+    - Let's make it in Basel.
+  - bot: "Basel has some wonderful attractions! Here are a few popular options: * Basel Minster\n* Kunstmuseum Basel\n* Basel Zoo"
+  - user: I'll go to the Basel Zoo please
+    llm_commands:
+    - SetSlot(excursion_name, Basel Zoo)
+    passing_rephrasings:
+    - I'd like to visit the Basel Zoo, please.
+    - Please book me for the Basel Zoo.
+    - I'll choose the Basel Zoo.
+    - Basel Zoo sounds great, please.
+    - I want to go to the Basel Zoo.
+    - Let's go with the Basel Zoo, please.
+    - I'll opt for the Basel Zoo.
+    - Basel Zoo, please.
+    - I prefer the Basel Zoo, please.
+    - I'll take the Basel Zoo, thanks.
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: yes
+    llm_commands:
+    - SetSlot(excursion_booking_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - Sure.
+    - Certainly.
+    - Indeed.
+    - Of course.
+    - Definitely.
+    - Yes, please.
+    - That's right.
+    - Affirmative.
+    - Yep.
+    failing_rephrasings:
+    - '```'
+  - bot: Wonderful. I've booked your visit to Basel Zoo

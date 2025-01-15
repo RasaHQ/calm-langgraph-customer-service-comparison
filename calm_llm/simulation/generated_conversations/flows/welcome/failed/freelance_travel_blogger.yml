@@ -1,0 +1,40 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_welcome__freelance_travel_blogger
+  steps:
+  - user: Hi, I need to book a rental car for my upcoming road trip.
+  - commands:
+    - start_flow: search_rental_car
+  - utter: utter_ask_trip_destination
+  - user: I need to pick up the car in New York City.
+  - commands:
+    - set_slot:
+      - trip_destination: New York City
+  - utter: utter_ask_car_rental_start_date
+  - user: On the 15th of this month.
+  - commands:
+    - set_slot:
+      - car_rental_start_date: '2024-04-15'
+  - utter: utter_invalid_date
+  - utter: utter_ask_car_rental_start_date
+  - user: My mistake. I meant the 15th of next month.
+  - commands:
+    - set_slot:
+      - car_rental_start_date: 15th of next month
+  - utter: utter_invalid_date
+  - utter: utter_ask_car_rental_start_date
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user wanted to book a rental car for
+    a road trip. However, the bot made an error and couldn''t understand the date
+    provided by the user. This led to the user not being able to book the car as intended. '
+transcript:
+- user: Hi, I need to book a rental car for my upcoming road trip.
+- bot: in which city?
+- user: I need to pick up the car in New York City.
+- bot: When would you like to pick up the car?
+- user: On the 15th of this month.
+- bot: Sorry, the date that you provided isn't valid!
+- bot: When would you like to pick up the car?
+- user: My mistake. I meant the 15th of next month.
+- bot: Sorry, the date that you provided isn't valid!
+- bot: When would you like to pick up the car?

@@ -1,0 +1,22 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_changes_fight.yml::user changes their flight
+  steps:
+  - user: show my flights
+    llm_commands:
+    - StartFlow(list_bookings)
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
+  - user: are there any alternative ones for the same week
+    llm_commands:
+    - StartFlow(change_flight)
+    - SetSlot(flight_search_start_date, 2024-04-30)
+    - SetSlot(flight_search_end_date, 2024-05-06)
+  - utter: utter_flight_search_results
+  - bot: Do any of these options work better for your schedule?
+  - user: The next available option is great
+    llm_commands:
+    - SetSlot(selected_flight_id, 19233)
+  - bot: Great choice! You've selected the flight on Wednesday, May 01 at 12:09 PM. Shall I go ahead and change your booking to this flight?
+  - user: yes
+    llm_commands:
+    - SetSlot(flight_change_confirmation, True)
+  - bot: Perfect! I've successfully changed your booking. Your new flight departs on Wednesday, May 01 at 12:09 PM

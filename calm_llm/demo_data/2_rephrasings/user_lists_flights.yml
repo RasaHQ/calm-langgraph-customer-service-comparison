@@ -1,0 +1,18 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_lists_flights.yml::user lists their flights
+  steps:
+  - user: Please show me my booked flights
+    llm_commands:
+    - StartFlow(list_bookings)
+    passing_rephrasings:
+    - Can you display my flight reservations?
+    - I'd like to see the flights I've booked.
+    - Could you provide details of my booked flights?
+    - Show me the flights I have scheduled, please.
+    - May I see the list of my booked flights?
+    - Could you pull up my flight bookings?
+    - I need to check my flight reservations.
+    - Would you mind showing me my upcoming flights?
+    - Let me see the flights I've arranged.
+    - Can you bring up my flight itinerary?
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"

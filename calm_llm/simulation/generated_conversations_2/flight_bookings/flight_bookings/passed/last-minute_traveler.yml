@@ -1,0 +1,74 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_2_flight_bookings_flight_bookings__last-minute_traveler
+  steps:
+  - user: I need to urgently reschedule my flight.
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: As soon as possible, please.
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-04-27'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: The first one on April 30 works. Can you change it to that, please?
+  - commands:
+    - set_slot:
+      - selected_flight_id: '19250'
+  - utter: utter_ask_flight_change_confirmation
+  - user: Yes, please change it. Also, could you help me find a hotel near my destination?
+  - commands:
+    - start_flow: search_hotel
+    - set_slot:
+      - flight_change_confirmation: 'True'
+  - utter: utter_ask_hotel_start_date
+  - user: April 30, same day as my new flight.
+  - commands:
+    - set_slot:
+      - hotel_start_date: April 30
+      - flight_search_start_date: April 30
+  - utter: utter_ask_hotel_end_date
+  - user: May 2, two nights stay.
+  - commands:
+    - set_slot:
+      - hotel_end_date: '2024-05-02T00:00:00-04:00'
+  - utter: utter_ask_hotel_name
+  - user: I'll go with the Holiday Inn. Can you book that for me?
+  - commands:
+    - set_slot:
+      - hotel_name: Holiday Inn Basel - Upper Midscale
+  - utter: utter_ask_hotel_booking_confirmation
+  status: passed
+  rating: 5.0
+  rating_reasoning: 'Conversation summary: The user required urgent assistance to
+    reschedule a flight. The bot provided several flight options, and user chose to
+    reschedule for the flight on April 30. After confirming the flight change, the
+    user then asked for help booking a hotel near their destination. The bot provided
+    some options, and the user selected the Holiday Inn. The bot was able to meet
+    the user''s objectives of rescheduling the flight and finding a hotel.'
+transcript:
+- user: I need to urgently reschedule my flight.
+- bot: What's your preferred departure date for this trip?
+- user: As soon as possible, please.
+- bot: 'I''ve found several flight options that match your criteria:
+
+    * Tuesday, April 30 at 12:09 PM (19250)
+
+    * Wednesday, May 01 at 12:09 PM (19233)
+
+    * Friday, May 03 at 12:09 PM (19265)'
+- bot: Do any of these options work better for your schedule?
+- user: The first one on April 30 works. Can you change it to that, please?
+- bot: Great choice! You've selected the flight on Tuesday, April 30 at 12:09 PM.
+    Shall I go ahead and change your booking to this flight?
+- user: Yes, please change it. Also, could you help me find a hotel near my destination?
+- bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in
+    date?
+- user: April 30, same day as my new flight.
+- bot: when do you want to leave?
+- user: May 2, two nights stay.
+- bot: "I've found some great options for your stay: \n* Hilton Basel - Luxury\n*\
+    \ Hyatt Regency Basel - Upper Upscale\n* Holiday Inn Basel - Upper Midscale\n"
+- user: I'll go with the Holiday Inn. Can you book that for me?
+- bot: Excellent choice! Just to confirm, you'd like me to book the Holiday Inn Basel
+    - Upper Midscale for your stay from Tuesday, April 30 to Thursday, May 02, correct?

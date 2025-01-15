@@ -1,0 +1,49 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_pattern_correction__business_executive
+  steps:
+  - user: I need to reschedule my flight.
+  - commands:
+    - start_flow: change_flight
+  - utter: utter_ask_flight_search_start_date
+  - user: My preferred departure date is November 15th.
+  - commands:
+    - set_slot:
+      - flight_search_start_date: '2024-11-15'
+  - utter: utter_flight_search_results
+  - utter: utter_ask_selected_flight_id
+  - user: Before I confirm, could you please check the details of my existing flight?
+  - commands:
+    - start_flow: list_bookings
+  - utter: utter_list_flight_bookings
+  - utter: utter_flow_continue_interrupted
+  - utter: utter_ask_selected_flight_id
+  - user: I think there's a mix up, my flight number is BA1234, not BA123. Could you
+      check again?
+  - commands:
+    - set_slot:
+      - selected_flight_id: BA1234
+  - utter: utter_ask_flight_change_confirmation
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user, a business executive, needed
+    to reschedule their flight for a business meeting. The bot initially misunderstood
+    the user''s provided flight number, causing some confusion. After the user corrected
+    the bot, it failed to acknowledge the correction and did not correctly assist
+    the user in rescheduling their flight.'
+transcript:
+- user: I need to reschedule my flight.
+- bot: What's your preferred departure date for this trip?
+- user: My preferred departure date is November 15th.
+- bot: 'I''ve found several flight options that match your criteria:
+
+    '
+- bot: Do any of these options work better for your schedule?
+- user: Before I confirm, could you please check the details of my existing flight?
+- bot: 'I''ve found your upcoming flight bookings: a flight from Paris (CDG) to Basel
+    (BSL) on April 30'
+- bot: Let's continue with change flight.
+- bot: Do any of these options work better for your schedule?
+- user: I think there's a mix up, my flight number is BA1234, not BA123. Could you
+    check again?
+- bot: Great choice! You've selected the flight on None. Shall I go ahead and change
+    your booking to this flight?

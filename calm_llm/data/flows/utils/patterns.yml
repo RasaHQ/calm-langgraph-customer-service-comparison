@@ -1,0 +1,25 @@
+flows:
+  pattern_completed:
+    description: Completion of a user's flow
+    steps:
+      - action: action_listen
+  pattern_correction:
+    description: Handle a correction of a slot value.
+    name: pattern correction
+    steps:
+      - action: action_correct_flow_slot
+        next: "END"
+  pattern_cannot_handle:
+    description: when you dont understand the user
+    steps:
+      - action: utter_extra
+  pattern_search:
+    description: Addressing FAQ
+    name: pattern search
+    steps:
+      - action: utter_skills
+  pattern_chitchat:
+    description: Conversation repair flow for off-topic interactions that won't disrupt the main conversation. should not respond to greetings or anything else for which there is a flow defined
+    name: pattern chitchat
+    steps:
+      - action: utter_free_chitchat_response

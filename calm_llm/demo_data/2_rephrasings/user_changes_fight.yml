@@ -1,0 +1,57 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_changes_fight.yml::user changes their flight
+  steps:
+  - user: show my flights
+    llm_commands:
+    - StartFlow(list_bookings)
+  - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
+  - user: are there any alternative ones for the same week
+    llm_commands:
+    - StartFlow(change_flight)
+    - SetSlot(flight_search_start_date, 2024-04-30)
+    - SetSlot(flight_search_end_date, 2024-05-06)
+    passing_rephrasings:
+    - Do you have other flights available that week?
+    - Are there different flights I can take that week?
+    - Can you find other options for the same week?
+    - Are there any other flights during that week?
+    - Could you show me alternative flights for that week?
+    - Do you have any other flights available in the same week?
+    - Are there any other options for flights that week?
+    - Can you check for other flights in the same week?
+    - Are there alternative flights available that week?
+    - Could you look for other flight options for that week?
+  - utter: utter_flight_search_results
+  - bot: Do any of these options work better for your schedule?
+  - user: The next available option is great
+    llm_commands:
+    - SetSlot(selected_flight_id, 19233)
+    passing_rephrasings:
+    - The next flight option works for me.
+    - I like the next available flight.
+    - The next option suits me well.
+    - The following available flight is perfect.
+    - The next choice is ideal for me.
+    - I’m happy with the next available flight.
+    - The upcoming option is fine.
+    - The next available one is perfect.
+    - I’ll go with the next flight option.
+    - The next available flight is good for me.
+  - bot: Great choice! You've selected the flight on Wednesday, May 01 at 12:09 PM. Shall I go ahead and change your booking to this flight?
+  - user: yes
+    llm_commands:
+    - SetSlot(flight_change_confirmation, True)
+    passing_rephrasings:
+    - Absolutely.
+    - Sure thing.
+    - Certainly.
+    - Of course.
+    - Definitely.
+    - Please do.
+    - Go ahead.
+    - Indeed.
+    - Affirmative.
+    - Yes, please.
+    failing_rephrasings:
+    - '```'
+  - bot: Perfect! I've successfully changed your booking. Your new flight departs on Wednesday, May 01 at 12:09 PM

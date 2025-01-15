@@ -1,0 +1,25 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_welcome__family_vacation_planner
+  steps:
+  - user: Hi, I need to book a hotel for my family vacation.
+  - commands:
+    - start_flow: search_hotel
+  - utter: utter_ask_trip_destination
+  - user: In Orlando, Florida.
+  - commands:
+    - set_slot:
+      - trip_destination: Orlando, Florida
+  - utter: utter_hotel_location_not_in_db
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user attempted to book a hotel for
+    a family vacation in Orlando, Florida. However, the bot was unable to provide
+    information for hotels in Orlando, instead suggesting locations in Switzerland.
+    The user''s objective was not met.'
+transcript:
+- user: Hi, I need to book a hotel for my family vacation.
+- bot: in which city?
+- user: In Orlando, Florida.
+- bot: "Sorry, but I've no hotel information in my database for Orlando, Florida\n\
+    Please try again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n\
+    \ * Geneva\n * Zurich\n"

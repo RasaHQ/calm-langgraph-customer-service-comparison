@@ -1,0 +1,26 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_out_of_scope__solo_adventurer
+  steps:
+  - user: Hi, I'm looking to book a hotel room. Can you help me with available options?
+  - commands:
+    - start_flow: search_hotel
+  - utter: utter_ask_trip_destination
+  - user: I need a room in New York City.
+  - commands:
+    - set_slot:
+      - trip_destination: New York City
+  - utter: utter_hotel_location_not_in_db
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user wanted to book a hotel room in
+    New York City, but the bot stated it had no information on any hotels in that
+    location, only providing options in Switzerland. The user then asked for help
+    finding a hostel in New York City, but the conversation ends before the bot responds.
+    The user''s objectives were not met. '
+transcript:
+- user: Hi, I'm looking to book a hotel room. Can you help me with available options?
+- bot: in which city?
+- user: I need a room in New York City.
+- bot: "Sorry, but I've no hotel information in my database for New York City\nPlease\
+    \ try again with one of these locations: \n* Basel\n * Bern\n * Lucerne\n * Geneva\n\
+    \ * Zurich\n"

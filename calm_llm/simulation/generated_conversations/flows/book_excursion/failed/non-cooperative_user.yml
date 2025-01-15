@@ -1,0 +1,16 @@
+test_cases:
+- test_case: Users_dakshvarshneya_work_bots_calm-langgraph-customer-service-comparison_calm_llm_simulation_generated_conversations_flows_book_excursion__non-cooperative_user
+  steps:
+  - user: I want to book a day excursion.
+  - commands:
+    - start_flow: book_excursion
+  - utter: utter_ask_trip_destination
+  status: failed
+  rating: 1.0
+  rating_reasoning: 'Conversation summary: The user, who was identified as non-cooperative,
+    wanted to book a day excursion but refused to share the destination. The bot was
+    unable to suggest any excursions without this data, resulting in a deadlock and
+    ending the conversation without achieving the user''s objective.'
+transcript:
+- user: I want to book a day excursion.
+- bot: in which city?

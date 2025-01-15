@@ -1,0 +1,19 @@
+conversations:
+- original_test_case: ../e2e_tests/happy_paths/user_books_excursion.yml::simple excursion booking
+  steps:
+  - user: I'd like to book an excursion
+    llm_commands:
+    - StartFlow(book_excursion)
+  - bot: in which city?
+  - user: in Basel
+    llm_commands:
+    - SetSlot(trip_destination, Basel)
+  - bot: "Basel has some wonderful attractions! Here are a few popular options: * Basel Minster\n* Kunstmuseum Basel\n* Basel Zoo"
+  - user: I'll go to the Basel Zoo please
+    llm_commands:
+    - SetSlot(excursion_name, Basel Zoo)
+  - bot: You've chosen Basel Zoo. Shall I book that for you?
+  - user: yes
+    llm_commands:
+    - SetSlot(excursion_booking_confirmation, True)
+  - bot: Wonderful. I've booked your visit to Basel Zoo
