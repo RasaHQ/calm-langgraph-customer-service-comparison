@@ -7,19 +7,6 @@ flows:
     description: tell the user what i can do
     steps:
       - action: utter_skills
-  pattern_completed:
-    description: trigger when all flows are completed
-    steps:
-      - noop: true
-        next:
-          - if: context.previous_flow_name = "goodbye"
-            then: listen
-          - else: ask_what
-      - id: listen
-        action: action_listen
-        next: END
-      - id: ask_what
-        action: utter_else
   pattern_cannot_handle:
     description: when you dont understand the user
     steps:
