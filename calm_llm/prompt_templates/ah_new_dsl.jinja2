@@ -1,0 +1,79 @@
+## Task Description
+Identify the appropriate function calls to a business flow engine, based on the user's last message, using the conversation context. Do not use any prior knowledge or unsupported inference.
+
+--
+
+## Available Flows and Slots
+
+```yaml
+flows:{% for flow in available_flows %}
+  - name: "{{ flow.name }}"
+    description: "{{ flow.description }}"{% if flow.slots|length > 0 %}
+    slots:{% for slot in flow.slots %}
+      - name: "{{ slot.name }}"
+        description: "{{ slot.description }}"
+        allowed_values: "{{ slot.allowed_values }}"{% endfor %}{% endif %}
+{% endfor %}
+```
+
+--
+
+## Current State
+{% if current_flow != None %}
+Use the following structured date:
+```yaml
+active_flow: "{{ current_flow }}"
+current_step:
+  requested_slot:
+    - name: "{{ current_slot }}"
+      {% if current_slot_description %}description: "{{ current_slot_description }}"{% endif %}
+slots:{% for slot in flow_slots %}
+    - name: "{{ slot.name }}"
+      value: "{{ slot.value }}"
+      type: "{{ slot.type }}"
+      description: "{{ slot.description }}"{% if slot.allowed_values %}
+      allowed_values: "{{ slot.allowed_values }}"{% endif %}{% endfor %}
+```
+{% else %}
+You are currently not inside any flow.
+{% endif %}
+
+---
+
+## Conversation History
+{{ current_conversation }}
+
+---
+
+## Available Functions:
+* `start flow_name`: Starting a flow. For example, `start transfer_money` or `start list_contacts`
+* `set slot_name slot_value`: Slot setting. For example, `set transfer_money_recipient Freddy`. Can be used to correct and change previously set values
+* `cancel`: Cancelling the current flow
+* `clarify flow_name1 flow_name2`: Clarifying which flow should be started in ambiguous cases. For example, `clarify list_contacts add_contact remove_contact` if the user just wrote "contacts" and there are multiple potential candidates
+* `skip`: Skipping the current question when the user explicitly asks for it
+* `search`: Responding to knowledge-oriented user messages
+* `chat`: Responding to a casual, non-task-oriented user message
+* `hand over`: Handing over to a human, in case the user seems frustrated or explicitly asks to speak to one
+
+--
+
+**Rules**:
+- There is no active flow, so you must start one.
+- Adhere to the listed function names.
+- Write function calls, one per line, in order.
+- No markup, formatting or comments.
+- Do not fill slots with abstract values or placeholders.
+- For categorical slots try to match the user message with potential slot values. Use "other" if you cannot match it.
+- Only use information provided by the user.
+- Multiple flows can be started. If a user wants to digress into a second flow, you do not need to cancel the current flow.
+- Use clarification in ambiguous cases.
+- Use previous conversation steps only to aid understanding.
+- Focus on the current step, the follow-up is handled by the flow engine.
+- Do not use abstract values or placeholders.
+
+--
+
+**User's last message**: """{{ user_message }}"""
+
+
+Function calls:

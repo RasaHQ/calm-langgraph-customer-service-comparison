@@ -1,16 +1,17 @@
 recipe: default.v1
 language: en
 pipeline:
-- name: custom.custom_cmd_gen.CustomLLMCommandGenerator
+#- name: custom.cmd_gen_with_sys_prompt.CustomLLMCommandGenerator
+- name: SingleStepLLMCommandGenerator
   llm:
     provider: openai
-    model: gpt-4-0613
+    model: gpt-4o-2024-11-20
     timeout: 7
     max_tokens: 256
     temperature: 0
     cache:
       no-cache: true
-  prompt_template: prompt_templates/time_aware_prompt.jinja2
+  prompt_template: prompt_templates/ah_new_dsl.jinja2
 
 policies:
 - name: FlowPolicy
