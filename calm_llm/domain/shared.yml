@@ -39,3 +39,7 @@ responses:
           {{history}}
           {{current_input}}
           your suggested AI Response:
+  utter_session_start:
+    - text: Hi, I am Romy, your trusted travel agent. How can I help you today?
+      metadata:
+        rephrase: True

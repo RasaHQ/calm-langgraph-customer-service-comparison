@@ -43,5 +43,11 @@ action_endpoint:
 #
 nlg:
  type: custom.quick_rephraser.QuickResponseRephraser
+ llm:
+    provider: openai
+    model: gpt-4o-2024-11-20
+    timeout: 7
+    max_tokens: 256
+    temperature: 0
  prompt: prompt_templates/rephrase_prompt.jinja2
  rephrase_all: true

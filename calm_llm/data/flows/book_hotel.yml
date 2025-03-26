@@ -3,7 +3,8 @@ flows:
     description: search for hotels
     steps:
       - collect: trip_destination
-        reset_after_flow_ends: false      
+        reset_after_flow_ends: false
+        description: set the value of the trip destination always in english      
       - id: "verify_hotel_location_is_in_db"
         action: verify_hotel_location_is_in_db
         next:
