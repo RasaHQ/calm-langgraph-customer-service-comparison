@@ -18,8 +18,8 @@ The bot has the following skills:
 
 ## Requirements
 
-* **Rasa Pro 3.17** (evaluated with **3.17.2**)
-* A [Rasa Pro license](https://rasa.com/docs/rasa-pro/installation/python/licensing/)
+* **Rasa 3.17** (evaluated with **3.17.2**)
+* A [Rasa license](https://rasa.com/docs/rasa-pro/installation/python/licensing/)
 * An [OpenAI API key](https://platform.openai.com/api-keys)
 * Familiarity with Python and Bash
 
@@ -79,13 +79,13 @@ https://github.com/user-attachments/assets/45a828fe-b638-4d5f-8d55-22a831d5f198
 
 - Keyboard bindings may not map correctly in the Codespace, so you may not be able to copy and paste as you normally would!
 - The database creation is done separately to manage memory usage.
-- This repository targets **Rasa Pro 3.17** (Codespace / `devcontainer` installs `rasa-pro==3.17.2`).
+- This repository targets **Rasa 3.17** (Codespace / `devcontainer` installs `rasa-pro==3.17.2`).
 - Subdirectories:
-  - `calm_llm` ù primary Rasa Pro LLM assistant used for the comparison
-  - `calm_nlu` ù Rasa with intent-based NLU
-  - `langgraph_implementation` ù LangGraph-style implementation inspired by [LangGraph's tutorial](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/)
-  - `calm_self_hosted` ù Rasa with a fine-tuned self-hosted model (e.g. Llama 3.1 8B) as the command generator
-  - `calm_nlu_self_hosted` ù Rasa with intent-based NLU and a fine-tuned self-hosted command generator
+  - `calm_llm` ¬ù primary Rasa LLM assistant used for the comparison
+  - `calm_nlu` ¬ù Rasa with intent-based NLU
+  - `langgraph_implementation` ¬ù LangGraph-style implementation inspired by [LangGraph's tutorial](https://langchain-ai.github.io/langgraph/tutorials/customer-support/customer-support/)
+  - `calm_self_hosted` ¬ù Rasa with a fine-tuned self-hosted model (e.g. Llama 3.1 8B) as the command generator
+  - `calm_nlu_self_hosted` ¬ù Rasa with intent-based NLU and a fine-tuned self-hosted command generator
 
 ## Quantitative Evaluation
 
@@ -97,13 +97,13 @@ We provide scripts to evaluate the assistant on three measures:
 
 The shared e2e suite covers:
 
-* Happy paths ù conversations with minimal complexity sticking to one skill
-* Slot corrections ù the user changes their mind mid-flow
-* Context switches ù switch from one skill to another
-* Cancellations ù the user stops mid-skill
-* Multi skill ù several skills one after another
+* Happy paths ¬ù conversations with minimal complexity sticking to one skill
+* Slot corrections ¬ù the user changes their mind mid-flow
+* Context switches ¬ù switch from one skill to another
+* Cancellations ¬ù the user stops mid-skill
+* Multi skill ¬ù several skills one after another
 
-On **Rasa Pro 3.17.2**, the primary `calm_llm` assistant uses `SearchReadyLLMCommandGenerator` (via a thin token-tracking wrapper). The shared e2e suite scores **14/14** on both **gpt-4o** and **gpt-5.2**.
+On **Rasa 3.17.2**, the primary `calm_llm` assistant uses `SearchReadyLLMCommandGenerator` (via a thin token-tracking wrapper). The shared e2e suite scores **14/14** on both **gpt-4o** and **gpt-5.2**.
 
 ### Run end-to-end tests
 
@@ -200,7 +200,7 @@ To create the figures in our blog post:
 
 1. Generate data for the Rasa assistant
 
-- Follow steps 2ù5 from [Steps to run the Rasa assistant](#steps-to-run-the-rasa-assistant).
+- Follow steps 2¬ù5 from [Steps to run the Rasa assistant](#steps-to-run-the-rasa-assistant).
 - On a separate terminal, navigate to `calm_llm`, run `python run_tests_for_plots.py`.
 - Restructure the data for plotting with `cd results` then `python combine_data.py`.
 
