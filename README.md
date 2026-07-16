@@ -103,7 +103,7 @@ The shared e2e suite covers:
 * Cancellations ù the user stops mid-skill
 * Multi skill ù several skills one after another
 
-On **Rasa Pro 3.17.2**, `calm_llm` uses `SearchReadyLLMCommandGenerator` (via a thin token-tracking wrapper). Flow collect/branching fixes in this update were validated at **14/14** with the previous single-step generator on **gpt-4o** and **gpt-5.2**; re-validate after the SearchReady migration before treating that score as current.
+On **Rasa Pro 3.17.2**, the primary `calm_llm` assistant uses `SearchReadyLLMCommandGenerator` (via a thin token-tracking wrapper). The shared e2e suite scores **14/14** on both **gpt-4o** and **gpt-5.2**.
 
 ### Run end-to-end tests
 

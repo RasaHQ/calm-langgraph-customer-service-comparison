@@ -4,6 +4,7 @@ actions:
   - search_flights
   - change_flight
   - new_flight_details
+  - resolve_flight_search_dates
 
 slots:
   flight_search_start_date:

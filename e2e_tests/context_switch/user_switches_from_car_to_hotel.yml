@@ -1,5 +1,7 @@
 test_cases:
   - test_case: user changes mind and cancels rental request, switches to hotel booking
+    fixtures:
+      - demo_clock
     steps:
       - user: I'd like to book a car
       - bot: in which city?

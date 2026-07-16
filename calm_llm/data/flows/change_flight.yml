@@ -5,10 +5,12 @@ flows:
       - action: list_flight_bookings
         next:
           - if: "slots.unique_booking"
-            then: "get_constraints"
+            then: "resolve_search_window"
           - else:
               - action: utter_unclear_which_flight
                 next: END
+      - id: "resolve_search_window"
+        action: resolve_flight_search_dates
       - id: "get_constraints"
         collect: flight_search_start_date
         description: >
@@ -16,6 +18,7 @@ flows:
           user says "same week", "this week", "alternative ones for the same week",
           or similar, fill from the existing booking's departure date
           (slots.unique_booking.scheduled_departure date) and do not ask again.
+          Prefer the date already in slots.flight_search_start_date when set.
       - collect: flight_search_end_date
         description: >
           Concrete end date for flight search in ISO format. If unset, "Any" is fine

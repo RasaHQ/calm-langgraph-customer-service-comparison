@@ -9,21 +9,28 @@ flows:
         reset_after_flow_ends: false
       - id: "car_rental_start_date"
         collect: car_rental_start_date
+        # Keep dates after booking so a follow-up hotel flow can copy "same dates".
+        reset_after_flow_ends: false
         description: >
-          Car pick-up date (ISO). Fill from an explicit date in the user's
-          message, or when they explicitly reuse hotel dates ("same dates as the
-          hotel", "same dates", "those dates") — copy slots.hotel_start_date.
-          Never infer dates merely because a hotel was booked earlier unless the
-          user explicitly ties them.
+          Car pick-up date as an ISO datetime string. Only fill this slot when the
+          current user message itself contains an explicit date or an explicit
+          same-dates phrase ("same dates as the hotel", "same dates", "those
+          dates"). If the phrase refers to the hotel, copy the exact ISO value of
+          slots.hotel_start_date. Do not fill this slot just because
+          slots.hotel_start_date is already set from an earlier booking.
       - collect: car_rental_end_date
+        reset_after_flow_ends: false
         description: >
-          Car return date (ISO). Fill from an explicit date in the user's message,
-          or when they explicitly reuse hotel dates ("same dates as the hotel",
-          "same dates", "those dates") — copy slots.hotel_end_date. Never infer
-          dates merely because a hotel was booked earlier unless the user
-          explicitly ties them.
+          Car return date as an ISO datetime string. Only fill this slot when the
+          current user message itself contains an explicit date or an explicit
+          same-dates phrase ("same dates as the hotel", "same dates", "those
+          dates"). If the phrase refers to the hotel, copy the exact ISO value of
+          slots.hotel_end_date. Do not fill this slot just because
+          slots.hotel_end_date is already set from an earlier booking.
       - noop: true
         next:
+          - if: not slots.car_rental_start_date or not slots.car_rental_end_date
+            then: car_rental_start_date
           - if: slots.car_rental_start_date > slots.car_rental_end_date
             then:
               - action: utter_invalid_date

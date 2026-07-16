@@ -1,6 +1,11 @@
 version: "3.1"
 
 slots:
+  # Demo clock: travel DB and fixtures assume "now" is 2024-04-27 (Saturday).
+  # SearchReadyLLMCommandGenerator reads this for relative date resolution.
+  mocked_datetime:
+    type: text
+    initial_value: "2024-04-27T18:13:47+00:00"
   return_value:
     type: any
   trip_destination:

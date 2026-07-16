@@ -16,20 +16,31 @@ flows:
         collect: hotel_price_range
       - id: "hotel_start_date"
         collect: hotel_start_date
+        # Keep dates after booking so a follow-up car flow can copy "same dates".
+        # Do not null these at flow start — same-turn fills ("hotel for the same
+        # dates") would be wiped by StartFlow before collect runs.
+        reset_after_flow_ends: false
         description: >
-          Hotel check-in date (ISO). Fill from an explicit date in the user's
-          message, or when they explicitly reuse prior dates ("same dates",
-          "same dates as the car rental", "for the same dates", "those dates")
-          — then copy slots.car_rental_start_date. Never infer dates merely
-          because a car was booked earlier unless the user explicitly ties them.
+          Hotel check-in date as an ISO datetime string. Only fill this slot when
+          the current user message itself contains an explicit date or an explicit
+          same-dates phrase ("same dates", "same dates as the car rental",
+          "for the same dates", "those dates"). If the phrase refers to the car
+          rental, copy the exact ISO value of slots.car_rental_start_date. Do not
+          fill this slot just because slots.car_rental_start_date is already set
+          from an earlier booking.
       - collect: hotel_end_date
+        reset_after_flow_ends: false
         description: >
-          Hotel check-out date (ISO). Fill from an explicit date in the user's
-          message, or when they explicitly reuse prior dates ("same dates",
-          "same dates as the car rental", "for the same dates", "those dates")
-          — then copy slots.car_rental_end_date. Never infer dates merely
-          because a car was booked earlier unless the user explicitly ties them.
+          Hotel check-out date as an ISO datetime string. Only fill this slot when
+          the current user message itself contains an explicit date or an explicit
+          same-dates phrase ("same dates", "same dates as the car rental",
+          "for the same dates", "those dates"). If the phrase refers to the car
+          rental, copy the exact ISO value of slots.car_rental_end_date. Do not
+          fill this slot just because slots.car_rental_end_date is already set
+          from an earlier booking.
         next:
+          - if: not slots.hotel_start_date or not slots.hotel_end_date
+            then: hotel_start_date
           - if: slots.hotel_start_date > slots.hotel_end_date
             then:
               - action: utter_invalid_date

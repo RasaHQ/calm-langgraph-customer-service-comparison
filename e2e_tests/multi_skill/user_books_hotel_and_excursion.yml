@@ -1,5 +1,7 @@
 test_cases:
   - test_case: hotel booking combined with excursion
+    fixtures:
+      - demo_clock
     steps:
       - user: I'd like to book a hotel
       - bot: in which city?

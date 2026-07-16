@@ -26,6 +26,41 @@ def parse_datetime(text: str):
     return time
 
 
+class ResolveFlightSearchDates(Action):
+    """Fill the flight search window from the active booking when the user
+    asks for alternatives in the same week (without naming a calendar date)."""
+
+    _SAME_WEEK_PHRASES = (
+        "same week",
+        "this week",
+        "that week",
+        "alternative",
+        "alternatives",
+        "other flights",
+        "another flight",
+    )
+
+    def name(self) -> str:
+        return "resolve_flight_search_dates"
+
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
+    ) -> List[Dict[Text, Any]]:
+        if tracker.get_slot("flight_search_start_date"):
+            return []
+
+        text = str((tracker.latest_message or {}).get("text") or "").lower()
+        if not any(phrase in text for phrase in self._SAME_WEEK_PHRASES):
+            return []
+
+        booking = tracker.get_slot("unique_booking") or {}
+        departure = parse_datetime(booking.get("scheduled_departure"))
+        if departure is None:
+            return []
+
+        return [SlotSet("flight_search_start_date", departure.date().isoformat())]
+
+
 class SearchFlights(Action):
     def name(self) -> str:
         return "search_flights"

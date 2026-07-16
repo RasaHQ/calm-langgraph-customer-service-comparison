@@ -1,5 +1,7 @@
 test_cases:
   - test_case: simple car booking
+    fixtures:
+      - demo_clock
     steps:
       - user: I'd like to book a car
       - bot: in which city?

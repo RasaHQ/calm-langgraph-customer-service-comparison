@@ -1,5 +1,7 @@
 test_cases:
   - test_case: user changes their flight
+    fixtures:
+      - demo_clock
     steps:
       - user: show my flights
       - bot: "I've found your upcoming flight bookings: a flight from Paris (CDG) to Basel (BSL) on April 30"
