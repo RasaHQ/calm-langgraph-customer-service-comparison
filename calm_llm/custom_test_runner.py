@@ -1,5 +1,4 @@
-from rasa.e2e_test.e2e_test_runner import E2ETestRunner
-import datetime
+from rasa.e2e_test.e2e_test_runner import E2ETestRunner, get_fixtures_for_test_case
 import logging
 import time
 from asyncio import CancelledError
@@ -11,9 +10,9 @@ from rasa.shared.core.events import UserUttered
 
 from rasa.e2e_test.e2e_test_case import (
     ActualStepOutput,
-    Fixture,
     Metadata,
     TestCase,
+    TestCaseFixtures,
     TestStep,
 )
 
@@ -42,16 +41,7 @@ class CustomE2ETestRunner(E2ETestRunner):
         test_case_metadata: Optional[Metadata] = None,
         input_metadata: Optional[List[Metadata]] = None,
     ) -> Tuple[TEST_TURNS_TYPE, Dict[str, List[float]]]:
-        """Runs dialogue prediction.
-
-        Args:
-            collector: Output channel.
-            steps: List of steps to run.
-            sender_id: The test case name with added timestamp suffix.
-
-        Returns:
-        Test turns: {turn_sequence (int) : TestStep or ActualStepOutput}.
-        """
+        """Runs dialogue prediction and collects per-turn cost/latency stats."""
         turns: TEST_TURNS_TYPE = {}
         event_cursor = 0
 
@@ -65,10 +55,6 @@ class CustomE2ETestRunner(E2ETestRunner):
         tracker = await self.agent.processor.fetch_tracker_with_initial_session(  # type: ignore[union-attr]
             sender_id
         )
-        # turn -1 i used to contain events that happen during
-        # the start of the session and before the first user message
-        # TestStep is a placeholder just for the sake of having a turn
-        # to specify the actor
         turns[-1], event_cursor = self.get_actual_step_output(
             tracker, TestStep(actor="bot", text=None), event_cursor
         )
@@ -108,8 +94,9 @@ class CustomE2ETestRunner(E2ETestRunner):
             end = time.time()
 
             tracker = await self.agent.tracker_store.retrieve(sender_id)
+            latest = tracker.latest_message if tracker else None
             self._update_test_case_statistics(
-                test_case_statistics, tracker.latest_message, start, end
+                test_case_statistics, latest, start, end
             )
 
             turns[position], event_cursor = self.get_actual_step_output(
@@ -120,61 +107,63 @@ class CustomE2ETestRunner(E2ETestRunner):
     @staticmethod
     def _update_test_case_statistics(
         test_case_statistics: Dict[str, List[float]],
-        message: UserUttered,
+        message: Optional[UserUttered],
         start: float,
-        end: time,
+        end: float,
     ) -> None:
         test_case_statistics[LATENCY].append(end - start)
-        test_case_statistics[TOTAL_COST].append(message.parse_data.get(TOTAL_COST, 0))
+        parse_data = getattr(message, "parse_data", None) or {}
+        test_case_statistics[TOTAL_COST].append(parse_data.get(TOTAL_COST, 0) or 0)
         test_case_statistics[COMPLETION_TOKENS].append(
-            message.parse_data.get(COMPLETION_TOKENS, 0)
+            parse_data.get(COMPLETION_TOKENS, 0) or 0
         )
         test_case_statistics[PROMPT_TOKENS].append(
-            message.parse_data.get(PROMPT_TOKENS, 0)
+            parse_data.get(PROMPT_TOKENS, 0) or 0
         )
 
     async def run_tests(
         self,
         input_test_cases: List[TestCase],
-        input_fixtures: List[Fixture],
+        fixtures_per_test: List[TestCaseFixtures],
         fail_fast: bool = False,
         **kwargs: Any,
     ) -> Tuple[List["TestResult"], List[Dict[str, List[float]]]]:
-        """Runs the test cases.
-
-        Args:
-            input_test_cases: Input test cases.
-            input_fixtures: Input fixtures.
-            fail_fast: Whether to fail fast.
-
-        Returns:
-        List of test results.
-        """
+        """Runs the test cases and returns results plus per-case statistics."""
         results = []
         statistics = []
         input_metadata = kwargs.get("input_metadata", None)
 
-        # telemetry call for tracking test runs
-        track_e2e_test_run(input_test_cases, input_fixtures, input_metadata)
+        track_e2e_test_run(input_test_cases, fixtures_per_test, input_metadata)
 
         for test_case in input_test_cases:
             collector = CollectingOutputChannel()
+            sender_id = self.generate_sender_id(test_case.name)
 
-            # add timestamp suffix to ensure sender_id is unique
-            sender_id = f"{test_case.name}_{datetime.datetime.now()}"
-
+            input_fixtures = get_fixtures_for_test_case(test_case, fixtures_per_test)
             if input_fixtures:
-                test_fixtures = self.filter_fixtures_for_test_case(
-                    test_case, input_fixtures
-                )
-                await self.set_up_fixtures(test_fixtures, sender_id)
+                await self.set_up_fixtures(input_fixtures, sender_id)
 
-            tracker, test_case_statistics = await self.run_prediction_loop(
-                collector, test_case.steps, sender_id
+            test_case_metadata = None
+            if input_metadata:
+                test_case_metadata = self.filter_metadata_for_input(
+                    test_case.metadata_name, input_metadata
+                )
+
+            turns, test_case_statistics = await self.run_prediction_loop(
+                collector,
+                test_case.steps,
+                sender_id,
+                test_case_metadata,
+                input_metadata,
             )
             statistics.append(test_case_statistics)
 
-            test_result = self.generate_test_result(tracker, test_case)
+            if not test_case.uses_assertions():
+                test_result = self.generate_test_result(turns, test_case)
+            else:
+                test_result = await self.run_assertions(
+                    sender_id, test_case, input_metadata
+                )
             results.append(test_result)
 
             if fail_fast and not test_result.pass_status:

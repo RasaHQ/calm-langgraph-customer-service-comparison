@@ -43,4 +43,4 @@ action_endpoint:
 #
 nlg:
  type: custom.quick_rephraser.QuickResponseRephraser
- prompt: prompt_templates/rephrase_prompt.jinja2
+ prompt_template: prompt_templates/rephrase_prompt.jinja2
