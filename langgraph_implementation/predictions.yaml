@@ -1,630 +1,645 @@
 test_cases:
 - steps:
+  - user: book a hotel
+  - bot: "I can help with that. To book the right hotel, I just need a few details:\n\
+      \n1) **City/area** (e.g., Basel, Paris, near EuroAirport BSL, city center) \
+      \ \n2) **Check-in date** and **check-out date**  \n3) **Number of guests** and\
+      \ **rooms**  \n4) Preferences: **budget range**, **star rating**, **bed type**,\
+      \ and any must-haves (breakfast, parking, refundable rate)\n\nIf you\u2019re\
+      \ traveling for your flight **LX0112 (CDG \u2192 BSL on 30 Apr)**, do you want\
+      \ a hotel in **Basel** (or **near BSL airport**) for **30 Apr\u20131 May**?"
+  - user: Lisbon
+  - bot: "Which **Lisbon hotel** should I book for you?\n\nPlease tell me:\n1) **Check-in\
+      \ / check-out dates**\n2) **# of guests** and **rooms**\n3) **Budget per night**\
+      \ (or economy / mid-range / luxury)\n4) Preferred **area** (Baixa/Chiado, Alfama,\
+      \ Bairro Alto, Avenida da Liberdade, Bel\xE9m, near airport, etc.)\n5) Must-haves\
+      \ (breakfast, refundable, parking, pool/gym)\n\nIf you don\u2019t have dates\
+      \ yet, I can start with a default suggestion\u2014do you mean **1 night (30\
+      \ Apr\u20131 May)** or different dates?"
+  - user: ok, then book one in Basel please
+  - bot: "I can book a hotel in **Basel** for you. I\u2019m currently seeing these\
+      \ available options:\n\n1) **Hilton Basel** (ID **1**) \u2014 **Luxury**  \n\
+      2) **Hyatt Regency Basel** (ID **3**) \u2014 **Upper Upscale**  \n3) **Holiday\
+      \ Inn Basel** (ID **8**) \u2014 **Upper Midscale**\n\nBefore I place the booking,\
+      \ please confirm:\n- **Dates**: is it **30 Apr \u2192 1 May**?\n- **Which hotel**\
+      \ (1 / 3 / 8)?\n- **How many rooms & guests**?\n- Any must-haves (breakfast,\
+      \ refundable, near **EuroAirport (BSL)** vs **city center**, parking)?\n\nReply\
+      \ with something like: \u201CBook ID 8, 30 Apr\u20131 May, 1 room, 2 guests,\
+      \ city center.\u201D"
+  test_case: hotel booking but location is not in db
+- steps:
   - user: I'd like to book a hotel
-  - bot: Sure, I can help with that. Could you please provide me the location where
-      you want to book a hotel, along with the check-in and check-out dates? Any specific
-      requests or preferences for the hotel?
+  - bot: "I can help with that\u2014where would you like the hotel, and what dates?\n\
+      \nPlease share:\n1) **City** (and preferred area, if any)  \n2) **Check-in date**\
+      \ and **check-out date**  \n3) **Number of guests** (and rooms)  \n4) Any preferences:\
+      \ budget range, star rating, breakfast, bed type, refundable rate, etc.\n\n\
+      Once you reply, I\u2019ll place the hotel booking request."
   - user: to Basel
-  - bot: Great! Can you please provide me with the dates for your check-in and check-out?
-      Also, are there any specific hotel preferences or requests you have?
+  - bot: "What dates should I book the hotel in **Basel** for?\n\nPlease tell me:\n\
+      - **Check-in date** and **check-out date**\n- **Number of guests/rooms**\n-\
+      \ Any preferences (budget, star rating, breakfast, refundable, near SBB station/Old\
+      \ Town/airport, etc.)\n\nThen I\u2019ll arrange the booking."
   - user: from may 14th to the 17th
-  - bot: 'I found a few hotels available in Basel for your dates:
-
-
-      1. Hilton Basel - This is a luxury hotel.
-
-      2. Hyatt Regency Basel - This is an upper-upscale hotel.
-
-      3. Holiday Inn Basel - This is an upper-midscale hotel.
-
-
-      Please let me know which hotel you would prefer so I can proceed with the booking.'
+  - bot: "Here are available options in **Basel** for **May 14 \u2192 May 17**:\n\n\
+      - **Hilton Basel** (Luxury) \u2014 **Hotel ID: 1**\n- **Hyatt Regency Basel**\
+      \ (Upper Upscale) \u2014 **Hotel ID: 3**\n- **Holiday Inn Basel** (Upper Midscale)\
+      \ \u2014 **Hotel ID: 8**\n\nWhich one would you like me to book (tell me the\
+      \ **hotel ID**)?\n\nAlso, please confirm **number of guests** and **rooms**,\
+      \ and any must-haves (e.g., **breakfast**, **refundable**, **near Basel SBB/Old\
+      \ Town**, bed type)."
   - user: I'll stay at the Hilton
   - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
       your requested changed.
   - user: 'yes'
-  - bot: Great news! Your booking at the Hilton Basel from May 14th to May 17th has
-      been successfully confirmed. Enjoy your stay! If you need any more assistance,
-      feel free to ask.
+  - bot: "Booked: **Hilton Basel (Hotel ID: 1)** for **May 14, 2024 \u2192 May 17,\
+      \ 2024**.\n\nTo finalize preferences with the hotel, please confirm:\n- **#\
+      \ of guests** and **# of rooms**\n- Any requests: **breakfast**, **refundable\
+      \ rate**, **bed type** (king/twin), and preferred area/notes (e.g., quiet room)."
   test_case: simple hotel booking
 - steps:
+  - user: I'd like to book a hotel
+  - bot: "Sure\u2014tell me these details and I\u2019ll get the hotel booking started:\n\
+      \n1) **City/area** (e.g., Basel city center, near BSL airport, etc.)  \n2) **Check-in\
+      \ date** and **check-out date**  \n3) **Number of guests** (and rooms, if more\
+      \ than 1)  \n4) Your **budget per night** and any preferences (breakfast, gym,\
+      \ free cancellation, bed type, star rating)\n\nIf it helps, I see you\u2019\
+      re flying **Paris (CDG) \u2192 Basel (BSL) on 30 Apr**. Do you want a hotel\
+      \ in **Basel for 30 Apr\u20131 May**, or different dates?"
+  - user: to Basel
+  - bot: "Here are a few hotel options available in **Basel**:\n\n- **Hilton Basel**\
+      \ (Luxury) \u2014 **Hotel ID: 1**\n- **Hyatt Regency Basel** (Upper Upscale)\
+      \ \u2014 **Hotel ID: 3**\n- **Holiday Inn Basel** (Upper Midscale) \u2014 **Hotel\
+      \ ID: 8**\n\nTo book it, tell me **which Hotel ID** you want.\n\nAlso, please\
+      \ confirm your **dates** (I can set to **30 Apr \u2192 1 May** if that\u2019\
+      s right) and **how many guests/rooms**. If you share a budget tier (Midscale/Upper\
+      \ Midscale/Upscale/Luxury), I can narrow it down."
+  - user: from may 14th to the 17th
+  - bot: "Got it \u2014 **Basel, May 14th to May 17th**.\n\nAvailable options:\n\n\
+      - **Hilton Basel** (Luxury) \u2014 **Hotel ID: 1**\n- **Hyatt Regency Basel**\
+      \ (Upper Upscale) \u2014 **Hotel ID: 3**\n- **Holiday Inn Basel** (Upper Midscale)\
+      \ \u2014 **Hotel ID: 8**\n\nWhich **Hotel ID** would you like me to book?\n\n\
+      Also please confirm **# of guests** and **# of rooms** (e.g., 1 room / 2 adults)."
+  - user: I'll stay at the Hilton
+  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
+      your requested changed.
+  - user: 'no'
+  - bot: "I\u2019m not able to complete the booking yet because the booking authorization\
+      \ was declined.\n\nIf you\u2019d like, I can try again\u2014please confirm:\n\
+      - Book **Hilton Basel (Hotel ID: 1)** for **May 14 \u2192 May 17** in **Basel**\n\
+      - **How many guests and rooms?**\n\nAnd please allow booking when prompted."
+  test_case: simple hotel booking, but user doesn't want to book
+- steps:
   - user: show my flights
-  - bot: 'Sure, currently you have one flight booked with us. Here are the details:
-
-
-      - Ticket Number: 7240005432906569
-
-      - Booking Reference: C46E9F
-
-      - Flight Number: LX0112
-
-      - Departure Airport: CDG (Paris Charles de Gaulle Airport)
-
-      - Arrival Airport: BSL (EuroAirport Basel-Mulhouse-Freiburg)
-
-      - Scheduled Departure: April 30, 2024, at 12:09 (local time)
-
-      - Scheduled Arrival: April 30, 2024, at 13:39 (local time)
-
-      - Seat Number: 18E
-
-      - Fare Conditions: Economy Class
-
-
-      Please let me know if there''s anything else you need assistance with.'
-  - user: Update my flight to sometime next week
-  - bot: 'I found several flights for you next week from Paris Charles de Gaulle Airport
-      (CDG) to EuroAirport Basel-Mulhouse-Freiburg (BSL). Here are some options:
-
-
-      1. Flight LX0112 on May 1, 2024, Departure: 12:09, Arrival: 13:39
-
-      2. Flight LX0112 on May 2, 2024, Departure: 12:09, Arrival: 13:39
-
-      3. Flight LX0112 on May 3, 2024, Departure: 12:09, Arrival: 13:39
-
-      4. Flight LX0112 on May 4, 2024, Departure: 12:09, Arrival: 13:39
-
-      5. Flight LX0112 on May 5, 2024, Departure: 12:09, Arrival: 13:39
-
-      6. Flight LX0112 on May 6, 2024, Departure: 12:09, Arrival: 13:39
-
-
-      Please let me know which one would you prefer so I can update your ticket.'
+  - bot: "Here are the flights currently on your booking:\n\n- **Airline / Flight:**\
+      \ SWISS **LX0112**  \n- **Route:** **Paris (CDG)** \u2192 **Basel (BSL)**  \n\
+      - **Date:** **30 Apr 2024**  \n- **Scheduled departure:** **12:09** (local time\
+      \ shown on your itinerary)  \n- **Scheduled arrival:** **13:39**  \n- **Seat:**\
+      \ **18E**  \n- **Fare type:** **Economy**  \n- **Booking reference (PNR):**\
+      \ **C46E9F**  \n- **Ticket number:** **7240005432906569**"
+  - user: are there any alternative ones for the same week
+  - bot: "Yes\u2014there are alternative **CDG \u2192 BSL** options in the same week\
+      \ as your current flight (**LX0112 on Tue, 30 Apr 2024**). In our schedule,\
+      \ it\u2019s the same flight number operating on other days at the same time:\n\
+      \n**Alternatives (CDG \u2192 BSL):**\n- **Wed, 01 May 2024** \u2014 **LX0112**\
+      \ depart **12:09**, arrive **13:39** (On Time)\n- **Thu, 02 May 2024** \u2014\
+      \ **LX0112** depart **12:09**, arrive **13:39** (Scheduled)\n- **Fri, 03 May\
+      \ 2024** \u2014 **LX0112** depart **12:09**, arrive **13:39** (Scheduled)\n\
+      - **Sat, 04 May 2024** \u2014 **LX0112** depart **12:09**, arrive **13:39**\
+      \ (Scheduled)\n\nIf you tell me which date you\u2019d prefer, I can help get\
+      \ your flight changed."
   - user: The next available option is great
   - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
       your requested changed.
   - user: 'yes'
-  - bot: 'Great! Your flight has been successfully updated. Here are your new flight
-      details:
-
-
-      - Ticket Number: 7240005432906569
-
-      - Flight Number: LX0112
-
-      - Departure Airport: Paris Charles de Gaulle Airport (CDG)
-
-      - Arrival Airport: EuroAirport Basel-Mulhouse-Freiburg (BSL)
-
-      - Scheduled Departure: May 1, 2024, at 12:09 (local time)
-
-      - Scheduled Arrival: May 1, 2024, at 13:39 (local time)
-
-
-      Please let me know if there''s anything else you need assistance with.'
+  - bot: "Done \u2014 I\u2019ve moved your ticket to the **next available flight**\
+      \ on the same route:\n\n- **Ticket:** 7240005432906569 (Book ref **C46E9F**)\n\
+      - **New flight:** **LX0112**\n- **Route:** **CDG \u2192 BSL**\n- **Departure:**\
+      \ **Wed, 01 May 2024 \u2013 12:09**\n- **Arrival:** **13:39**\n- **Cabin/Fare:**\
+      \ Economy\n\n**Fees:** Any applicable change fee and/or fare difference is determined\
+      \ by the fare rules and availability at time of reissue. I don\u2019t have a\
+      \ price-quote tool here, so if you\u2019d like I can escalate to have the main\
+      \ assistant confirm the exact additional amount (if any)."
   test_case: user changes their flight
 - steps:
   - user: Please show me my booked flights
-  - bot: 'Sure, here are the details of your current booked flight:
-
-
-      - Ticket Number: 7240005432906569
-
-      - Booking Reference: C46E9F
-
-      - Flight ID: 19250
-
-      - Flight Number: LX0112
-
-      - Departure Airport: Charles de Gaulle Airport (CDG)
-
-      - Arrival Airport: EuroAirport Basel-Mulhouse-Freiburg (BSL)
-
-      - Scheduled Departure: 30th April 2024, 12:09 PM
-
-      - Scheduled Arrival: 30th April 2024, 1:39 PM
-
-      - Seat Number: 18E
-
-      - Fare Conditions: Economy
-
-
-      Let me know if you need any more information.'
+  - bot: "You currently have **1 booked flight** on your itinerary:\n\n- **Airline\
+      \ / Flight:** SWISS **LX0112**  \n- **Route:** **Paris (CDG)** \u2192 **Basel\
+      \ (BSL)**  \n- **Date:** **30 Apr 2024**  \n- **Scheduled departure:** **12:09**\
+      \ (local time shown on your booking)  \n- **Scheduled arrival:** **13:39** \
+      \ \n- **Seat:** **18E**  \n- **Cabin / fare:** **Economy**  \n- **Booking reference\
+      \ (PNR):** **C46E9F**  \n- **Ticket number:** **7240005432906569**  \n\nIf you\u2019\
+      d like, tell me what you want to do next (e.g., check baggage allowance, change\
+      \ seats, or look up flight status)."
   test_case: user lists their flights
 - steps:
   - user: I'd like to book a car
-  - bot: Sure, I can help with that. Could you please provide me with the location,
-      the start and end dates for the rental, and if you have any preference for a
-      specific car rental company?
+  - bot: "I can help you book a rental car in **Basel** for **Apr 30 \u2192 May 1**.\
+      \ I\u2019m seeing these options available:\n\n- **Europcar** (Economy) \u2014\
+      \ rental id **1**\n- **Thrifty** (Midsize) \u2014 rental id **9**\n- **Enterprise**\
+      \ (Premium) \u2014 rental id **7**\n- **Avis** (Luxury) \u2014 rental id **2**\n\
+      \nTo confirm the booking, tell me:\n\n1) **Pickup location**: Basel Airport\
+      \ (BSL) or city center?  \n2) **Pickup time** on Apr 30 (if you\u2019re arriving\
+      \ by flight, I can set it to ~**14:15** to allow for bags).  \n3) **Driver age**\
+      \ (some suppliers have minimum age/young-driver fees).  \n4) **Car preference**:\
+      \ Economy / Midsize / Premium / Luxury  \n5) **Transmission**: Automatic or\
+      \ manual  \n6) Extras: **insurance coverage**, **additional driver**, **child\
+      \ seat**, etc.\n\nOnce you reply, I\u2019ll book the best match immediately."
   - user: to Basel
-  - bot: Great! And could you please tell me the dates you'll need the car? Also,
-      do you have a preference for a specific car rental company?
+  - bot: "Got it \u2014 **Basel**. To book the car, I just need a few details:\n\n\
+      1) **Pickup location in Basel**: Basel Airport (BSL) or Basel city?\n2) **Pickup\
+      \ date/time** and **return date/time** (are you matching your flight on **Apr\
+      \ 30** and returning **May 1**?)\n3) **Car type**: Economy / Midsize / Premium\
+      \ / Luxury\n4) **Transmission**: Automatic or manual\n5) **Driver age**\n6)\
+      \ Any extras: insurance, additional driver, child seat?\n\nIf you want, I can\
+      \ default to: **Basel Airport (BSL)** pickup **Apr 30 ~14:15** (after your arrival)\
+      \ and return **May 1 14:15** \u2014 confirm if that works."
   - user: from may 14th to the 17th
-  - bot: 'I found several options for you:
-
-
-      1. Europcar - Economy class. Available from April 14th to April 11th.
-
-      2. Avis - Luxury class. Available from April 10th to April 20th.
-
-      3. Enterprise - Premium class. Available from April 22nd to April 20th.
-
-      4. Thrifty - Midsize class. Available from April 17th to April 26th.
-
-
-      Please note that these dates do not match your specified dates of May 14th to
-      May 17th. Would you like to adjust your dates or should I expand the search
-      to other locations?'
+  - bot: "For **Basel**, **May 14 \u2192 May 17**, I have these rental options available:\n\
+      \n- **Europcar** (Economy) \u2014 ID **1**\n- **Thrifty** (Midsize) \u2014 ID\
+      \ **9**\n- **Enterprise** (Premium) \u2014 ID **7**\n- **Avis** (Luxury) \u2014\
+      \ ID **2**\n\nTo book it, please confirm:\n\n1) **Pickup & dropoff location**:\
+      \ Basel **Airport (BSL)** or **Basel city**?  \n2) **Pickup time** on **May\
+      \ 14** and **dropoff time** on **May 17**  \n3) **Driver age**  \n4) **Transmission**:\
+      \ automatic or manual  \n5) Extras: **insurance**, **additional driver**, **child\
+      \ seat**?\n\nReply with your choice (e.g., \u201CID 9, BSL pickup 14:30 May\
+      \ 14, return 10:00 May 17, automatic, age 32\u201D), and I\u2019ll place the\
+      \ booking."
   - user: I'll take the luxury one! looks nice
-  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
-      your requested changed.
+  - bot: "Perfect \u2014 the **Luxury** option is **Avis (rental ID 2)** in Basel.\n\
+      \nTo finalize the booking for **May 14\u201317**, please confirm:\n\n1) **Pickup\
+      \ location**: Basel Airport (BSL) or Basel city center?  \n2) **Pickup time\
+      \ (May 14)** and **return time (May 17)**  \n3) **Driver age**  \n4) **Transmission**:\
+      \ automatic or manual  \n5) Extras (if any): insurance coverage, additional\
+      \ driver, child seat\n\nIf you don\u2019t have preferences, tell me \u201Cdefault,\u201D\
+      \ and I\u2019ll set **BSL airport pickup 14:00 on May 14** and **return 14:00\
+      \ on May 17** (you can adjust)."
   - user: 'yes'
-  - bot: Great! I have successfully booked the Avis Luxury class car for you. Enjoy
-      your trip!
+  - bot: "I can do that, but \u201Cyes\u201D could mean a couple of things. Please\
+      \ reply with **either**:\n\n**A) \u201Cdefault\u201D** (and I\u2019ll book:\
+      \ **Avis Luxury (ID 2)**, **Basel Airport (BSL)** pickup **May 14 14:00**, return\
+      \ **May 17 14:00**, **automatic**, no extras)\n\n**or** confirm these 5 items:\n\
+      \n1) Pickup location: **BSL** or **Basel city**  \n2) Pickup time (May 14):\
+      \  \n3) Return time (May 17):  \n4) Driver age:  \n5) Automatic or manual +\
+      \ any extras:\n\nOnce I have that, I\u2019ll place the booking."
   test_case: simple car booking
 - steps:
   - user: I'd like to book an excursion
-  - bot: Sure, I can assist you with that. May I know the location where you'd like
-      to book the excursion and any specific preferences or requests you may have?
+  - bot: "Sure\u2014what kind of excursion would you like to book, and when?\n\nTo\
+      \ find the best options (and book it), please tell me:\n\n1) **Date & start\
+      \ time window** (e.g., after you arrive / next day)  \n2) **Starting point**:\
+      \ Basel airport pickup, your **hotel**, or meet in the city center?  \n3) **Type\
+      \ of excursion** (pick any):\n   - Basel **walking/old town** tour\n   - **Food**\
+      \ tour\n   - **Museums/art**\n   - **Rhine** cruise/boat ride\n   - **Day trip**\
+      \ (e.g., Lucerne, Zurich, Colmar/Alsace, Black Forest)\n4) **# of people** \
+      \ \n5) **Language** (English/French/German/other)  \n6) **Budget per person**\
+      \ (rough range is fine)  \n7) Any **accessibility needs**\n\nOnce I have those,\
+      \ I\u2019ll pull matching excursions and confirm the exact one you want to book."
   - user: in Basel
-  - bot: 'Here are a few excursion recommendations in Basel:
-
-
-      1. Basel Minster: Visit the historic Basel Minster, a beautiful Gothic cathedral.
-
-      2. Kunstmuseum Basel: Explore the extensive art collection at the Kunstmuseum
-      Basel.
-
-      3. Basel Zoo: Spend a day exploring the diverse animal exhibits at Basel Zoo.
-
-
-      Please let me know which one interests you so I can proceed with the booking.'
+  - bot: "I found one bookable Basel option in our system right now:\n\n- **ID 2 \u2014\
+      \ Kunstmuseum Basel (Art Museum)** (Basel) \u2014 \u201CExplore the extensive\
+      \ art collection at the Kunstmuseum Basel.\u201D\n\nI\u2019m not seeing any\
+      \ Basel **walking tours/food tours/Rhine cruises** in the current listings yet.\n\
+      \nWould you like me to **book ID 2 (Kunstmuseum Basel)**?  \nIf yes, tell me:\n\
+      1) **Date/time** you want to go, and  \n2) **Number of people**.\n\nIf you actually\
+      \ want a **city walking tour** instead, tell me your **date/time + language**,\
+      \ and I\u2019ll expand the search beyond \u201CBasel\u201D to nearby wording/regions\
+      \ to try to pull up tour options."
   - user: I'll go to the Basel Zoo please
-  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
-      your requested changed.
+  - bot: "Basel Zoo is available to book.\n\n- **ID 8 \u2014 Basel Zoo** (Basel) \u2014\
+      \ \u201CSpend a day exploring the diverse animal exhibits at Basel Zoo.\u201D\
+      \n\nTo book it, please confirm:\n1) **Date** you want to go  \n2) **Number of\
+      \ people**  \n3) Do you want to **start from your hotel or meet at the zoo entrance**?"
   - user: 'yes'
-  - bot: Great! Your trip to Basel Zoo has been successfully booked. Enjoy your excursion!
-      Is there anything else you need assistance with?
+  - bot: "To book **Basel Zoo (Excursion ID 8)**, I just need a couple of details:\n\
+      \n1) **Date** you want to go (e.g., 30 Apr / 1 May)  \n2) **Number of people**\
+      \  \n3) **Meeting point**: meet at the **zoo entrance** or **pickup from your\
+      \ hotel** (if hotel pickup, share the hotel name/address)\n\nReply with those\
+      \ three items and I\u2019ll proceed with the booking."
   test_case: simple excursion booking
 - steps:
   - user: I'd like to book a hotel
-  - bot: Sure, I can help with that. Could you please provide me with the location,
-      check-in date, and check-out date for the hotel booking?
+  - bot: "Sure\u2014where would you like the hotel, and what are your check-in and\
+      \ check-out dates?\n\nIf it helps, I can also book near your arrival airport\
+      \ **Basel (BSL)** for your trip on **30 Apr 2024**\u2014just tell me:\n1) **City/area**\
+      \ (e.g., Basel city center, near BSL/EuroAirport, near a specific address) \
+      \ \n2) **Check-in date** and **check-out date**  \n3) **Number of guests/rooms**\
+      \ and any preferences (budget range, breakfast, bed type, parking, etc.)"
   - user: to Basel
-  - bot: That's great. Now, could you please provide me with the check-in and check-out
-      dates for your stay in Basel?
+  - bot: "Here are available hotels in **Basel** I can book for you (I\u2019m assuming\
+      \ **check-in 30 Apr 2024, check-out 1 May 2024**):\n\n- **Hilton Basel** (Luxury)\
+      \ \u2014 **Hotel ID: 1**\n- **Hyatt Regency Basel** (Upper Upscale) \u2014 **Hotel\
+      \ ID: 3**\n- **Holiday Inn Basel** (Upper Midscale) \u2014 **Hotel ID: 8**\n\
+      \nTell me:\n1) which **hotel ID** you want, and  \n2) confirm the **dates**\
+      \ + **number of rooms/guests** (so I book the right stay)."
   - user: from may 14th to the 17th
-  - bot: 'Here are some options for your stay in Basel from May 14th to 17th:
-
-
-      1. Hilton Basel - Luxury tier
-
-      2. Hyatt Regency Basel - Upper Upscale tier
-
-      3. Holiday Inn Basel - Upper Midscale tier
-
-
-      Please let me know which one you''d like to book.'
+  - bot: "Got it: **Basel**, **May 14 \u2192 May 17**.\n\nThese options are available\
+      \ to book:\n- **Hilton Basel** (Luxury) \u2014 **Hotel ID: 1**\n- **Hyatt Regency\
+      \ Basel** (Upper Upscale) \u2014 **Hotel ID: 3**\n- **Holiday Inn Basel** (Upper\
+      \ Midscale) \u2014 **Hotel ID: 8**\n\nWhich **hotel ID** would you like me to\
+      \ book? (Also, how many **rooms/guests**?)"
   - user: I'll stay at the Hilton
   - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
       your requested changed.
   - user: 'yes'
-  - bot: Great! I've successfully booked your stay at the Hilton Basel from May 14th
-      to 17th. Enjoy your stay!
+  - bot: "Booked: **Hilton Basel (Hotel ID: 1)** for **May 14, 2024 \u2192 May 17,\
+      \ 2024**.\n\nIf you tell me how many **guests/rooms** you need (and any preferences\
+      \ like breakfast or parking), I can note that for your stay."
   - user: I'd also like to book something to do or see while I'm there
-  - bot: 'Here are some activities you might enjoy in Basel:
-
-
-      1. Visit the historic Basel Minster, a beautiful Gothic cathedral.
-
-      2. Explore the extensive art collection at the Kunstmuseum Basel.
-
-      3. Spend a day exploring the diverse animal exhibits at Basel Zoo.
-
-
-      Please let me know which one you''d like to book.'
+  - bot: "What kind of \u201Csomething to do\u201D are you in the mood for while you\u2019\
+      re in Basel (May 14\u201317)\u2014**walking tour/sightseeing**, **museums &\
+      \ art**, **food & drink**, **Rhine cruise**, or a **day trip** (e.g., Lucerne/Interlaken/Colmar/Black\
+      \ Forest)?\n\nAlso, how many people are going, and do you have a preferred day/time\
+      \ window?\n\nI\u2019m not seeing any bookable Basel excursions in the current\
+      \ inventory yet\u2014once you tell me your preferences, I\u2019ll broaden the\
+      \ search (nearby cities/day trips) and come back with options you can book."
   - user: I'll go to Basel Zoo please
+  - bot: "I found it: **Basel Zoo** (Recommendation **ID: 8**) \u2014 \u201CSpend\
+      \ a day exploring the diverse animal exhibits at Basel Zoo.\u201D\n\nDo you\
+      \ want me to **book Basel Zoo (ID 8)** for you? If yes, what **date** are you\
+      \ going (May **14**, **15**, **16**, or **17**)\u2014or should I just book it\
+      \ without a specific date?"
+  - user: 'yes'
   - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
       your requested changed.
-  - user: 'yes'
-  - bot: Great! I've successfully booked your visit to the Basel Zoo. Enjoy your trip!
   test_case: hotel booking combined with excursion
 - steps:
   - user: show my flights
-  - bot: 'Here are the details for your upcoming flight:
-
-
-      - Ticket Number: 7240005432906569
-
-      - Booking Reference: C46E9F
-
-      - Flight Number: LX0112
-
-      - Departure Airport: CDG (Paris Charles de Gaulle)
-
-      - Arrival Airport: BSL (EuroAirport Basel-Mulhouse-Freiburg)
-
-      - Scheduled Departure: April 30, 2024, at 12:09 PM
-
-      - Scheduled Arrival: April 30, 2024, at 1:39 PM
-
-      - Seat Number: 18E
-
-      - Fare Conditions: Economy Class
-
-
-      Please note that departure and arrival times are subject to change. It''s recommended
-      to check the flight status closer to your departure date.'
-  - user: Update my flight to sometime next week
-  - bot: 'I found some flights for you next week. Here are the options:
-
-
-      1. Flight LX0112 on 2024-05-01 departing at 12:09 PM and arriving at 1:39 PM.
-
-      2. Flight LX0112 on 2024-05-03 departing at 12:09 PM and arriving at 1:39 PM.
-
-      3. Flight LX0112 on 2024-05-04 departing at 12:09 PM and arriving at 1:39 PM.
-
-      4. Flight LX0112 on 2024-05-06 departing at 12:09 PM and arriving at 1:39 PM.
-
-      5. Flight LX0112 on 2024-05-07 departing at 12:09 PM and arriving at 1:39 PM.
-
-
-      Please let me know which one you would like to switch to.'
+  - bot: "You currently have **1 upcoming SWISS flight** on your booking:\n\n- **Flight:**\
+      \ LX0112  \n- **Route:** Paris Charles de Gaulle (**CDG**) \u2192 Basel (**BSL**)\
+      \  \n- **Date/Time (scheduled):** **30 Apr 2024, 12:09** departure \u2192 **13:39**\
+      \ arrival  \n- **Seat:** **18E**  \n- **Cabin/Fare:** **Economy**  \n- **Booking\
+      \ reference (PNR):** **C46E9F**  \n- **Ticket number:** **7240005432906569**"
+  - user: are there any alternative ones for the same week
+  - bot: "Yes\u2014there are alternative SWISS options on the **same route (CDG \u2192\
+      \ BSL)** during the same week as your flight (**Tue, 30 Apr 2024**). Here are\
+      \ the other departures I can see:\n\n- **Mon 29 Apr** \u2014 LX0112 \u2014 12:09\
+      \ \u2192 13:39  \n- **Wed 01 May** \u2014 LX0112 \u2014 12:09 \u2192 13:39 \
+      \ \n- **Thu 02 May** \u2014 LX0112 \u2014 12:09 \u2192 13:39  \n- **Fri 03 May**\
+      \ \u2014 LX0112 \u2014 12:09 \u2192 13:39  \n- **Sat 04 May** \u2014 LX0112\
+      \ \u2014 12:09 \u2192 13:39  \n\n(Your current flight is **Tue 30 Apr \u2014\
+      \ LX0112 \u2014 12:09 \u2192 13:39**.)\n\nIf you tell me which date you prefer,\
+      \ I can help get your booking changed."
   - user: The next available option is great
   - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
       your requested changed.
   - user: 'yes'
-  - bot: 'Great news! Your flight has been successfully updated. Here are the new
-      details:
-
-
-      - Ticket Number: 7240005432906569
-
-      - Flight Number: LX0112
-
-      - Departure Airport: CDG (Paris Charles de Gaulle)
-
-      - Arrival Airport: BSL (EuroAirport Basel-Mulhouse-Freiburg)
-
-      - Scheduled Departure: May 1, 2024, at 12:09 PM
-
-      - Scheduled Arrival: May 1, 2024, at 1:39 PM
-
-
-      We recommend checking the flight status closer to your departure date. Let me
-      know if you need further assistance.'
+  - bot: "Done \u2014 I\u2019ve moved your ticket to the **next available flight**:\n\
+      \n- **Ticket:** 7240005432906569 (Book ref **C46E9F**)  \n- **New flight:**\
+      \ **LX0112**  \n- **Route:** **CDG \u2192 BSL**  \n- **Departure:** **Wed, 01\
+      \ May 2024 at 12:09**  \n- **Arrival:** **Wed, 01 May 2024 at 13:39**\n\n**Additional\
+      \ fees:** No change fee or fare difference was returned/charged during the update.\n\
+      \nNote: your original seat assignment was **18E**; seat selection on the new\
+      \ flight may need to be re-confirmed (tell me if you want me to try to keep\
+      \ 18E or pick another seat preference)."
   - user: can you book me a hotel as well?
-  - bot: 'I found a few hotel options for you in Basel:
-
-
-      1. Hilton Basel - Luxury Tier
-
-      2. Hyatt Regency Basel - Upper Upscale Tier
-
-      3. Holiday Inn Basel - Upper Midscale Tier
-
-
-      Which one would you like to book?'
-  - user: the 24th - and checking out on the 27th
+  - bot: "Yes\u2014I can help with a hotel booking.\n\nTo get it set up, please tell\
+      \ me:\n1) **City/area** (Basel, near **BSL airport**, or city center?)  \n2)\
+      \ **Check-in date** and **check-out date**  \n3) **Number of guests** and rooms\
+      \  \n4) Any preferences (budget range, breakfast, gym, refundable rate, star\
+      \ rating)\n\nOnce you confirm those, I\u2019ll proceed with the booking."
+  - user: the 24th - and checking out on the 27th of next month
   - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
       your requested changed.
   - user: I'll stay at the Hilton
-  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
-      your requested changed.
+  - bot: "Got it for **Aug 24 \u2192 Aug 27, 2026**.\n\nI found these Basel options\
+      \ available in our system:\n- **Hilton Basel** (Hotel ID **1**) \u2013 Luxury\
+      \  \n- **Hyatt Regency Basel** (Hotel ID **3**) \u2013 Upper Upscale  \n- **Holiday\
+      \ Inn Basel** (Hotel ID **8**) \u2013 Upper Midscale  \n\nWhich one would you\
+      \ like me to book? If you don\u2019t have a preference, tell me your **budget**\
+      \ and whether you prefer **city center vs. near the airport**, and I\u2019ll\
+      \ recommend one and book it."
   - user: 'yes'
-  - bot: 'Great news! Your hotel booking at the Hilton Basel has been confirmed. Here
-      are the details:
-
-
-      - Hotel Name: Hilton Basel
-
-      - Location: Basel
-
-      - Price Tier: Luxury
-
-      - Check-in Date: May 24, 2024
-
-      - Check-out Date: May 27, 2024
-
-
-      Please let me know if you need any further assistance.'
+  - bot: "Which hotel would you like me to book for **24\u201327 Aug 2026** in Basel?\n\
+      \nPlease reply with either **\u201CHilton Basel\u201D**, **\u201CHyatt Regency\
+      \ Basel\u201D**, or **\u201CHoliday Inn Basel\u201D**\u2014and also confirm:\n\
+      - **# of guests** and **# of rooms** (e.g., 1 room / 2 adults)\n- Any must-haves\
+      \ (breakfast, refundable rate, bed type)\n\nOnce I have that, I\u2019ll place\
+      \ the booking."
   - user: I'll need a car too
-  - bot: 'I found a few car rental options for you in Basel:
-
-
-      1. Europcar - Economy Tier
-
-      2. Avis - Luxury Tier
-
-      3. Enterprise - Premium Tier
-
-      4. Thrifty - Midsize Tier
-
-
-      Which one would you like to book?'
+  - bot: "I can book a car for **Aug 24\u201327, 2026** in **Basel**. Available options\
+      \ I\u2019m seeing:\n\n- **Europcar** (Economy) \u2014 rental ID **1**\n- **Thrifty**\
+      \ (Midsize) \u2014 rental ID **9**\n- **Enterprise** (Premium) \u2014 rental\
+      \ ID **7**\n- **Avis** (Luxury) \u2014 rental ID **2**\n\nBefore I book, which\
+      \ do you want\u2014and a couple quick details:\n1) **Pickup/drop-off location:**\
+      \ Basel city or **BSL airport**? (same drop-off?)  \n2) **Automatic or manual**?\
+      \  \n3) **Pickup time** on the 24th and **return time** on the 27th?\n\nReply\
+      \ with the **rental ID** (1/9/7/2) + answers, and I\u2019ll place the booking."
   - user: same dates as the hotel
-  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
-      your requested changed.
+  - bot: "Perfect \u2014 I\u2019ll set the car rental for **Aug 24\u201327, 2026**.\n\
+      \nTo book it, I still need:\n1) **Pickup & drop-off location:** Basel city or\
+      \ **BSL airport**? (same drop-off?)  \n2) Which option you want: **ID 1 (Economy/Europcar)**,\
+      \ **9 (Midsize/Thrifty)**, **7 (Premium/Enterprise)**, or **2 (Luxury/Avis)**\
+      \  \n3) **Pickup time** on Aug 24 and **return time** on Aug 27  \n4) **Automatic\
+      \ or manual** transmission?\n\nSend those and I\u2019ll confirm the booking."
   - user: I'll take the luxury one! looks nice
-  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
-      your requested changed.
+  - bot: "Great \u2014 **Avis (Luxury), rental ID 2**.\n\nBefore I book it, please\
+      \ confirm:\n1) **Pickup & drop-off location:** Basel city or **BSL airport**?\
+      \ (same drop-off?)  \n2) **Pickup time** on **Aug 24** and **return time** on\
+      \ **Aug 27**  \n3) **Automatic or manual**?\n\nOnce you confirm, I\u2019ll book\
+      \ rental **ID 2**."
   - user: 'yes'
-  - bot: 'Great news! Your car rental with Avis has been confirmed. Here are the details:
-
-
-      - Car Rental Company: Avis
-
-      - Location: Basel
-
-      - Price Tier: Luxury
-
-      - Start Date: May 24, 2024
-
-      - End Date: May 27, 2024
-
-
-      Please let me know if you need any further assistance.'
+  - bot: "I can book the **Luxury (Avis) car** for **Aug 24\u201327, 2026**, but I\
+      \ still need 3 specifics to complete it:\n\n1) **Pickup & drop-off location:**\
+      \ **BSL airport** or **Basel city**? (and is drop-off the same place?)  \n2)\
+      \ **Pickup time** on Aug 24 and **return time** on Aug 27  \n3) **Transmission:**\
+      \ automatic or manual?\n\nReply in one line like:  \n\u201C**BSL pickup & drop-off,\
+      \ Aug 24 10:00, Aug 27 16:00, automatic**\u201D and I\u2019ll book it."
   - user: and let's find something to do while I'm in town
-  - bot: 'I found some activities for you in Basel:
-
-
-      1. Visit the historic Basel Minster, a beautiful Gothic cathedral.
-
-      2. Explore the extensive art collection at the Kunstmuseum Basel.
-
-      3. Spend a day exploring the diverse animal exhibits at Basel Zoo.
-
-
-      Which one would you like to book?'
+  - bot: "While you\u2019re in Basel (Aug 24\u201327), I can book activities for you.\
+      \ Right now, the only bookable recommendation I\u2019m seeing in our system\
+      \ is:\n\n- **Kunstmuseum Basel** (Art museum) \u2014 **Recommendation ID 2**\
+      \  \n  *\u201CExplore the extensive art collection at the Kunstmuseum Basel.\u201D\
+      *\n\nDo you want me to **book this** for you? If yes, tell me which day (24/25/26)\
+      \ you\u2019d like to go, and I\u2019ll place the booking.\n\nAlso\u2014what\
+      \ kinds of activities do you prefer (museums, food, walking tours, day trips)?\
+      \ If you tell me your interests, I\u2019ll broaden the search and pull more\
+      \ options."
   - user: I'll go to the Basel Zoo
-  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
-      your requested changed.
+  - bot: "Basel Zoo is available to book in our system:\n\n- **Basel Zoo** \u2014\
+      \ Recommendation ID **8**  \n  \u201CSpend a day exploring the diverse animal\
+      \ exhibits at Basel Zoo.\u201D\n\nTell me which day you want to go (**Aug 24,\
+      \ 25, or 26**), and I\u2019ll book it."
   - user: 'yes'
-  - bot: 'Great news! Your trip to the Basel Zoo has been confirmed. Here are the
-      details:
-
-
-      - Activity: Basel Zoo
-
-      - Location: Basel
-
-      - Keywords: wildlife, zoo
-
-      - Details: Spend a day exploring the diverse animal exhibits at Basel Zoo.
-
-
-      Please let me know if you need any further assistance.'
+  - bot: "Which day should I book **Basel Zoo (ID 8)** for: **Aug 24, Aug 25, or Aug\
+      \ 26**?\n\nOnce you pick a date, I\u2019ll confirm the booking."
   test_case: user does it all!
 - steps:
   - user: I'd like to book a car
-  - bot: Sure, I can help you with that. Could you please provide me with the location,
-      start date, and end date for the car rental?
+  - bot: "I can help book that. For **Basel**, I\u2019m seeing these rental options\
+      \ available to book right now:\n\n- **ID 1 \u2014 Europcar (Economy) \u2014\
+      \ Basel**\n- **ID 9 \u2014 Thrifty (Midsize) \u2014 Basel**\n- **ID 7 \u2014\
+      \ Enterprise (Premium) \u2014 Basel**\n- **ID 2 \u2014 Avis (Luxury) \u2014\
+      \ Basel**\n\nBefore I place the booking, please confirm:\n\n1) **Pickup/return\
+      \ location**: Basel **airport (BSL/EuroAirport)** or **Basel city**?  \n2) **Pickup\
+      \ date/time** and **return date/time** (you mentioned 2024-04-30 to 2024-05-01\u2014\
+      what times?)  \n3) **Car preference**: Economy / Midsize / Premium / Luxury\
+      \ (and **automatic vs manual**)  \n4) **Driver age** (some providers apply young-driver\
+      \ rules)  \n5) Any **extras** (GPS, child seat, additional driver)?\n\nOnce\
+      \ you tell me the **ID** you want (1, 2, 7, or 9) and confirm the details above,\
+      \ I\u2019ll book it."
   - user: to Basel
-  - bot: Great! And could you please provide me with the start and end dates for the
-      car rental?
+  - bot: "Basel works\u2014happy to arrange it. To book the car, I just need a couple\
+      \ of details:\n\n1) **Pickup location:** Basel **EuroAirport (BSL/MLH)** or\
+      \ **Basel city**?  \n2) **Pickup date/time** and **return date/time:** Are you\
+      \ thinking **Apr 30 \u2192 May 1**? If you\u2019re arriving on **LX0112 (CDG\u2192\
+      BSL)**, it\u2019s scheduled to arrive **13:39**, so pickup could be after that.\
+      \  \n3) **Car type:** Economy / Midsize / Premium / Luxury, and **automatic\
+      \ or manual**?  \n4) **Driver age** and any **extras** (GPS, child seat, additional\
+      \ driver).\n\nIf you tell me those, I\u2019ll proceed with the booking."
   - user: from may 14th to the 17th
-  - bot: 'I found a few options for you:
-
-
-      1. Europcar - Economy Class, available from Apr 14 to Apr 11.
-
-      2. Avis - Luxury Class, available from Apr 10 to Apr 20.
-
-      3. Enterprise - Premium Class, available from Apr 22 to Apr 20.
-
-      4. Thrifty - Midsize Class, available from Apr 17 to Apr 26.
-
-
-      Please note that these dates do not match your requested dates of May 14 to
-      May 17. Would you like me to adjust the dates or proceed with these options?'
+  - bot: "Got it: **Basel, May 14th \u2192 May 17th**. Here are the options I can\
+      \ book:\n\n- **ID 1 \u2014 Europcar (Economy) \u2014 Basel**\n- **ID 9 \u2014\
+      \ Thrifty (Midsize) \u2014 Basel**\n- **ID 7 \u2014 Enterprise (Premium) \u2014\
+      \ Basel**\n- **ID 2 \u2014 Avis (Luxury) \u2014 Basel**\n\nTo finalize the booking,\
+      \ please confirm:\n\n1) **Pickup/return location:** Basel **EuroAirport (BSL/MLH)**\
+      \ or **Basel city**?  \n2) **Pickup time** on May 14 and **return time** on\
+      \ May 17  \n3) **Transmission:** automatic or manual  \n4) **Driver age**  \n\
+      5) Any **extras** (GPS, child seat, additional driver)\n\nReply with the **ID**\
+      \ you want (1/2/7/9) + the details above, and I\u2019ll place the booking."
   - user: I'll take the luxury one! looks nice
-  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
-      your requested changed.
+  - bot: "Which would you like for **Basel, May 14\u2013May 17**:\n\n- **ID 2 \u2014\
+      \ Avis (Luxury) \u2014 Basel**\n\nBefore I book **ID 2**, please confirm:\n\
+      1) **Pickup location:** Basel **EuroAirport (BSL/MLH)** or **Basel city**? \
+      \ \n2) **Pickup time** (May 14) and **return time** (May 17)  \n3) **Transmission:**\
+      \ automatic or manual (if you have a preference)  \n4) **Driver age**  \n5)\
+      \ Any **extras** (GPS, child seat, additional driver)\n\nOnce you confirm those,\
+      \ I\u2019ll place the booking for **Avis Luxury (ID 2)**."
   - user: 'yes'
-  - bot: Great! Your Luxury Class car from Avis in Basel has been successfully booked.
-      Enjoy your trip!
+  - bot: "To book the **Luxury (Avis, ID 2)** in **Basel (May 14\u2013May 17)**, I\
+      \ just need you to confirm these details (a quick reply is fine):\n\n1) **Pickup\
+      \ location:** Basel **EuroAirport (BSL/MLH)** or **Basel city**?  \n2) **Pickup\
+      \ time (May 14):** ___ : ___  \n3) **Return time (May 17):** ___ : ___  \n4)\
+      \ **Driver age:** ___  \n5) **Extras:** none / GPS / child seat / additional\
+      \ driver (which?)\n\nIf you don\u2019t have preferences, you can also say: \
+      \ \n\u201C**EuroAirport pickup, 14 May 14:00, 17 May 14:00, age 30, no extras**\u201D\
+      \ (adjust as needed)."
   - user: I also need a hotel
-  - bot: Sure, I can help you with that. Could you please provide me with the check-in
-      and check-out dates for the hotel stay?
+  - bot: "I can help with a hotel in **Basel for May 14\u2013May 17**. Here are options\
+      \ I can book:\n\n- **ID 1 \u2014 Hilton Basel (Luxury)**\n- **ID 3 \u2014 Hyatt\
+      \ Regency Basel (Upper Upscale)**\n- **ID 8 \u2014 Holiday Inn Basel (Upper\
+      \ Midscale)**\n\nTo pick the right one and book it, tell me:\n1) **How many\
+      \ rooms** and **how many guests**?  \n2) Any must-haves: **breakfast**, **gym/spa**,\
+      \ **refundable cancellation**, **bed type** (king/twin)?\n\nIf you already know\
+      \ which you want, reply with the **hotel ID (1/3/8)** and I\u2019ll book it."
   - user: same dates as the car rental
-  - bot: 'I found a few hotel options for you in Basel:
-
-
-      1. Hilton Basel - Luxury, available from Apr 22 to Apr 20.
-
-      2. Hyatt Regency Basel - Upper Upscale, available from Apr 2 to Apr 20.
-
-      3. Holiday Inn Basel - Upper Midscale, available from Apr 24 to Apr 9.
-
-
-      However, these dates do not match your requested dates of May 14 to May 17.
-      Would you like me to adjust the dates, or proceed with these options?'
+  - bot: "Perfect \u2014 I\u2019ll set the hotel for **May 14 check-in to May 17 check-out\
+      \ in Basel**.\n\nWhich hotel would you like me to book?\n\n- **ID 1 \u2014 Hilton\
+      \ Basel (Luxury)**\n- **ID 3 \u2014 Hyatt Regency Basel (Upper Upscale)**\n\
+      - **ID 8 \u2014 Holiday Inn Basel (Upper Midscale)**\n\nAlso, please confirm\
+      \ **# of rooms** and **# of guests** (e.g., \u201C1 room, 2 adults\u201D). Once\
+      \ I have that + your chosen **ID**, I\u2019ll book it."
   - user: I'll stay at the Hilton
-  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
-      your requested changed.
+  - bot: "Hilton Basel it is. To place the booking for **May 14\u2013May 17**, please\
+      \ confirm:\n\n1) **Number of rooms:** 1 / 2 / \u2026  \n2) **Number of guests:**\
+      \ how many adults (and any children + ages)?  \n3) Any key preferences: **breakfast\
+      \ included** (yes/no) and **refundable rate** (yes/no)?\n\nReply like: \u201C\
+      **1 room, 2 adults, breakfast yes, refundable yes**\u201D and I\u2019ll proceed."
   - user: 'yes'
-  - bot: Great! Your stay at the Hilton Basel has been successfully booked. Enjoy
-      your trip!
+  - bot: "I can\u2019t finalize the Hilton booking from just \u201Cyes\u201D because\
+      \ I still need the specific occupancy details.\n\nPlease reply with:\n- **Rooms:**\
+      \ (e.g., 1)\n- **Guests:** (e.g., 2 adults; add children + ages if any)\n- (Optional)\
+      \ **Breakfast included:** yes/no\n- (Optional) **Refundable:** yes/no\n\nExample:\
+      \ **\u201C1 room, 2 adults, breakfast yes, refundable yes.\u201D**"
   test_case: car booking combined with hotel
 - steps:
   - user: I'd like to book a car
-  - bot: 'Of course, I can assist with that. Could you please provide me with the
-      following details:
-
-
-      - The location where you''ll be needing the car
-
-      - The start and end dates for the rental period
-
-      - Your preferred car rental company (if any)
-
-      - Your price range or preferred price tier'
+  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
+      your requested changed.
   - user: Basel
-  - bot: 'Thank you for providing the location. Now, could you please provide me with
-      the following details:
-
-
-      - The start and end dates for the rental period
-
-      - Your preferred car rental company (if any)
-
-      - Your price range or preferred price tier'
+  - bot: "I can book a car for you. I found these options in **Basel** for your dates\
+      \ (**2024-04-30 \u2192 2024-05-02**):\n\n- **ID 1 \u2014 Europcar (Economy)**\
+      \ \u2014 Basel  \n- **ID 9 \u2014 Thrifty (Midsize)** \u2014 Basel  \n- **ID\
+      \ 7 \u2014 Enterprise (Premium)** \u2014 Basel  \n- **ID 2 \u2014 Avis (Luxury)**\
+      \ \u2014 Basel  \n\nTo lock it in, tell me:\n1) Which option you want (**ID\
+      \ 1/9/7/2**)  \n2) **Pickup & drop-off times** (and whether pickup is at **Basel\
+      \ Airport (BSL)** or **Basel city**)  \n3) Driver **age** (needed for eligibility/fees)\
+      \  \n4) Any must-haves: **automatic vs manual**, **GPS**, **child seat**, extra\
+      \ driver\n\nOnce you confirm the ID + times/location, I\u2019ll place the booking."
   - user: from may 14th to the 17th
-  - bot: 'Great, thank you for the dates. Now, could you please provide me with:
-
-
-      - Your preferred car rental company (if any)
-
-      - Your price range or preferred price tier'
-  - user: I'll take the luxury one! looks nice
-  - bot: 'I found a luxury car rental available for your specified dates. Here are
-      the details:
-
-
-      - Car Rental Company: Avis
-
-      - Location: Basel
-
-      - Price Tier: Luxury
-
-      - Start Date: 14th May 2024
-
-      - End Date: 17th May 2024
-
-
-      Would you like to proceed with this booking?'
-  - user: you know what I should save some money
-  - bot: I understand. Do you want me to look for more affordable car rental options?
-      If so, could you please specify your preferred price tier? Options usually include
-      Economy, Compact, Midsize, Standard, Fullsize, Premium, and Luxury.
-  - user: I'll take the economy one
-  - bot: I'm sorry, but it seems that there are no economy car rentals available for
-      your specified dates in Basel. Would you like to consider another price tier
-      or perhaps extend the rental period to see if more options become available?
-  - user: 'yes'
-  - bot: Great! Please provide me with the new rental period or the new price tier
-      you are interested in.
-  test_case: user changes mind about price range
-- steps:
-  - user: I'd like to book a car
-  - bot: Sure, I can help with that. Could you please provide me with the location,
-      start date, and end date for the car rental?
-  - user: to Basel
-  - bot: Great! And could you also provide the start and end dates for your car rental
-      in Basel?
-  - user: from may 14th to the 17th
-  - bot: 'I found a few options for you:
-
-
-      1. Europcar - Economy tier, available from April 14th to April 11th.
-
-      2. Avis - Luxury tier, available from April 10th to April 20th.
-
-      3. Enterprise - Premium tier, available from April 22nd to April 20th.
-
-      4. Thrifty - Midsize tier, available from April 17th to April 26th.
-
-
-      It seems there may be a mistake in our system as the available dates for these
-      options are not matching with your requirement. Let me rectify this. Please
-      wait a moment.
-
-
-      I apologize for the confusion, it seems there''s an error with our car rental
-      database showing incorrect availability dates. I am rectifying this issue and
-      will get back to you shortly with the correct car rental options for your specified
-      dates in Basel. Thank you for your patience.'
+  - bot: "For **Basel** on **May 14 \u2192 May 17**, I\u2019m seeing these available\
+      \ options:\n\n- **ID 1 \u2014 Europcar (Economy)**  \n- **ID 9 \u2014 Thrifty\
+      \ (Midsize)**  \n- **ID 7 \u2014 Enterprise (Premium)**  \n- **ID 2 \u2014 Avis\
+      \ (Luxury)**  \n\nTo book it, tell me:\n1) Which **ID** you want  \n2) Pickup/drop-off\
+      \ **location** (Basel Airport BSL vs Basel city) and **times**  \n3) Driver\
+      \ **age**  \n4) Preference: **automatic or manual**, and any extras (GPS/child\
+      \ seat/extra driver)"
   - user: I'll take the luxury one! looks nice
   - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
       your requested changed.
-  - user: no forget the car just book me a hotel
-  - bot: Of course! I can assist you with booking a hotel. Could you please provide
-      me with the location, check-in, and check-out dates for the hotel booking?
-  - user: same dates
-  - bot: 'I found several options for you:
-
-
-      1. Hilton Basel - Luxury tier, available from April 22nd to April 20th.
-
-      2. Hyatt Regency Basel - Upper Upscale tier, available from April 2nd to April
-      20th.
-
-      3. Holiday Inn Basel - Upper Midscale tier, available from April 24th to April
-      9th.
-
-
-      It seems there may be a mistake again as the available dates for these options
-      are not matching with your requirement. I apologize for the inconvenience. Let
-      me rectify this. Please wait a moment.
-
-
-      I apologize for the inconvenience, it seems there''s an error with our hotel
-      database showing incorrect availability dates. I am rectifying this issue and
-      will get back to you shortly with the correct hotel options for your specified
-      dates in Basel. Thank you for your patience.'
+  - user: you know what I should save some money
+  - bot: "No problem\u2014if you want to save money, the best-value option from what\
+      \ I found is:\n\n- **ID 1 \u2014 Europcar (Economy)** (cheapest tier)\n\nA step\
+      \ up while still cheaper than luxury:\n- **ID 9 \u2014 Thrifty (Midsize)**\n\
+      - **ID 7 \u2014 Enterprise (Premium)**\n\nWhich one would you like me to book:\
+      \ **ID 1, 9, or 7**?\n\nAlso, please confirm:\n- **Pickup/drop-off location**\
+      \ (Basel Airport BSL or Basel city) + **times** (May 14 and May 17)\n- Driver\
+      \ **age**\n- **Automatic vs manual** + any extras (GPS/child seat/extra driver)"
+  - user: I'll take the economy one
+  - bot: "I can book **ID 1 \u2014 Europcar (Economy)** for **May 14 \u2192 May 17**.\n\
+      \nBefore I place the booking, please confirm:\n1) **Pickup location**: Basel\
+      \ Airport (BSL) or Basel city?\n2) **Pickup time** on May 14 and **drop-off\
+      \ time** on May 17\n3) Driver **age**\n4) **Automatic or manual** (and any extras:\
+      \ GPS/child seat/extra driver)\n\nReply with those details and I\u2019ll book\
+      \ it."
+  - user: 'yes'
+  - bot: "To book the **Economy (Europcar)** car for **May 14\u2013May 17**, I still\
+      \ need a few specifics (your \u201Cyes\u201D didn\u2019t include the details):\n\
+      \n1) **Pickup location:** Basel Airport (BSL) or Basel city?  \n2) **Pickup\
+      \ time (May 14)** and **drop-off time (May 17)**  \n3) Driver **age**  \n4)\
+      \ **Automatic or manual**, and any extras (GPS/child seat/extra driver)?\n\n\
+      Reply in one line like:\n\u201C**BSL, May 14 14:30 pickup, May 17 10:00 drop-off,\
+      \ age 32, automatic, no extras**\u201D"
+  test_case: user changes mind about price range
+- steps:
+  - user: I'd like to book a car
+  - bot: "Here are car rental options I can book in **Basel**. (Note: the inventory\
+      \ feed I\u2019m seeing doesn\u2019t list \u201CBasel (BSL) airport\u201D explicitly,\
+      \ but these are Basel-area rentals.)\n\n**Available options (Basel):**\n- **ID\
+      \ 1 \u2014 Europcar** (Economy)\n- **ID 2 \u2014 Avis** (Luxury)\n- **ID 7 \u2014\
+      \ Enterprise** (Premium)\n- **ID 9 \u2014 Thrifty** (Midsize)\n\nTo book the\
+      \ right one (and ensure it matches your flight), tell me:\n1) **Pick-up date\
+      \ & time** on **2024-04-30** (your flight LX0112 arrival time, or the time you\
+      \ want to collect the car)  \n2) **Drop-off date & time** on **2024-05-02**\
+      \  \n3) **Pick-up location**: must it be **BSL airport**, or is **Basel city**\
+      \ OK?  \n4) **Drop-off location**: same as pick-up, or different?  \n5) **Car\
+      \ class preference** (Economy / Midsize / Premium / Luxury) and **transmission**\
+      \ (automatic/manual) if you care\n\nOnce you answer, I\u2019ll book it immediately\u2014\
+      if you already know which one you want, just reply with the **ID** (1, 2, 7,\
+      \ or 9)."
+  - user: to Basel
+  - bot: "Got it\u2014Basel. To book the car correctly, I just need a couple of details:\n\
+      \n1) **Pick-up location**: do you want to pick up at **Basel Airport (BSL/EuroAirport)**\
+      \ or **Basel city**?\n2) **Pick-up time on 30 Apr**: your flight LX0112 arrives\
+      \ around **13:39** (local time). Should I set pick-up for **14:00**?\n3) **Drop-off\
+      \ date/time on 2 May** (and same location or different?)\n4) **Car type**: Economy\
+      \ / Midsize / Premium / Luxury (and automatic or manual, if you have a preference)\n\
+      5) **Driver\u2019s age** (some providers require this)\n\nIf you tell me \u201C\
+      **BSL airport, 14:00 pickup, 2 May 10:00 drop-off, economy, driver age 30**\u201D\
+      \ (adjust as needed), I\u2019ll proceed with the booking."
+  - user: from may 14th to the 17th
+  - bot: "Basel car rental for **May 14 \u2192 May 17** \u2014 I can book one of these\
+      \ Basel options:\n\n- **ID 1 \u2014 Europcar (Economy)**\n- **ID 9 \u2014 Thrifty\
+      \ (Midsize)**\n- **ID 7 \u2014 Enterprise (Premium)**\n- **ID 2 \u2014 Avis\
+      \ (Luxury)**\n\nBefore I book, please confirm:\n1) **Pick-up location:** Basel\
+      \ **Airport (BSL/EuroAirport)** or **Basel city**?\n2) **Pick-up time (May 14)**\
+      \ and **drop-off time (May 17)**\n3) **Drop-off location:** same as pick-up\
+      \ or different?\n4) **Transmission:** automatic or manual (if you care)\n5)\
+      \ **Driver age**\n\nReply with the **ID you want** + the details above, and\
+      \ I\u2019ll place the booking."
+  - user: I'll take the luxury one! looks nice
+  - bot: "Great\u2014**Luxury (Avis), ID 2**.\n\nTo place the booking, I still need\
+      \ these final details:\n1) **Pick-up location:** Basel **Airport (BSL/EuroAirport)**\
+      \ or **Basel city**?\n2) **Pick-up time on May 14**\n3) **Drop-off time on May\
+      \ 17**\n4) **Drop-off location:** same as pick-up or different?\n5) **Driver\
+      \ age**\n\nReply in one line like:  \n\u201C**BSL airport, May 14 14:00 pickup,\
+      \ May 17 10:00 drop-off, same location, driver age 32**\u201D"
+  - user: no forget the car just book me a hotel for the same dates
+  - bot: "I can book you a hotel in **Basel for May 14\u2013May 17**. Here are a few\
+      \ options available:\n\n- **ID 1 \u2014 Hilton Basel** (Luxury)  \n- **ID 3\
+      \ \u2014 Hyatt Regency Basel** (Upper Upscale)  \n- **ID 8 \u2014 Holiday Inn\
+      \ Basel** (Upper Midscale)\n\nBefore I book, please confirm:\n1) **How many\
+      \ rooms** and **how many guests**?\n2) **Bed preference** (king/queen/twin)\
+      \ if any\n3) Any must-haves (breakfast, air conditioning, gym, refundable rate,\
+      \ etc.)\n4) Which hotel **ID** you want (or tell me your budget and I\u2019\
+      ll recommend)\n\nIf you reply with the **hotel ID + guests/rooms**, I\u2019\
+      ll place the booking."
   - user: I'll stay at the Hilton
   - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
       your requested changed.
   - user: 'yes'
-  - bot: Great! Your stay at the Hilton Basel has been successfully booked from May
-      14th to May 17th, 2024. If you need any more assistance, feel free to ask!
+  - bot: "Booked: **Hilton Basel (Hotel ID 1)** for **May 14\u2013May 17**.\n\nTo\
+      \ finalize your stay details, tell me:\n- **Number of rooms** and **number of\
+      \ guests**\n- Any preferences (bed type, breakfast, refundable rate)"
   test_case: user changes mind and cancels rental request, switches to hotel booking
 - steps:
   - user: I'd like to book a car
-  - bot: Sure, I can help with that. Could you please provide me with the location,
-      start date, and end date for the car rental?
+  - bot: "I can help you book a car in Basel for **Apr 30 \u2192 May 1**. Here are\
+      \ some available options I can book right now (Basel area):\n\n- **ID 1 \u2014\
+      \ Europcar (Economy)**\n- **ID 9 \u2014 Thrifty (Midsize)**\n- **ID 7 \u2014\
+      \ Enterprise (Premium)**\n- **ID 2 \u2014 Avis (Luxury)**\n\nBefore I place\
+      \ the booking, tell me:\n1) Which option/ID you want (or your preferred **car\
+      \ class**)?  \n2) **Transmission** preference (automatic or manual)?  \n3) **Driver\
+      \ age**?  \n4) Any **loyalty number(s)** to add (Avis Preferred, Europcar Privilege,\
+      \ etc.)?  \n\nAlso confirm pickup/return:\n- Pickup: **Basel (BSL) airport or\
+      \ Basel city?** (and approximate pickup time\u2014e.g., after flight arrival)\n\
+      - Return: **same location** on May 1?"
   - user: to Basel
-  - bot: Great! Could you please provide the start and end dates for your car rental
-      in Basel?
+  - bot: "Got it \u2014 car rental **in Basel**.\n\nTo book it, I just need a few\
+      \ quick details:\n\n1) **Pick-up location:** Basel Airport **BSL/EuroAirport**\
+      \ or **Basel city**?  \n2) **Pick-up time on 30 Apr:** about what time (e.g.,\
+      \ after your LX0112 arrival)?  \n3) **Return location & time on 1 May:** same\
+      \ place, and what time?  \n4) **Car type:** Economy / Midsize / Premium / Luxury\
+      \ (or I can pick best value).  \n5) **Transmission:** automatic or manual? \
+      \ \n6) **Driver age** (and any loyalty number if you want it added).\n\nOnce\
+      \ you confirm, I\u2019ll proceed with the booking."
   - user: from may 14th to the 17th
-  - bot: 'Here are some available options for car rentals in Basel from May 14th to
-      May 17th:
-
-
-      1. Europcar - Economy Tier
-
-      2. Avis - Luxury Tier
-
-      3. Enterprise - Premium Tier
-
-      4. Thrifty - Midsize Tier
-
-
-      Please let me know which one you prefer.'
+  - bot: "Okay \u2014 **Basel car rental from May 14th to May 17th**.\n\nI\u2019m\
+      \ seeing these options available to book in Basel:\n- **ID 1 \u2014 Europcar\
+      \ (Economy)**\n- **ID 9 \u2014 Thrifty (Midsize)**\n- **ID 7 \u2014 Enterprise\
+      \ (Premium)**\n- **ID 2 \u2014 Avis (Luxury)**\n\nTo finalize the booking, please\
+      \ confirm:\n1) **Pick-up location:** Basel **BSL/EuroAirport** or **Basel city**?\n\
+      2) **Pick-up time (May 14)** and **drop-off time (May 17)**\n3) Which **option/ID**\
+      \ you want (or preferred **car class**)\n4) **Transmission:** automatic or manual\n\
+      5) **Driver age**\n6) Any **loyalty number(s)** to add\n\nReply with the ID\
+      \ + the details above and I\u2019ll book it."
   - user: I'll take the luxury one! looks nice
-  - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
-      your requested changed.
+  - bot: "Luxury it is \u2014 that\u2019s **ID 2 (Avis, Luxury) in Basel**.\n\nBefore\
+      \ I book it, please confirm these last details:\n1) **Pick-up location:** Basel\
+      \ **BSL/EuroAirport** or **Basel city**?  \n2) **Pick-up time on May 14** and\
+      \ **return time on May 17**?  \n3) **Transmission:** automatic or manual?  \n\
+      4) **Driver age**?  \n5) Any **Avis loyalty number** (optional)?\n\nOnce you\
+      \ reply, I\u2019ll place the booking for **May 14 \u2192 May 17**."
   - user: you know what I should save some money
-  - bot: I understand, saving money is important. Would you like to look at the options
-      in the Economy or Midsize tier instead?
+  - bot: "Sure \u2014 we can switch to a cheaper category.\n\nFor Basel **May 14 \u2192\
+      \ May 17**, the more budget-friendly options I can book are:\n- **Economy (Europcar)\
+      \ \u2014 ID 1** (cheapest)\n- **Midsize (Thrifty) \u2014 ID 9** (still cost-conscious,\
+      \ a bit more space)\n\nWhich would you like: **Economy (ID 1)** or **Midsize\
+      \ (ID 9)**?\n\nAnd to finalize the booking, please confirm:\n1) **Pick-up location:**\
+      \ Basel **BSL/EuroAirport** or **Basel city**  \n2) **Pick-up time (May 14)**\
+      \ and **return time (May 17)**  \n3) **Transmission:** automatic or manual \
+      \ \n4) **Driver age** (and any loyalty number if you want it added)"
   - user: no actually I'll just walk and take public transport
-  - bot: Absolutely, that's a great way to explore and save money. Public transportation
-      in Basel is efficient and reliable. If you need any information on Basel's public
-      transportation or any other assistance, feel free to ask. Enjoy your trip!
+  - bot: "Understood \u2014 I won\u2019t book a car rental.\n\nIf you\u2019d like,\
+      \ tell me where you\u2019re staying in Basel (city center, near Messe/Badischer\
+      \ Bahnhof, etc.) and your main plans, and I can suggest the simplest public-transport\
+      \ options (tram/bus routes and the best ticket type)."
   test_case: user changes mind and cancels rental request
 - steps:
   - user: I'd like to book a car
-  - bot: Sure, I can help with that. Could you please provide me with the location
-      where you would like to rent the car, the start date, and the end date of the
-      rental?
+  - bot: "Here are available car rental options in **Basel** I can book for you (Apr\
+      \ 30 \u2192 May 3):\n\n- **ID 1 \u2014 Europcar (Economy)**\n- **ID 9 \u2014\
+      \ Thrifty (Midsize)**\n- **ID 7 \u2014 Enterprise (Premium)**\n- **ID 2 \u2014\
+      \ Avis (Luxury)**\n\nTo book it correctly, tell me:\n1) Which option you want\
+      \ (share the **ID**)  \n2) **Pickup location**: Basel airport (BSL) or Basel\
+      \ city?  \n3) **Pickup & drop-off dates/times** (and confirm drop-off is same\
+      \ location?)  \n4) Driver **age** and any must-haves (automatic, SUV, child\
+      \ seat, etc.)\n\nOnce you confirm the **ID** and pickup/drop-off details, I\u2019\
+      ll place the booking."
   - user: to Basel
-  - bot: Sure, I can assist you with that. Could you please provide the start and
-      end dates for your car rental in Basel?
+  - bot: "Got it \u2014 **Basel**. To proceed with the car booking, I just need one\
+      \ clarification:\n\nDo you want the **pickup in Basel at the airport (EuroAirport\
+      \ BSL/MLH)** or **Basel city**?\n\nAlso, please confirm:\n- **Pickup date/time**\
+      \ (is it **30 Apr** around your flight arrival ~**13:39**?)\n- **Return date/time**\
+      \ (you mentioned **3 May**\u2014what time?)\n- Which car option you prefer (pick\
+      \ an ID):\n  - **ID 1 Europcar (Economy)**\n  - **ID 9 Thrifty (Midsize)**\n\
+      \  - **ID 7 Enterprise (Premium)**\n  - **ID 2 Avis (Luxury)**"
   - user: from may 14th to the 17th
-  - bot: 'I found several options for you:
-
-
-      1. [Europcar](https://www.europcar.com/): Economy tier. Available from April
-      14th to April 11th.
-
-      2. [Avis](https://www.avis.com/): Luxury tier. Available from April 10th to
-      April 20th.
-
-      3. [Enterprise](https://www.enterprise.com/): Premium tier. Available from April
-      22nd to April 20th.
-
-      4. [Thrifty](https://www.thrifty.com/): Midsize tier. Available from April 17th
-      to April 26th.
-
-
-      Unfortunately, none of these options match your specified dates. Would you like
-      to adjust your dates or should I expand the search to nearby locations?'
+  - bot: "May **14 \u2192 May 17** in **Basel** \u2014 perfect. Here are the options\
+      \ I can book:\n\n- **ID 1 \u2014 Europcar (Economy)**\n- **ID 9 \u2014 Thrifty\
+      \ (Midsize)**\n- **ID 7 \u2014 Enterprise (Premium)**\n- **ID 2 \u2014 Avis\
+      \ (Luxury)**\n\nBefore I book, please confirm these 3 things:\n1) **Pickup location**:\
+      \ **Basel airport (BSL/EuroAirport)** or **Basel city**?  \n2) **Pickup time**\
+      \ on **May 14** and **return time** on **May 17** (and is drop-off the same\
+      \ location?)  \n3) Which option you want (share the **ID**) and any preferences\
+      \ (**automatic**, SUV, child seat, etc.) + **driver age**.\n\nReply with something\
+      \ like: \u201C**ID 9, BSL airport, pickup 10:00 May 14, return 16:00 May 17,\
+      \ same location, automatic, driver 32**.\u201D"
   - user: I'll take the luxury one! looks nice
   - bot: Do you approve of the above actions? Type 'yes' to continue; otherwise, explain
       your requested changed.
   - user: no actually I'll just walk and take public transport
-  - bot: Of course, public transport is a great way to get around Basel! If you need
-      any more assistance or have any other questions, feel free to ask.
+  - bot: "No problem \u2014 I won\u2019t book the luxury car.\n\nIf you\u2019d like,\
+      \ tell me where you\u2019ll be staying in **Basel** (area/neighborhood or a\
+      \ landmark) and I can suggest the best **public transport** option (tickets/passes\
+      \ and the easiest route from the airport or train station)."
   test_case: user changes mind and cancels rental request

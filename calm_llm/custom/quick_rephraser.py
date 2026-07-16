@@ -2,7 +2,7 @@ from typing import Any, Dict, Optional, Text
 from rasa.shared.utils.llm import (
     tracker_as_readable_transcript,
 )
-from rasa.core.tracker_store import DialogueStateTracker
+from rasa.shared.core.trackers import DialogueStateTracker
 from rasa.core.nlg.contextual_response_rephraser import ContextualResponseRephraser
 
 

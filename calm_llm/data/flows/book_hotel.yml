@@ -16,9 +16,19 @@ flows:
         collect: hotel_price_range
       - id: "hotel_start_date"
         collect: hotel_start_date
-        description: check in date for the hotel. These are very important! ALWAYS double check the value before filling it in. Do not fill this slot unless user explicitly specifies it in the conversation.
+        description: >
+          Hotel check-in date (ISO). Fill from an explicit date in the user's
+          message, or when they explicitly reuse prior dates ("same dates",
+          "same dates as the car rental", "for the same dates", "those dates")
+          — then copy slots.car_rental_start_date. Never infer dates merely
+          because a car was booked earlier unless the user explicitly ties them.
       - collect: hotel_end_date
-        description: check out date for the hotel. These are very important! ALWAYS double check the value before filling it in. DO NOT misinterpret the date at any cost. Only fill in what the user says. Do not fill this slot unless user explicitly specifies it in the conversation.
+        description: >
+          Hotel check-out date (ISO). Fill from an explicit date in the user's
+          message, or when they explicitly reuse prior dates ("same dates",
+          "same dates as the car rental", "for the same dates", "those dates")
+          — then copy slots.car_rental_end_date. Never infer dates merely
+          because a car was booked earlier unless the user explicitly ties them.
         next:
           - if: slots.hotel_start_date > slots.hotel_end_date
             then:
@@ -32,9 +42,18 @@ flows:
         action: search_hotels
       - collect: hotel_search_results_readable
       - collect: hotel_name
-        description: Name of the hotel which the user has selected. Must be an exact element of the slot "hotel_search_results_readable". If the user wants an option that isn't listed, do not fill the slot with that value.
+        description: >
+          The hotel the user selected from hotel_search_results_readable.
+          Always store the full "Name - PriceTier" string from that list when possible
+          (e.g. "Hilton Basel - Luxury", "Marriott - Luxury", "Radisson - Basic").
+          User may say a short name like "hilton" or "Marriott luxury" — map it to the
+          matching list entry. If the option isn't listed, do not fill the slot.
       - collect: hotel_booking_confirmation
         ask_before_filling: true
+        description: >
+          Whether the user confirms booking this hotel. true for yes/confirm/book it;
+          false for no/don't/not that/I don't want to book. A simple "no" to this
+          confirmation question must SetSlot this to false — do not CancelFlow.
         next:
           - if: not slots.hotel_booking_confirmation
             then: 
