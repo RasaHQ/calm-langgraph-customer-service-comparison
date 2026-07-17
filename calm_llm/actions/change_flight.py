@@ -26,6 +26,41 @@ def parse_datetime(text: str):
     return time
 
 
+class ResolveFlightSearchDates(Action):
+    """Fill the flight search window from the active booking when the user
+    asks for alternatives in the same week (without naming a calendar date)."""
+
+    _SAME_WEEK_PHRASES = (
+        "same week",
+        "this week",
+        "that week",
+        "alternative",
+        "alternatives",
+        "other flights",
+        "another flight",
+    )
+
+    def name(self) -> str:
+        return "resolve_flight_search_dates"
+
+    def run(
+        self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[str, Any]
+    ) -> List[Dict[Text, Any]]:
+        if tracker.get_slot("flight_search_start_date"):
+            return []
+
+        text = str((tracker.latest_message or {}).get("text") or "").lower()
+        if not any(phrase in text for phrase in self._SAME_WEEK_PHRASES):
+            return []
+
+        booking = tracker.get_slot("unique_booking") or {}
+        departure = parse_datetime(booking.get("scheduled_departure"))
+        if departure is None:
+            return []
+
+        return [SlotSet("flight_search_start_date", departure.date().isoformat())]
+
+
 class SearchFlights(Action):
     def name(self) -> str:
         return "search_flights"
@@ -35,34 +70,58 @@ class SearchFlights(Action):
     ) -> List[Dict[Text, Any]]:
 
 
+        booking = tracker.get_slot("unique_booking")
+        if not booking:
+            return []
+
         after_date = parse_datetime(tracker.get_slot("flight_search_start_date"))
-        print(after_date)
+        # Fall back to the current booking departure when the LLM skipped filling
+        # the search window (e.g. user only said "same week").
+        if after_date is None:
+            after_date = parse_datetime(booking.get("scheduled_departure"))
+        if after_date is None:
+            return []
+
         before_date = tracker.get_slot("flight_search_end_date")
-        print(before_date)
-        if before_date != 'Any':
+        if before_date and before_date != "Any":
             before_date = parse_datetime(before_date)
         else:
-            before_date = (after_date + datetime.timedelta(days=6))
+            before_date = after_date + datetime.timedelta(days=6)
 
-        print(before_date, after_date)
+        departure_airport = booking["departure_airport"]
+        arrival_airport = booking["arrival_airport"]
+        current_flight_id = booking.get("flight_id")
 
-        booking = tracker.get_slot('unique_booking')
-        departure_airport = booking['departure_airport']
-        arrival_airport = booking['arrival_airport']
+        def departure_dt(flight: Dict[str, Any]) -> datetime.datetime:
+            return datetime.datetime.fromisoformat(flight["scheduled_departure"])
 
         def prettify_results(results):
+            results = sorted(results, key=departure_dt)
+            return "\n".join(
+                [
+                    "* "
+                    + departure_dt(r).strftime("%A, %B %d at %-I:%M %p")
+                    + f" ({r['flight_id']})"
+                    for r in results
+                ]
+            )
 
-            results = sorted(results, key=lambda x: datetime.datetime.fromisoformat(x['scheduled_departure']).strftime('%-m/%-d %-I:%M %p'))
-
-            return "\n".join([
-                "* " + datetime.datetime.fromisoformat(r['scheduled_departure']).strftime("%A, %B %d at %-I:%M %p") + f" ({r['flight_id']})"
-                for r in results
-            ])
-        
-        results = search_flights(departure_airport, arrival_airport, after_date.isoformat(), before_date.isoformat(), limit=3)
+        # Fetch a few extra rows so we can drop the passenger's current flight.
+        results = search_flights(
+            departure_airport,
+            arrival_airport,
+            after_date.isoformat(),
+            before_date.isoformat(),
+            limit=6,
+        )
+        results = [r for r in results if r.get("flight_id") != current_flight_id]
+        results = sorted(results, key=departure_dt)[:3]
 
         results_readable = prettify_results(results)
-        return [SlotSet("flight_search_results", results), SlotSet("results_readable", results_readable)]
+        return [
+            SlotSet("flight_search_results", results),
+            SlotSet("results_readable", results_readable),
+        ]
 
 class NewFlightDetails(Action):
     def name(self) -> str:

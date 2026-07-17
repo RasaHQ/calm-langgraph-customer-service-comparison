@@ -17,7 +17,7 @@ db = local_file  # We'll be using this local file as our DB in this tutorial
 import re
 import numpy as np
 import openai
-from langgraph.checkpoint.sqlite import SqliteSaver
+from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, StateGraph
 from langgraph.prebuilt import tools_condition
 from langchain_core.runnables import RunnableLambda
@@ -27,9 +27,9 @@ from typing_extensions import TypedDict
 from langgraph.graph.message import AnyMessage, add_messages
 from langchain_core.tools import tool
 
-from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain_tavily import TavilySearch
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from langchain_core.runnables import Runnable, RunnableConfig
 from typing import Callable
 from langchain_core.messages import ToolMessage
@@ -46,7 +46,7 @@ faq_text = response.text
 
 docs = [{"page_content": txt} for txt in re.split(r"(?=\n##)", faq_text)]
 
-model_name = "gpt-4"
+model_name = "gpt-5.2"
 llm = ChatOpenAI(model=model_name)
 
 
@@ -685,6 +685,12 @@ def cancel_excursion(recommendation_id: int) -> str:
         return f"No trip recommendation found with ID {recommendation_id}."
 
 
+def _tool_call_field(tool_call, field: str):
+    if isinstance(tool_call, dict):
+        return tool_call[field]
+    return getattr(tool_call, field)
+
+
 def handle_tool_error(state) -> dict:
     error = state.get("error")
     tool_calls = state["messages"][-1].tool_calls
@@ -692,7 +698,7 @@ def handle_tool_error(state) -> dict:
         "messages": [
             ToolMessage(
                 content=f"Error: {repr(error)}\n please fix your mistakes.",
-                tool_call_id=tc["id"],
+                tool_call_id=_tool_call_field(tc, "id"),
             )
             for tc in tool_calls
         ]
@@ -1044,7 +1050,7 @@ primary_assistant_prompt = ChatPromptTemplate.from_messages(
     ]
 ).partial(time=datetime.now())
 primary_assistant_tools = [
-    TavilySearchResults(max_results=1),
+    TavilySearch(max_results=1),
     search_flights,
     lookup_policy,
 ]
@@ -1061,7 +1067,7 @@ assistant_runnable = primary_assistant_prompt | llm.bind_tools(
 
 def create_entry_node(assistant_name: str, new_dialog_state: str) -> Callable:
     def entry_node(state: State) -> dict:
-        tool_call_id = state["messages"][-1].tool_calls[0]["id"]
+        tool_call_id = _tool_call_field(state["messages"][-1].tool_calls[0], "id")
         return {
             "messages": [
                 ToolMessage(
@@ -1119,11 +1125,11 @@ def route_update_flight(
     if route == END:
         return END
     tool_calls = state["messages"][-1].tool_calls
-    did_cancel = any(tc["name"] == CompleteOrEscalate.__name__ for tc in tool_calls)
+    did_cancel = any(_tool_call_field(tc, "name") == CompleteOrEscalate.__name__ for tc in tool_calls)
     if did_cancel:
         return "leave_skill"
     safe_toolnames = [t.name for t in update_flight_safe_tools]
-    if all(tc["name"] in safe_toolnames for tc in tool_calls):
+    if all(_tool_call_field(tc, "name") in safe_toolnames for tc in tool_calls):
         return "update_flight_safe_tools"
     return "update_flight_sensitive_tools"
 
@@ -1146,7 +1152,7 @@ def pop_dialog_state(state: State) -> dict:
         messages.append(
             ToolMessage(
                 content="Resuming dialog with the host assistant. Please reflect on the past conversation and assist the user as needed.",
-                tool_call_id=state["messages"][-1].tool_calls[0]["id"],
+                tool_call_id=_tool_call_field(state["messages"][-1].tool_calls[0], "id"),
             )
         )
     return {
@@ -1188,11 +1194,11 @@ def route_book_car_rental(
     if route == END:
         return END
     tool_calls = state["messages"][-1].tool_calls
-    did_cancel = any(tc["name"] == CompleteOrEscalate.__name__ for tc in tool_calls)
+    did_cancel = any(_tool_call_field(tc, "name") == CompleteOrEscalate.__name__ for tc in tool_calls)
     if did_cancel:
         return "leave_skill"
     safe_toolnames = [t.name for t in book_car_rental_safe_tools]
-    if all(tc["name"] in safe_toolnames for tc in tool_calls):
+    if all(_tool_call_field(tc, "name") in safe_toolnames for tc in tool_calls):
         return "book_car_rental_safe_tools"
     return "book_car_rental_sensitive_tools"
 
@@ -1226,11 +1232,11 @@ def route_book_hotel(
     if route == END:
         return END
     tool_calls = state["messages"][-1].tool_calls
-    did_cancel = any(tc["name"] == CompleteOrEscalate.__name__ for tc in tool_calls)
+    did_cancel = any(_tool_call_field(tc, "name") == CompleteOrEscalate.__name__ for tc in tool_calls)
     if did_cancel:
         return "leave_skill"
     tool_names = [t.name for t in book_hotel_safe_tools]
-    if all(tc["name"] in tool_names for tc in tool_calls):
+    if all(_tool_call_field(tc, "name") in tool_names for tc in tool_calls):
         return "book_hotel_safe_tools"
     return "book_hotel_sensitive_tools"
 
@@ -1268,11 +1274,11 @@ def route_book_excursion(
     if route == END:
         return END
     tool_calls = state["messages"][-1].tool_calls
-    did_cancel = any(tc["name"] == CompleteOrEscalate.__name__ for tc in tool_calls)
+    did_cancel = any(_tool_call_field(tc, "name") == CompleteOrEscalate.__name__ for tc in tool_calls)
     if did_cancel:
         return "leave_skill"
     tool_names = [t.name for t in book_excursion_safe_tools]
-    if all(tc["name"] in tool_names for tc in tool_calls):
+    if all(_tool_call_field(tc, "name") in tool_names for tc in tool_calls):
         return "book_excursion_safe_tools"
     return "book_excursion_sensitive_tools"
 
@@ -1302,13 +1308,13 @@ def route_primary_assistant(
         return END
     tool_calls = state["messages"][-1].tool_calls
     if tool_calls:
-        if tool_calls[0]["name"] == ToFlightBookingAssistant.__name__:
+        if _tool_call_field(tool_calls[0], "name") == ToFlightBookingAssistant.__name__:
             return "enter_update_flight"
-        elif tool_calls[0]["name"] == ToBookCarRental.__name__:
+        elif _tool_call_field(tool_calls[0], "name") == ToBookCarRental.__name__:
             return "enter_book_car_rental"
-        elif tool_calls[0]["name"] == ToHotelBookingAssistant.__name__:
+        elif _tool_call_field(tool_calls[0], "name") == ToHotelBookingAssistant.__name__:
             return "enter_book_hotel"
-        elif tool_calls[0]["name"] == ToBookExcursion.__name__:
+        elif _tool_call_field(tool_calls[0], "name") == ToBookExcursion.__name__:
             return "enter_book_excursion"
         return "primary_assistant_tools"
     raise ValueError("Invalid route")
@@ -1357,7 +1363,7 @@ global part_4_graph
 
 def initialize_graph():
     global part_4_graph
-    memory = SqliteSaver.from_conn_string(":memory:")
+    memory = InMemorySaver()
     part_4_graph = builder.compile(
         checkpointer=memory,
         # Let the user approve or deny the use of sensitive tools
@@ -1393,31 +1399,45 @@ def run_conversation(user_turns):
     _printed = set()
     all_turn_stats = []
     last_result = None
+    # Fresh thread per conversation so checkpoint state never leaks across tests.
+    config["configurable"]["thread_id"] = str(uuid.uuid4())
     for question in user_turns:
         snapshot = part_4_graph.get_state(config)
         turn_data = {"user": question}
         turn_latency = 0
         start = 0
+        approval_yes = question.strip().lower() in {"yes", "y", "approve", "approved", "ok", "okay"}
         try:
             start = time()
             if snapshot.next and last_result:
-                if question == "yes":
-                    result = part_4_graph.invoke(
-                                None,
-                                config,
-                            )
+                if approval_yes:
+                    result = part_4_graph.invoke(None, config)
+                    # One user "yes" means approve the pending tool call; keep
+                    # resuming if the graph immediately queues another sensitive tool.
+                    snapshot = part_4_graph.get_state(config)
+                    drain_guard = 0
+                    while snapshot.next and drain_guard < 5:
+                        result = part_4_graph.invoke(None, config)
+                        snapshot = part_4_graph.get_state(config)
+                        drain_guard += 1
                 else:
-                    result = part_4_graph.invoke(
-                        {
-                            "messages": [
-                                ToolMessage(
-                                    tool_call_id=last_result["messages"][-1].tool_calls[0]["id"],
-                                    content=f"API call denied by user. Reasoning: '{question}'. Continue assisting, accounting for the user's input.",
-                                )
-                            ]
-                        },
-                        config,
-                    )
+                    tool_calls = getattr(last_result["messages"][-1], "tool_calls", None) or []
+                    if not tool_calls:
+                        result = part_4_graph.invoke(
+                            {"messages": ("user", question)}, config
+                        )
+                    else:
+                        result = part_4_graph.invoke(
+                            {
+                                "messages": [
+                                    ToolMessage(
+                                        tool_call_id=_tool_call_field(tool_calls[0], "id"),
+                                        content=f"API call denied by user. Reasoning: '{question}'. Continue assisting, accounting for the user's input.",
+                                    )
+                                ]
+                            },
+                            config,
+                        )
             else:
                 result = part_4_graph.invoke(
                     {"messages": ("user", question)}, config

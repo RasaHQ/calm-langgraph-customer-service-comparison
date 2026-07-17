@@ -1,0 +1,4 @@
+# Shared e2e fixtures. The travel demo (DB + actions) is frozen at 2024-04-27.
+fixtures:
+  - demo_clock:
+      - mocked_datetime: "2024-04-27T18:13:47+00:00"

@@ -5,22 +5,40 @@ flows:
       - action: list_flight_bookings
         next:
           - if: "slots.unique_booking"
-            then: "get_constraints"
+            then: "resolve_search_window"
           - else:
               - action: utter_unclear_which_flight
                 next: END
+      - id: "resolve_search_window"
+        action: resolve_flight_search_dates
       - id: "get_constraints"
         collect: flight_search_start_date
-        description: start date for flight search. Refer to the current time available and always output this in the ISO format.
+        description: >
+          Concrete start date for flight search in ISO format (YYYY-MM-DD). If the
+          user says "same week", "this week", "alternative ones for the same week",
+          or similar, fill from the existing booking's departure date
+          (slots.unique_booking.scheduled_departure date) and do not ask again.
+          Prefer the date already in slots.flight_search_start_date when set.
       - collect: flight_search_end_date
-        description: end date for flight search. Refer to the current time available and always output this in the ISO format.
+        description: >
+          Concrete end date for flight search in ISO format. If unset, "Any" is fine
+          when the user only constrained the week of travel.
       - action: search_flights
       - action: utter_flight_search_results
       - collect: selected_flight_id
-        description: the selected id number from the search results presented to the user.
+        description: >
+          The selected flight_id number from the search results presented to the user
+          (the number in parentheses). Results already exclude the current booking.
+          If the user says "the next available option", "the first one", "that one",
+          or similar, use the earliest chronologically listed result's id — never the
+          flight they already hold.
       - action: new_flight_details
       - collect: flight_change_confirmation
         ask_before_filling: true
+        description: >
+          Whether the user confirms changing to the selected flight. true for
+          yes/confirm/go ahead; false for no/don't. A simple "no" must SetSlot
+          this to false — do not CancelFlow.
       - action: change_flight
         next:
           - if: "slots.change_flight_success"

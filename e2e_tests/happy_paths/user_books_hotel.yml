@@ -1,5 +1,7 @@
 test_cases:
   - test_case: hotel booking but location is not in db
+    fixtures:
+      - demo_clock
     steps:
       - user: book a hotel
       - bot: in which city?
@@ -8,6 +10,8 @@ test_cases:
       - user: ok, then book one in Basel please
       - bot: Certainly! I'd be happy to help you book a hotel. What's your preferred check-in date?
   - test_case: simple hotel booking
+    fixtures:
+      - demo_clock
     steps:
       - user: I'd like to book a hotel
       - bot: in which city?
@@ -21,6 +25,8 @@ May 17, correct?"
       - user: "yes"
       - bot: "Great news! I've successfully booked your stay at the Hilton Basel - Luxury"
   - test_case: simple hotel booking, but user doesn't want to book
+    fixtures:
+      - demo_clock
     steps:
       - user: I'd like to book a hotel
       - bot: in which city?

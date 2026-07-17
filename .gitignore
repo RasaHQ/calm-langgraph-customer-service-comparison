@@ -5,3 +5,7 @@ models/
 .idea
 .ipynb_checkpoints/
 .DS_Store
+docs/rasa-vs-langgraph-benchmark.html
+calm_llm/results*.txt
+langgraph_implementation/results*.txt
+langgraph_implementation/requirements-latest.txt

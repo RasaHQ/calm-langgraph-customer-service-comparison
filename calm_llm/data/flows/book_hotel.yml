@@ -16,10 +16,31 @@ flows:
         collect: hotel_price_range
       - id: "hotel_start_date"
         collect: hotel_start_date
-        description: check in date for the hotel. These are very important! ALWAYS double check the value before filling it in. Do not fill this slot unless user explicitly specifies it in the conversation.
+        # Keep dates after booking so a follow-up car flow can copy "same dates".
+        # Do not null these at flow start — same-turn fills ("hotel for the same
+        # dates") would be wiped by StartFlow before collect runs.
+        reset_after_flow_ends: false
+        description: >
+          Hotel check-in date as an ISO datetime string. Only fill this slot when
+          the current user message itself contains an explicit date or an explicit
+          same-dates phrase ("same dates", "same dates as the car rental",
+          "for the same dates", "those dates"). If the phrase refers to the car
+          rental, copy the exact ISO value of slots.car_rental_start_date. Do not
+          fill this slot just because slots.car_rental_start_date is already set
+          from an earlier booking.
       - collect: hotel_end_date
-        description: check out date for the hotel. These are very important! ALWAYS double check the value before filling it in. DO NOT misinterpret the date at any cost. Only fill in what the user says. Do not fill this slot unless user explicitly specifies it in the conversation.
+        reset_after_flow_ends: false
+        description: >
+          Hotel check-out date as an ISO datetime string. Only fill this slot when
+          the current user message itself contains an explicit date or an explicit
+          same-dates phrase ("same dates", "same dates as the car rental",
+          "for the same dates", "those dates"). If the phrase refers to the car
+          rental, copy the exact ISO value of slots.car_rental_end_date. Do not
+          fill this slot just because slots.car_rental_end_date is already set
+          from an earlier booking.
         next:
+          - if: not slots.hotel_start_date or not slots.hotel_end_date
+            then: hotel_start_date
           - if: slots.hotel_start_date > slots.hotel_end_date
             then:
               - action: utter_invalid_date
@@ -32,9 +53,18 @@ flows:
         action: search_hotels
       - collect: hotel_search_results_readable
       - collect: hotel_name
-        description: Name of the hotel which the user has selected. Must be an exact element of the slot "hotel_search_results_readable". If the user wants an option that isn't listed, do not fill the slot with that value.
+        description: >
+          The hotel the user selected from hotel_search_results_readable.
+          Always store the full "Name - PriceTier" string from that list when possible
+          (e.g. "Hilton Basel - Luxury", "Marriott - Luxury", "Radisson - Basic").
+          User may say a short name like "hilton" or "Marriott luxury" — map it to the
+          matching list entry. If the option isn't listed, do not fill the slot.
       - collect: hotel_booking_confirmation
         ask_before_filling: true
+        description: >
+          Whether the user confirms booking this hotel. true for yes/confirm/book it;
+          false for no/don't/not that/I don't want to book. A simple "no" to this
+          confirmation question must SetSlot this to false — do not CancelFlow.
         next:
           - if: not slots.hotel_booking_confirmation
             then: 

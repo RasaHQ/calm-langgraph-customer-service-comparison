@@ -4,13 +4,12 @@ pipeline:
 - name: custom.custom_cmd_gen.CustomLLMCommandGenerator
   llm:
     provider: openai
-    model: gpt-4-0613
-    timeout: 7
-    max_tokens: 256
+    model: gpt-5.2
+    timeout: 60
+    max_completion_tokens: 1024
     temperature: 0
     cache:
       no-cache: true
-  prompt_template: prompt_templates/time_aware_prompt.jinja2
 
 policies:
 - name: FlowPolicy

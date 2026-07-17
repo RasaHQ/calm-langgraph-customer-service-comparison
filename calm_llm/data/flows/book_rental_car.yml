@@ -2,13 +2,35 @@ flows:
   search_rental_car:
     description: search for rental cars
     steps:
+      - set_slots:
+          - car_rental_start_date: null
+          - car_rental_end_date: null
       - collect: trip_destination
         reset_after_flow_ends: false
       - id: "car_rental_start_date"
         collect: car_rental_start_date
+        # Keep dates after booking so a follow-up hotel flow can copy "same dates".
+        reset_after_flow_ends: false
+        description: >
+          Car pick-up date as an ISO datetime string. Only fill this slot when the
+          current user message itself contains an explicit date or an explicit
+          same-dates phrase ("same dates as the hotel", "same dates", "those
+          dates"). If the phrase refers to the hotel, copy the exact ISO value of
+          slots.hotel_start_date. Do not fill this slot just because
+          slots.hotel_start_date is already set from an earlier booking.
       - collect: car_rental_end_date
+        reset_after_flow_ends: false
+        description: >
+          Car return date as an ISO datetime string. Only fill this slot when the
+          current user message itself contains an explicit date or an explicit
+          same-dates phrase ("same dates as the hotel", "same dates", "those
+          dates"). If the phrase refers to the hotel, copy the exact ISO value of
+          slots.hotel_end_date. Do not fill this slot just because
+          slots.hotel_end_date is already set from an earlier booking.
       - noop: true
         next:
+          - if: not slots.car_rental_start_date or not slots.car_rental_end_date
+            then: car_rental_start_date
           - if: slots.car_rental_start_date > slots.car_rental_end_date
             then:
               - action: utter_invalid_date
@@ -22,18 +44,30 @@ flows:
       - collect: car_rental_search_results_readable
       - id: "car_rental_selection"
         collect: car_rental_selection
-        description: Car rental option which the user has selected. Must be an exact element of the 
-          slot `car_rental_search_results_readable`. If the user wants an option that isn't listed, 
-          do not fill the slot with that value. If the user implicitly mentions wanting to change 
-          the value of the slot without giving a new value, set it to `None`.
+        description: >
+          Car rental option the user selected. Must be an exact element of
+          `car_rental_search_results_readable`. If the option isn't listed, do
+          not fill the slot. If the user wants to change their choice without
+          naming a new car yet, set this slot to null. If the user abandons
+          car rental entirely ("I'll walk", "never mind", "cancel the car"),
+          use CancelFlow.
       - id: "confirmation"
         collect: car_rental_booking_confirmation
-        description: Final confirmation from user if they would like to book the selected option.
+        description: >
+          Whether the user confirms booking this car. true for yes/confirm/book it.
+          false for no/don't when declining this booking but still wanting a car.
+          If the user wants a different car (cheaper, different tier, changed mind
+          about the selection) without abandoning the rental, set
+          car_rental_selection to null and this slot to false — do not CancelFlow.
+          If the user abandons car rental entirely or pivots to another task
+          (e.g. "forget the car, book a hotel"), use CancelFlow.
         ask_before_filling: true
       - noop: true
         next:
          - if: slots.car_rental_booking_confirmation
            then: "confirm_booking"
+         - if: not slots.car_rental_selection
+           then: "car_rental_selection"
          - else: "cancellation"
       - id: "confirm_booking"
         action: utter_confirm_booked_rental_car

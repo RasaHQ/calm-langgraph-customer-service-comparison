@@ -1,5 +1,7 @@
 test_cases:
   - test_case: user changes mind about price range
+    fixtures:
+      - demo_clock
     steps:
       - user: I'd like to book a car
       - bot: in which city?
